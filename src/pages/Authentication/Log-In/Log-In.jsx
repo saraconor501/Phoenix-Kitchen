@@ -55,7 +55,7 @@ const Login = () => {
             {error && <p className={style.errorMessage}>{error}</p>}
 
             <div className={style.providers}>
-              <button className={style.loginProvider} onClick={() => loginWithGoogle()} disabled={isFetching}>
+              <button className={style.loginProvider} onClick={() => loginWithGoogle().then(() => navigate("/"))}disabled={isFetching}>
                 <img src="/images/google-icon.svg" alt="Google" /> Google
               </button>
               <button className={style.loginProvider}>

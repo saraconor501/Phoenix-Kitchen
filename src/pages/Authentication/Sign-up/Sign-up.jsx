@@ -13,7 +13,7 @@ const SignUp = () => {
   const [errors, setErrors] = useState({ email: "", password: "", repeatPassword: "" })
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setErrors({ email: "", password: "", repeatPassword: "" })
 
     let valid = true
@@ -33,10 +33,10 @@ const SignUp = () => {
       setErrors(newErrors)
       return
     }
-      navigate("/")
 
-  }
-
+    await registerUser(email, password)
+    navigate("/")
+  };
   return (
     <div className={style.container}>
       <div className={style.banner}>
