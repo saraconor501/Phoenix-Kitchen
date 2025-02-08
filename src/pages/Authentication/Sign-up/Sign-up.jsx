@@ -63,7 +63,7 @@ const SignUp = () => {
 
             <div className={style.toLogin}>
               <span style={{ color: "#9E9E9E", fontSize: "18px", fontWeight: "400" }}>Already have an account?</span>
-              <Link className={style.titleLogin} to="/login">Login here</Link>
+              <Link className={style.titleLogin} to="/auth/login">Login here</Link>
             </div>
 
             <form onSubmit={handleSubmit} className={style.formFill}>
