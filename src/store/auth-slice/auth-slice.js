@@ -19,7 +19,6 @@ const useAuthStore = create((set) => ({
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       set({ user: userCredential.user });
     } catch (error) {
-      // Обрабатываем разные ошибки Firebase
       if (error.code === "auth/email-already-in-use") {
         set({ error: "Этот email уже зарегистрирован. Попробуйте войти." });
       } else if (error.code === "auth/invalid-email") {
@@ -40,6 +39,8 @@ const useAuthStore = create((set) => ({
       set({ isFetching: true, error: null });
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       set({ user: userCredential.user });
+      
+      return { success: true, user: userCredential.user }
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         set({ error: "Пользователь не найден. Проверьте email или зарегистрируйтесь." });
@@ -49,6 +50,8 @@ const useAuthStore = create((set) => ({
         set({ error: "Ошибка при входе. Попробуйте снова." });
       }
       console.error(error);
+      
+      return { success: false, error }
     } finally {
       set({ isFetching: false });
     }
