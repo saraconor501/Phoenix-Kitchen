@@ -1,12 +1,10 @@
 import { create } from "zustand";
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut, 
-  GoogleAuthProvider, 
-  signInWithPopup 
-} from "firebase/auth";
 import { auth } from "../../utils/firebase/firebase-config"; 
+import { createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut, GoogleAuthProvider,
+  signInWithPopup } from "firebase/auth";
+
 
 const googleProvider = new GoogleAuthProvider();
 
