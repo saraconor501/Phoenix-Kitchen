@@ -1,11 +1,10 @@
+import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
 
 
 const HomePage = () => {
   return (
     <>
-    <div>
-        
-    </div>
+      <SwiperBanner/>
     </>
   )
 }
