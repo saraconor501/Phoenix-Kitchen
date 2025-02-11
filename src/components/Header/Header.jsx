@@ -5,15 +5,17 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className={hr.logos}>
-        <img src={Logo} alt="" className={hr.logo}/>
-        <h1 className={hr.logo__title}>Phoenix Kitchen</h1>
+        <div className={hr.header}>
+          <div className={hr.logos}>
+            <img src={Logo} alt="" className={hr.logo} />
+            <Link to={'/'} style={{textDecoration:"none"}}><h1 className={hr.logo__title}>Phoenix Kitchen</h1></Link>
+          </div>
+          <nav className={hr.navigate}>
+            <p className={hr.nav}><img src="/images/search.svg" /> <Link>Search</Link></p>
+            <p className={hr.nav}><img src="/images/account.svg" /> <Link to={'/auth/login'}>Account</Link></p>
+            <p className={hr.nav}><img src="/images/cart.svg" /> <Link>Cart</Link></p>
+          </nav>
         </div>
-        <nav className={hr.nav}>
-          <p><Link>Search</Link></p>
-          <p><Link>Account</Link></p>
-          <p><Link>Cart</Link></p>
-        </nav>
       </header>
     </>
   )
