@@ -19,7 +19,7 @@ const Cards = () => {
           <div key={index} className={main.productCard}>
 
             <div className={main.imageContainer}>
-              <img src={item.imageUrl} alt={item.name} />
+              <img style={{width:"auto"}} src={item.imageUrl} alt={item.name} />
               {item.isAvailable && <div className={main.statusBadge}><div className={main.open}></div> Open</div>}
               {!item.isAvailable && <div className={main.statusBadgeNone}><div className={main.close}></div> Close</div>}
               {console.log(item.isAvailable)}
@@ -40,7 +40,7 @@ const Cards = () => {
         
               </div>
 
-              <p className={main.price}>${item.price}</p>
+              <p className={main.price}>{item.price} coм</p>
               <div className={main.buttons}>
                 <button className={main.saveButton}>Save for later</button>
                 <button className={main.addToCartButton}>Add to cart</button>
