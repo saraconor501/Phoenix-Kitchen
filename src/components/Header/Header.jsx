@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../../public/logo.jpg'
 import hr from './Header.module.css'
+import AdressButton from '../AdressButton/AdressButton'
 const Header = () => {
   return (
     <>
       <header>
         <div className={hr.header}>
           <div className={hr.logos}>
-            <img src={Logo} alt="" className={hr.logo} />
-            <Link to={'/'} style={{textDecoration:"none"}}><h1 className={hr.logo__title}>Phoenix Kitchen</h1></Link>
+            <Link to={'/'}><img src={Logo} alt="" className={hr.logo} /></Link>
+            <input type="text" placeholder='Найти ресторан или блюдо' className={hr.input}/>
+            <AdressButton/>
           </div>
           <nav className={hr.navigate}>
             <p className={hr.nav}><img src="/images/search.svg" /> <Link>Search</Link></p>
