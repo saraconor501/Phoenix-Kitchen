@@ -91,13 +91,14 @@
 .rating {
     display: flex;
     align-items: center;
+    gap: 4px;
     font-size: 14px;
     font-weight: bold;
     color: #444;
 }
 
 .star {
-    margin-right: 5px;
+    margin-bottom: 5px;
     color: gold;
 }
 
@@ -141,18 +142,34 @@
 }
 
 .saveButton {
-    background: transparent;
+    width: 143px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: #FFF2E8;
     border: none;
-    color: #777;
+    color: #FC8019;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 700;
+}
+.saveButton:active{
+    transform: scale(0.98);
 }
 
 .addToCartButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 143px;
+    height: 40px;
     background: #ff6600;
     color: white;
     border: none;
-    padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;

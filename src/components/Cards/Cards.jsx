@@ -28,7 +28,7 @@ const Cards = () => {
             <div className={main.productInfo}>
               <div className={main.rating}>
                 <span className={main.star}>⭐</span>
-                <span>{item.rating || "4.7"}</span> Dining & Delivery
+                <span >{item?.rating}  </span>  {item.isAvailable? 'Dining & Delivery': 'Dining'}
               </div>
               <h2 className={main.productName}>{item.name}</h2>
               <div className={main.titleProduct}>
@@ -42,8 +42,8 @@ const Cards = () => {
 
               <p className={main.price}>{item.price} coм</p>
               <div className={main.buttons}>
-                <button className={main.saveButton}>Save for later</button>
-                <button className={main.addToCartButton}>Add to cart</button>
+                <button className={main.saveButton}><img src="/images/icon-save.svg"/> Save for later</button>
+                <button className={main.addToCartButton}> Add to cart</button>
               </div>
             </div>
           </div>
