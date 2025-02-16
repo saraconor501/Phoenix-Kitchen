@@ -10,8 +10,6 @@
 }
 
 
-
-/* Эффект плавного затемнения */
 .swiper-fade .swiper-slide {
   transition: opacity 1s ease-in-out;
 }

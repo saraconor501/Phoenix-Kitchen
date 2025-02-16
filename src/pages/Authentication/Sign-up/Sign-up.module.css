@@ -45,7 +45,7 @@
     width: 100%;
     height: 48px;
     display: flex;
-    gap: 21px;
+    gap: 8px;
 
 }
 
@@ -109,7 +109,7 @@ form {
     width: 191.5px;
     height: 48px;
     border-radius: 12px;
-    background-color: #FFF2E8;
+    background-color: #ffffff;
     border: none;
     font-weight: 700;
     font-size: 16px;

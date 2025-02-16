@@ -3,6 +3,7 @@ import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
 import hp from './HomePage.module.css'
 
 const HomePage = () => {
+
   return (
     <>
       <SwiperBanner/>
@@ -13,4 +14,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default HomePage;
