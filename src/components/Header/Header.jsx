@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import hr from './Header.module.css'
-
+import Logo from '../../../public/logo.jpg'
 
 const Header = () => {
 
@@ -14,7 +14,7 @@ const Header = () => {
           <div className={hr.leftBlock}>
 
             <div className={hr.logoContainer}>
-              <Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
+            <img src={Logo} alt="" className={hr.Logo}/><Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
             </div>
 
             <div className={hr.searchContainer}>

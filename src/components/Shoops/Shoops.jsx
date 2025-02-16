@@ -2,9 +2,7 @@
 const Shoops = () => {
   return (
     <>
-        <div>
-            img
-        </div>
+        
     </>
   )
 }

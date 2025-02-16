@@ -1,7 +1,8 @@
-import Shoops from "../../components/Shoops/Shoops"
+import Shoops from "../../components/ShoopsDetails/Details"
 import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
 import hp from './HomePage.module.css'
-
+// import Cards from "../../components/ShoopsDetails/Details";
+import KFC from "../../components/KFC/KFC";
 const HomePage = () => {
 
   return (
@@ -9,6 +10,7 @@ const HomePage = () => {
       <SwiperBanner/>
       <div className={hp.container}>
         <Shoops/>
+        <KFC/>
       </div>
     </>
   )
