@@ -1,13 +1,17 @@
-import SwiperBanner from "../../components/SwiperBanner/SwiperBanner";
-import React, { useEffect } from "react";
-import style from "./HomePage.module.css";
-import Cards from "../../components/Cards/Cards";
-
+import Shoops from "../../components/ShoopsDetails/Details"
+import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
+import hp from './HomePage.module.css'
+// import Cards from "../../components/ShoopsDetails/Details";
+import KFC from "../../components/KFC/KFC";
 const HomePage = () => {
 
   return (
     <>
-    <Cards></Cards>
+      <SwiperBanner/>
+      <div className={hp.container}>
+        <Shoops/>
+        <KFC/>
+      </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useProducts from "../../store/products-slice/products-slice";
-import main from "./Cards.module.css";
+import main from "./Details.module.css";
 
 const Cards = () => {
   const { products, fetchProducts } = useProducts();
