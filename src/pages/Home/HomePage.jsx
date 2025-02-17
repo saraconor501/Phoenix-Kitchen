@@ -9,6 +9,7 @@ const HomePage = () => {
       <SwiperBanner />
       <div className={hp.container}>
         <Shoops />
+        
         <KFC />
       </div>
 

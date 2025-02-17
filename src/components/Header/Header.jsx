@@ -18,7 +18,7 @@ const Header = () => {
             </div>
 
             <div className={hr.searchContainer}>
-              <input type="text" placeholder="Search" className={hr.searchInput} />
+              <input type="text" placeholder="Search restaurant, dish" className={hr.searchInput} />
               <button className={hr.searchButton}>
                 Найти
               </button>

@@ -1,12 +1,12 @@
 
 import React, { useEffect } from 'react';
 import useProducts from '../../store/products-slice/products-slice';
-import main from './Cards.module.css';
+import main from './Details.module.css';
 import { Skeleton } from 'antd';
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton';
 
 const Cards = () => {
-  const { products, fetchProducts, isLoading, error } = useProducts();
+  const { products, fetchProducts, isLoading, error , } = useProducts();
 
   useEffect(() => {
     fetchProducts();
@@ -20,7 +20,7 @@ const Cards = () => {
     <>
       <div className={main.productsGrid}>
         {isLoading? 
-            Array.from({ length: 6 }).map((_, index) => <CardSkeleton key={index} />)
+            Array.from({ length: 8 }).map((_, index) => <CardSkeleton key={index} />)
           : 
             products.map((item, index) => (
               <div key={index} className={main.productCard}>
@@ -53,7 +53,7 @@ const Cards = () => {
                       Вес: {item.weight} г
                     </p>
                     <p className={main.restaurantName}>
-                      <img src="/images/product-icon.svg" /> {item.restauran || 'Not restauran'}
+                      <img src="/images/product-icon.svg" /> {item.restauran || 'Not restaurant'}
                     </p>
                   </div>
                   <p className={main.price}>{item.price} coм</p>
@@ -61,7 +61,7 @@ const Cards = () => {
                     <button className={main.saveButton}>
                       <img src="/images/icon-save.svg" /> Save for later
                     </button>
-                    <button className={main.addToCartButton}>Add to cart</button>
+                    <button className={main.addToCartButton} >Add to cart</button>
                   </div>
                 </div>
               </div>

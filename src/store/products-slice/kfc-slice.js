@@ -4,16 +4,18 @@ import { collection, getDocs } from "firebase/firestore";
 
 const useProducts = create((set) => ({
   products: [],
-  // Функция для получения продуктов из Firestore
+  isLoading: false,
+
   fetchProducts: async () => {
+    set({ isLoading: true }); // Начало загрузки
     try {
-      // Путь: restaurants/ImpirePizza/menu
       const menuCollectionRef = collection(db, "restaurants", "KFC", "menu");
       const snapshot = await getDocs(menuCollectionRef);
       const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      set({ products });
+      set({ products, isLoading: false }); 
     } catch (error) {
       console.error("Ошибка при получении продуктов:", error);
+      set({ isLoading: false })
     }
   }
 }));

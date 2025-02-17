@@ -11,25 +11,9 @@ const useProducts = create((set) => ({
     set({ isLoading: true, error: null }); 
 
     try {
-      const cachedData = localStorage.getItem('cachedProducts');
-      if (cachedData) {
-        const { products, timestamp } = JSON.parse(cachedData);
-        const isCacheValid = (Date.now() - timestamp) < 3600000; 
-
-        if (isCacheValid) {
-          set({ products, isLoading: false })
-          return;
-        }
-      }
       const menuCollectionRef = collection(db, "restaurants", "ImpirePizza", "menu");
       const snapshot = await getDocs(menuCollectionRef);
       const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-      localStorage.setItem('cachedProducts', JSON.stringify({
-        products,
-        timestamp: Date.now()
-      }));
-
 
       set({ products, isLoading: false });
     } catch (error) {
@@ -38,11 +22,6 @@ const useProducts = create((set) => ({
     }
   },
 
-  
-  clearCache: () => {
-    localStorage.removeItem('cachedProducts');
-    set({ products: [] });
-  }
 }));
 
 export default useProducts;
