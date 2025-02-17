@@ -33,7 +33,9 @@ header {
   display: flex;
   align-items: center;
 }
-
+.Logo{
+  width: 55px;
+}
 .logo {
   width: 60px;
   height: 60px;
