@@ -14,11 +14,11 @@ const Header = () => {
           <div className={hr.leftBlock}>
 
             <div className={hr.logoContainer}>
-            <img src={Logo} alt="" className={hr.Logo}/><Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
+            <Link><img src={Logo} alt="" className={hr.Logo}/></Link><Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
             </div>
 
             <div className={hr.searchContainer}>
-              <input type="text" placeholder="Search" className={hr.searchInput} />
+              <input type="text" placeholder="Search restaurant, dish" className={hr.searchInput} />
               <button className={hr.searchButton}>
                 Найти
               </button>
@@ -27,7 +27,7 @@ const Header = () => {
 
           <div className={hr.rightBlock}>
             <Link className={hr.cartLink}>
-              <img src="/images/cart.svg" className={hr.icon} />
+              <img src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768" style={{width:"46px" ,height:'46px'}} className={hr.icon} />
             </Link>
             <Link to="/auth/login" className={hr.profileLink}>
               <img src="/images/account.svg" className={hr.icon} />

@@ -3,19 +3,25 @@ import { db } from "../../utils/firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 const useProducts = create((set) => ({
-  products: [],
-  // Функция для получения продуктов из Firestore
+  products: [], 
+  isLoading: false, 
+  error: null, 
+
   fetchProducts: async () => {
+    set({ isLoading: true, error: null }); 
+
     try {
-      // Путь: restaurants/ImpirePizza/menu
       const menuCollectionRef = collection(db, "restaurants", "ImpirePizza", "menu");
       const snapshot = await getDocs(menuCollectionRef);
       const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      set({ products });
+
+      set({ products, isLoading: false });
     } catch (error) {
       console.error("Ошибка при получении продуктов:", error);
+      set({ error: "Не удалось загрузить продукты", isLoading: false });
     }
-  }
+  },
+
 }));
 
 export default useProducts;

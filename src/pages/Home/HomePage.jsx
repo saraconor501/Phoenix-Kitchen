@@ -1,17 +1,18 @@
 import Shoops from "../../components/ShoopsDetails/Details"
 import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
 import hp from './HomePage.module.css'
-// import Cards from "../../components/ShoopsDetails/Details";
 import KFC from "../../components/KFC/KFC";
 const HomePage = () => {
 
   return (
     <>
-      <SwiperBanner/>
+      <SwiperBanner />
       <div className={hp.container}>
-        <Shoops/>
-        <KFC/>
+        <Shoops />
+        
+        <KFC />
       </div>
+
     </>
   )
 }

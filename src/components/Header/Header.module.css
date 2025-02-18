@@ -84,7 +84,12 @@ header {
   font-weight: 600;
 
 }
-
+.searchButton:hover{
+  background-color: #eb812a;
+}
+.searchButton:active{
+  background-color: #fc8e34;
+}
 .rightBlock {
   display: flex;
   align-items: center;
@@ -93,8 +98,8 @@ header {
 }
 
 .icon {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
 }
 
 .profileLink,
