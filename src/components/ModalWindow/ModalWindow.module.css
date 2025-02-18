@@ -1,0 +1,139 @@
+/* Затемненный фон с размытием */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    backdrop-filter: blur(10px); /* Размытие */
+    z-index: 1000; /* Выше всего */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* Начальная непрозрачность */
+    transition: opacity 0.3s ease-out; /* Плавное исчезновение фона */
+}
+
+.overlayClosing {
+    opacity: 0; /* Когда окно закрывается, фон исчезает */
+}
+
+/* Обертка для модального окна */
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: transparent; /* Прозрачный фон */
+    position: relative;
+    opacity: 1; /* Начальная непрозрачность */
+    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
+}
+
+.wrapperClosing {
+    opacity: 0; /* Прозрачность обертки при закрытии */
+}
+
+/* Контейнер для модального окна */
+.modalContainer {
+    width: 90%;
+    max-width: 500px;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(50%);
+    animation: slideUp 0.5s forwards; /* Анимация появления */
+    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
+}
+.modalClosing {
+    opacity: 0; /* Окно исчезает */
+    transform: translateY(50%); /* Окно двигается вниз */
+}
+/* Анимация появления окна */
+@keyframes slideUp {
+    0% {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Анимация исчезновения окна */
+
+
+/* Основное окно */
+.panel {
+    background: white;
+    border-radius: 12px 12px 0 0; /* Закругляем только верх */
+    padding: 20px;
+    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Заголовок */
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Картинка */
+.image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 300px;
+    border-radius: 8px;
+}
+
+/* Описание */
+.description {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+    height: 100px;
+    overflow: auto;
+}
+
+/* Цена */
+.price {
+    font-size: 1.25rem;
+    color: #e4002b;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Кнопки */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.close,
+.addToCart {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close {
+    background: #ddd;
+    color: #333;
+}
+
+.close:hover {
+    background: #ccc;
+}
+
+.addToCart {
+    background: #e4002b;
+    color: white;
+}
+
+.addToCart:hover {
+    background: #c40023;
+}

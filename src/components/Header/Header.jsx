@@ -14,7 +14,7 @@ const Header = () => {
           <div className={hr.leftBlock}>
 
             <div className={hr.logoContainer}>
-            <img src={Logo} alt="" className={hr.Logo}/><Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
+            <Link><img src={Logo} alt="" className={hr.Logo}/></Link><Link to="/" className={hr.logoTitle}>Phoenix Kitchen</Link>
             </div>
 
             <div className={hr.searchContainer}>
