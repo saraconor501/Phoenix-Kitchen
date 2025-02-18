@@ -12,21 +12,21 @@ const ModalWindow = ({ product, onClose }) => {
   }, [product]);
 
   const handleClose = () => {
-    setIsClosing(true);
+    setIsClosing(true)
     setTimeout(() => {
-      setIsVisible(false);
-      onClose(); // Закрываем модалку через родительский обработчик
-      setIsClosing(false);
+      setIsVisible(false)
+      onClose()
+      setIsClosing(false)
     }, 300) 
-  };
+  }
 
   const handleWrapperClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
-  };
+  }
 
-  if (!isVisible) return null;
+  if (!isVisible) return null
 
   return (
     <div
@@ -52,7 +52,7 @@ const ModalWindow = ({ product, onClose }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default ModalWindow;

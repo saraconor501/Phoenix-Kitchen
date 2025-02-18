@@ -27,6 +27,8 @@ const Cards = () => {
     return <div>{error}</div>;
   }
 
+  
+
   return (
     <>
       <div className={main.productsGrid}>
