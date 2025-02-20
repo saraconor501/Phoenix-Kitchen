@@ -7,12 +7,12 @@
     z-index: 1000; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    opacity: 1; /* Начальная непрозрачность */
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение фона */
+    align-items: center; /* Центрирование по вертикали */
+    opacity: 1; 
+    transition: opacity 0.3s ease-out;
 }
 .overlayClosing {
-    opacity: 0; /* Когда окно закрывается, фон исчезает */
+    opacity: 0;
 }
 
 .wrapper {
@@ -20,17 +20,17 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: transparent; /* Прозрачный фон */
+    background: transparent;
     position: relative;
     opacity: 1;
     transition: opacity 0.3s ease-out;
 }
 
 .wrapperClosing {
-    opacity: 0; /* Прозрачность обертки при закрытии */
+    opacity: 0;
 }
 
-/* Контейнер для модального окна */
+
 .modalContainer {
     width: 90%;
     max-width: 500px;
@@ -39,15 +39,16 @@
     z-index: 1001;
     opacity: 0;
     transform: translateY(50%);
-    animation: slideUp 0.5s forwards; /* Анимация появления */
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
+    animation: slideUp 0.5s forwards;
+    transition: opacity 0.3s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .modalClosing {
-    opacity: 0; /* Окно исчезает */
-    transform: translateY(50%); /* Окно двигается вниз */
+    opacity: 0;
+    transform: translateY(50%);
 }
-/* Анимация появления окна */
+
 @keyframes slideUp {
     0% {
         transform: translateY(50%);
@@ -65,7 +66,7 @@
 
 .panel {
     background: white;
-    border-radius: 12px 12px 0 0; /* Закругляем только верх */
+    border-radius: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -221,7 +222,6 @@
     justify-content: center;
     height: 80px;
 }
-
 
 .funtionModal{
     width: 44%;
