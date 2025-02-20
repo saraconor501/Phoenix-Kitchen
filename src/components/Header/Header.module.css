@@ -73,6 +73,7 @@ header {
 }
 
 .searchButton {
+  color: white;
   width: 102px;
   height: 48px;
   background: #fc8e34;

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import KFCBanner from '../../../public/bannerImg/KFCBanner.jpg'
+import PapajonhsBanner from '../../../public/bannerImg/papajonhs.png'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -22,8 +22,7 @@ export default function App() {
         className="mySwiper"
       >
         <SwiperSlide><img src={KFCBanner} alt="" /></SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>sd</SwiperSlide>
+        <SwiperSlide><img src={PapajonhsBanner} alt="" /></SwiperSlide>
       </Swiper>
     </>
   );
