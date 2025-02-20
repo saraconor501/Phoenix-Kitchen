@@ -1,4 +1,3 @@
-
 .container {
     display: flex;
     justify-content: space-between;
@@ -47,6 +46,14 @@
     display: flex;
     justify-content: center;
 }
+.formTitle {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33.6px;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
 
 .banner {
     display: flex;

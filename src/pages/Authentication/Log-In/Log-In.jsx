@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
@@ -52,7 +53,7 @@ const Login = () => {
                 <div className={style.form}>
                     <div className={style.formAuth}>
                         <h2 className={style.formTitle}>
-                            Login to get
+                            Авторизация
                         </h2>
 
                         {error && <p className={style.errorMessage}>{error}</p>}
@@ -94,14 +95,15 @@ const Login = () => {
                                 {errors.password && <p className={style.errorText}>{errors.password}</p>}
                             </div>
 
-                            <button type="submit" disabled={isFetching} className={style.submitButton}>
-                                {isFetching ? "Вход..." : "Login"}
+
+<button type="submit" disabled={isFetching} className={style.submitButton}>
+                                {isFetching ? "Вход..." : "  Авторизоваться"}
                             </button>
                         </form>
                     </div>
 
                     <Link className={style.go_to_main} to="/">
-                        <img src="/images/go-to-main.svg" alt="Go back" /> Go Back To Homepage
+                        <img src="/images/go-to-main.svg" alt="Go back" /> Вернуться на главную страницу
                     </Link>
                 </div>
             </div>

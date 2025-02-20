@@ -7,7 +7,7 @@ const useProducts = create((set) => ({
   isLoading: false,
 
   fetchProducts: async () => {
-    set({ isLoading: true }); // Начало загрузки
+    set({ isLoading: true });
     try {
       const menuCollectionRef = collection(db, "restaurants", "KFC", "menu");
       const snapshot = await getDocs(menuCollectionRef);

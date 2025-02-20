@@ -1,20 +1,32 @@
-header {
+.header {
   width: 100%;
   height: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 20px rgba(117, 115, 111, 0.2);
   position: fixed;
+  top: 0;
   z-index: 100;
+  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, transform 0.8s ease-out, opacity 0.8s ease-out;
+  
 
+  transform: translateY(-100%);
+  opacity: 0;
 }
-.mapButton{
-  height: 48px;
-  width: 220px;
-  border-radius: 20px;
+
+
+.header.loaded {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+.header.atTop {
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
 }
 
 .header_content {
@@ -24,22 +36,36 @@ header {
   align-items: center;
 }
 
+
+.header.loaded .header_content {
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+
+.header.atTop .header_content {
+  background-color: transparent;
+}
+
 .leftBlock {
   display: flex;
   align-items: center;
+}
+.header.loaded .header_content .leftBlock{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
 }
-.Logo{
-  width: 55px;
+.header.loaded .header_content .leftBlock .logoContainer{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
 }
-.logo {
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
+
+.Logo {
+  width: 55px;
 }
 
 .logoTitle {
@@ -47,6 +73,7 @@ header {
   font-weight: bold;
   color: #333;
   text-decoration: none;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .searchContainer {
@@ -69,7 +96,6 @@ header {
   background-position-x: 20px;
   background-position-y: center;
   font-size: 16px;
-
 }
 
 .searchButton {
@@ -82,29 +108,86 @@ header {
   cursor: pointer;
   font-size: 14.5px;
   font-weight: 600;
-
+  color: white;
+  transition: background-color 0.3s ease-in-out;
 }
-.searchButton:hover{
+.header.loaded .header_content .leftBlock .searchContainer{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+.header.loaded .header_content .leftBlock .logoContainer .logoTitle{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+
+
+.searchButton:hover {
   background-color: #eb812a;
 }
-.searchButton:active{
+
+.searchButton:active {
   background-color: #fc8e34;
 }
+
 .rightBlock {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-
-.icon {
-  width: 34px;
-  height: 34px;
+.header.loaded .header_content .rightBlock{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
 }
 
-.profileLink,
-.cartLink {
-  display: inline-block;
-  color: #333;
+.icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+.searchInput:focus {
+  box-shadow: 0 0 10px rgba(252, 142, 52, 0.5);
+  outline: none;
+}
+.loginBtn {
+  width: 92px;
+  height: 48px;
+  border-radius: 16px;
+  border: none;
+  background-color: #5C5A571A;
   text-decoration: none;
+  font-family: YSText, sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  color: #21201F;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.loginBtn:hover {
+  background-color: #3b37351a;
+}
+
+.loginBtn:active {
+  transform: scale(0.95);
+}
+.header.loaded .header_content .rightBlock .profileContainer{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+.header.loaded .header_content .rightBlock .profileContainer .profileLink{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+.header.loaded .header_content .rightBlock .cartLink{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
+}
+.header.loaded .header_content .rightBlock .LinkLogin{
+  background-color: transparent;
+  transition: opacity 1s ease-in-out;
 }
