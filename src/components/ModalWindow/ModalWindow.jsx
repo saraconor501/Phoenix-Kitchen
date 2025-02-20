@@ -12,24 +12,34 @@ const ModalWindow = ({ product, onClose }) => {
   }, [product]);
 
   const handleClose = () => {
-    setIsClosing(true);
+    setIsClosing(true)
+    console.log(isClosing);
     setTimeout(() => {
-      setIsVisible(false);
-      onClose(); // Закрываем модалку через родительский обработчик
-      setIsClosing(false);
-    }, 300) 
-  };
+      setIsVisible(false)
+      onClose()
+      setIsClosing(false)
+    }, 300)
+  }
 
   const handleWrapperClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose()
     }
-  };
+  }
+  const [count, setCount] = useState(1)
+
+  const handleLengthProduct = (operation) => {
+    setCount((prev) => operation === '+' ? prev + 1 : Math.max(1, prev - 1))
+    console.log(count + 1);
+
+  }
+
+
 
   if (!isVisible) return null
 
   return (
-    <div className={`${styles.overlay} ${isClosing ? styles.overlayClosing : ''}`} onClick={handleWrapperClick}      >
+    <div className={`${styles.overlay} ${isClosing ? styles.overlayClosing : ''}`} onClick = { handleWrapperClick } >
 
       <div className={`${styles.modalContainer} ${isClosing ? styles.modalClosing : ''}`}>
         <div className={styles.panel}>
@@ -76,8 +86,6 @@ const ModalWindow = ({ product, onClose }) => {
                 </button>
 
                 <div className={styles.modalValue}>{count}</div>
-
-
                 <button onClick={() => handleLengthProduct('+')} style={{ border: "none" }}>
                   <img style={{ width: "28px", borderRadius: "50%" }} src="https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Plus-512.png" alt="" />
                 </button>
@@ -91,9 +99,9 @@ const ModalWindow = ({ product, onClose }) => {
 
 
         </div>
-      </div>
-    </div>
-  )
+                </div >
+        </div >
+    )
 }
 
 export default ModalWindow;
