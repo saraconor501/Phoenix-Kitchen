@@ -12,29 +12,19 @@ const ModalWindow = ({ product, onClose }) => {
   }, [product]);
 
   const handleClose = () => {
-    setIsClosing(true)
-    console.log(isClosing);
+    setIsClosing(true);
     setTimeout(() => {
-      setIsVisible(false)
-      onClose()
-      setIsClosing(false)
-    }, 300)
-  }
+      setIsVisible(false);
+      onClose(); // Закрываем модалку через родительский обработчик
+      setIsClosing(false);
+    }, 300) 
+  };
 
   const handleWrapperClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose()
     }
-  }
-  const [count, setCount] = useState(1)
-
-  const handleLengthProduct = (operation) => {
-    setCount((prev) => operation === '+' ? prev + 1 : Math.max(1, prev - 1))
-    console.log(count + 1);
-
-  }
-
-
+  };
 
   if (!isVisible) return null
 

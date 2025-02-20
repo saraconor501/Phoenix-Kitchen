@@ -7,12 +7,12 @@
     z-index: 1000; 
     display: flex;
     justify-content: center;
-    align-items: center; 
-    opacity: 1; 
-    transition: opacity 0.3s ease-out;
+    align-items: center;
+    opacity: 1; /* Начальная непрозрачность */
+    transition: opacity 0.3s ease-out; /* Плавное исчезновение фона */
 }
 .overlayClosing {
-    opacity: 0;
+    opacity: 0; /* Когда окно закрывается, фон исчезает */
 }
 
 .wrapper {
@@ -20,17 +20,17 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: transparent;
+    background: transparent; /* Прозрачный фон */
     position: relative;
     opacity: 1;
     transition: opacity 0.3s ease-out;
 }
 
 .wrapperClosing {
-    opacity: 0;
+    opacity: 0; /* Прозрачность обертки при закрытии */
 }
 
-
+/* Контейнер для модального окна */
 .modalContainer {
     width: 90%;
     max-width: 500px;
@@ -39,16 +39,15 @@
     z-index: 1001;
     opacity: 0;
     transform: translateY(50%);
-    animation: slideUp 0.5s forwards;
-    transition: opacity 0.3s ease-out;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    animation: slideUp 0.5s forwards; /* Анимация появления */
+    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
 }
 
 .modalClosing {
-    opacity: 0;
-    transform: translateY(50%);
+    opacity: 0; /* Окно исчезает */
+    transform: translateY(50%); /* Окно двигается вниз */
 }
-
+/* Анимация появления окна */
 @keyframes slideUp {
     0% {
         transform: translateY(50%);
@@ -66,7 +65,7 @@
 
 .panel {
     background: white;
-    border-radius: 20px;
+    border-radius: 12px 12px 0 0; /* Закругляем только верх */
     padding: 20px;
     display: flex;
     flex-direction: column;
