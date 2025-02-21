@@ -1,14 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import KFCBanner from '../../../public/bannerImg/KFCBanner.jpg'
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import './SwiperBanner.css'
-import './SwiperBanner.jsx';
-import { Autoplay} from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/autoplay";
+import "./SwiperBanner.css";
 
-export default function App() {
+
+const SwiperBanner = () => {
   return (
     <>
       <Swiper
@@ -21,9 +19,16 @@ export default function App() {
         modules={[Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={KFCBanner} alt="" /></SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>sd</SwiperSlide>
+        <SwiperSlide>
+          <img src={'/bannerImg/mypizza.webp'} alt="mypizza" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={'/bannerImg/kulikov.jpg'} alt="kulikov" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={'/bannerImg/navat.jpg'} alt="navat" />
+        </SwiperSlide>
+
       </Swiper>
     </>
   );

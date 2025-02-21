@@ -1,9 +1,10 @@
 .productsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 30px;
+  display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        grid-column-gap: 12px;
+        grid-row-gap: 12px;
+        margin-top: 30px;
 }
 
 .productCard {
