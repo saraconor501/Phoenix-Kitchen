@@ -1,10 +1,12 @@
 
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; 
 import styles from './ModalWindow.module.css';
 
 const ModalWindow = ({ product, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
   useEffect(() => {
     if (product) {
       setIsVisible(true);
@@ -12,35 +14,32 @@ const ModalWindow = ({ product, onClose }) => {
   }, [product]);
 
   const handleClose = () => {
-    setIsClosing(true)
+    setIsClosing(true);
     console.log(isClosing);
     setTimeout(() => {
-      setIsVisible(false)
-      onClose()
-      setIsClosing(false)
-    }, 300)
-  }
+      setIsVisible(false);
+      onClose();
+      setIsClosing(false);
+    }, 300);
+  };
 
   const handleWrapperClick = (e) => {
     if (e.target === e.currentTarget) {
-      handleClose()
+      handleClose();
     }
-  }
-  const [count, setCount] = useState(1)
+  };
+
+  const [count, setCount] = useState(1);
 
   const handleLengthProduct = (operation) => {
-    setCount((prev) => operation === '+' ? prev + 1 : Math.max(1, prev - 1))
+    setCount((prev) => operation === '+' ? prev + 1 : Math.max(1, prev - 1));
     console.log(count + 1);
+  };
 
-  }
-
-
-
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   return (
     <div className={`${styles.overlay} ${isClosing ? styles.overlayClosing : ''}`} onClick = { handleWrapperClick } >
-
       <div className={`${styles.modalContainer} ${isClosing ? styles.modalClosing : ''}`}>
         <div className={styles.panel}>
           <div className={styles.TopContent}>
@@ -52,7 +51,6 @@ const ModalWindow = ({ product, onClose }) => {
                 <div>
                   <div className={styles.title}>{product.name}</div>
                 </div>
-
                 <div>
                   <div style={{ width: "100%" }} className={styles.closeIcon}>
                     <button style={{ border: "none" }}>
@@ -73,9 +71,7 @@ const ModalWindow = ({ product, onClose }) => {
                   </div>
                 </div>
               </div>
-
             </div>
-
           </div>
           <div className={styles.desheds}></div>
           <div className={styles.modalFooter}>
@@ -95,13 +91,22 @@ const ModalWindow = ({ product, onClose }) => {
               <button className={styles.modalBtn}>В КОРЗИНУ {product.price} c</button>
             </div>
           </div>
-
-
-
         </div>
-                </div >
-        </div >
-    )
-}
+      </div >
+    </div >
+  );
+};
+
+ModalWindow.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.arrayOf(PropTypes.string).isRequired,
+    ingredients: PropTypes.string,
+    description: PropTypes.string,
+    weight: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,  
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default ModalWindow;

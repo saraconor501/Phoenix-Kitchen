@@ -1,16 +1,20 @@
+.no-scroll {
+    overflow: hidden;
+}
 
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(10px); 
-    z-index: 1000; 
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: center; /* Центрирование по вертикали */
-    opacity: 1; 
+    align-items: center;
+    opacity: 1;
     transition: opacity 0.3s ease-out;
 }
+
 .overlayClosing {
     opacity: 0;
 }
@@ -35,18 +39,14 @@
     width: 90%;
     max-width: 500px;
     border-radius: 20px;
-    height: 399px;
+    max-height: 80vh;
     z-index: 1001;
     opacity: 0;
     transform: translateY(50%);
     animation: slideUp 0.5s forwards;
     transition: opacity 0.3s ease-out;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.modalClosing {
-    opacity: 0;
-    transform: translateY(50%);
+    overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -60,6 +60,12 @@
         opacity: 1;
     }
 }
+
+.modalClosing {
+    opacity: 0;
+    transform: translateY(50%);
+}
+
 
 
 
@@ -223,7 +229,7 @@
     height: 80px;
 }
 
-.funtionModal{
+.funtionModal {
     width: 44%;
     display: flex;
     justify-content: space-between;
@@ -237,7 +243,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 .funtionModal button:hover {
@@ -268,6 +274,7 @@
     cursor: pointer;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
-.modalValue{
+
+.modalValue {
     font-size: 17px;
 }
