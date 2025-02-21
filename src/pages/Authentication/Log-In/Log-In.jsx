@@ -5,7 +5,7 @@ import useAuthStore from "../../../store/auth-slice/auth-slice";
 import style from "./Log-In.module.css"
 
 const Login = () => {
-    const { loginUser, loginWithGoogle, isFetching, error, user } = useAuthStore()
+    const { loginUser, loginWithGoogle, isFetching, error } = useAuthStore()
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("")

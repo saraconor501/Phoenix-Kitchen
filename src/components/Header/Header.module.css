@@ -10,22 +10,14 @@
   position: fixed;
   top: 0;
   z-index: 100;
-  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, transform 0.8s ease-out, opacity 0.8s ease-out;
-  
-
-  transform: translateY(-100%);
-  opacity: 0;
+  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, transform 0.8s ease-out;
+  transform: translateY(0);
 }
-
 
 .header.loaded {
   transform: translateY(0);
-  opacity: 1;
 }
-
-
 .header.atTop {
-  background-color: rgba(255, 255, 255, 0);
   box-shadow: none;
 }
 
@@ -38,20 +30,15 @@
 
 
 .header.loaded .header_content {
-  background-color: transparent;
   transition: opacity 1s ease-in-out;
 }
 
-.header.atTop .header_content {
-  background-color: transparent;
-}
 
 .leftBlock {
   display: flex;
   align-items: center;
 }
 .header.loaded .header_content .leftBlock{
-  background-color: transparent;
   transition: opacity 1s ease-in-out;
 }
 
@@ -60,7 +47,6 @@
   align-items: center;
 }
 .header.loaded .header_content .leftBlock .logoContainer{
-  background-color: transparent;
   transition: opacity 1s ease-in-out;
 }
 
@@ -136,10 +122,7 @@
   justify-content: center;
   gap: 10px;
 }
-.header.loaded .header_content .rightBlock{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
+
 
 .icon {
   width: 40px;
@@ -175,20 +158,4 @@
 
 .loginBtn:active {
   transform: scale(0.95);
-}
-.header.loaded .header_content .rightBlock .profileContainer{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
-.header.loaded .header_content .rightBlock .profileContainer .profileLink{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
-.header.loaded .header_content .rightBlock .cartLink{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
-.header.loaded .header_content .rightBlock .LinkLogin{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
 }

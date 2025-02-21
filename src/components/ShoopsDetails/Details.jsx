@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useProducts from '../../store/products-slice/products-slice';
 import main from './Details.module.css';
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton';

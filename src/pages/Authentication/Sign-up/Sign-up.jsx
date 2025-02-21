@@ -1,11 +1,11 @@
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
 import style from "./Sign-up.module.css"
 
 const SignUp = () => {
-  const { registerUser, loginWithGoogle, isFetching, error, user } = useAuthStore()
+  const { registerUser, loginWithGoogle, isFetching, error, } = useAuthStore()
   const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
