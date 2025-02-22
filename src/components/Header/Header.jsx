@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom'
 import hr from './Header.module.css'
 import Logo from '../../../public/logo.jpg'
-
 const Header = () => {
-
-
+  
 
   return (
     <>

@@ -18,7 +18,6 @@ function App() {
         <Route path={'/auth/sign-up'} element={<SignUp/>}></Route>
         <Route path={'/auth/login'} element={<Login/>}></Route>
       </Routes>
-      
     </>
   )
 }
