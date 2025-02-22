@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate", // Автообновление service worker
+      registerType: "autoUpdate", 
       manifest: {
         name: "Phoenix Kitchen",
         short_name: "PX Kitchen",
@@ -28,7 +28,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,png,svg,ico}"], // Кеширование файлов
+        globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
       },
     }),
   ],

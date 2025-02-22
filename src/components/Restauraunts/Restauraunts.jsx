@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import Mypizza from '../../../public/images/mypizza.svg'
-import Kfc from '../../../public/images/kfc.svg'
-import Navat from '../../../public/images/navat.svg'
-import Kulikov from '../../../public/images/kulikov.webp'
-import PapaJonhs from '../../../public/images/papajonhs.png'
+import Mypizza from '/public/images/mypizza.svg'
+import Kfc from '/public/images/kfc.svg'
+import Navat from '/public/images/navat.svg'
+import Kulikov from '/public/images/kulikov.webp'
+import PapaJonhs from '/public/images/papajonhs.png'
 import sp from './Restauraunts.module.css'
 
 const Restauraunts = () => {
@@ -41,4 +41,4 @@ const Restauraunts = () => {
   )
 }
 
-export default Restauraunts
+export default Restauraunts;
