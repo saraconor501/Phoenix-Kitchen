@@ -80,7 +80,6 @@ const Cards = () => {
           ))}
       </div>
 
-      {/* Модальное окно */}
       {isModalOpen && selectedProduct && (
         <ModalWindow
           product={selectedProduct}

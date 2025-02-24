@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+  font-family: Inter;
+}
+
 .header {
   width: 100%;
   height: 72px;
@@ -17,6 +23,7 @@
 .header.loaded {
   transform: translateY(0);
 }
+
 .header.atTop {
   box-shadow: none;
 }
@@ -28,26 +35,18 @@
   align-items: center;
 }
 
-
 .header.loaded .header_content {
   transition: opacity 1s ease-in-out;
 }
-
 
 .leftBlock {
   display: flex;
   align-items: center;
 }
-.header.loaded .header_content .leftBlock{
-  transition: opacity 1s ease-in-out;
-}
 
 .logoContainer {
   display: flex;
   align-items: center;
-}
-.header.loaded .header_content .leftBlock .logoContainer{
-  transition: opacity 1s ease-in-out;
 }
 
 .Logo {
@@ -95,18 +94,8 @@
   cursor: pointer;
   font-size: 14.5px;
   font-weight: 600;
-  color: white;
   transition: background-color 0.3s ease-in-out;
 }
-.header.loaded .header_content .leftBlock .searchContainer{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
-.header.loaded .header_content .leftBlock .logoContainer .logoTitle{
-  background-color: transparent;
-  transition: opacity 1s ease-in-out;
-}
-
 
 .searchButton:hover {
   background-color: #eb812a;
@@ -123,7 +112,6 @@
   gap: 10px;
 }
 
-
 .icon {
   width: 40px;
   height: 40px;
@@ -133,10 +121,12 @@
 .icon:hover {
   transform: scale(1.1);
 }
+
 .searchInput:focus {
   box-shadow: 0 0 10px rgba(252, 142, 52, 0.5);
   outline: none;
 }
+
 .loginBtn {
   width: 92px;
   height: 48px;
@@ -158,4 +148,78 @@
 
 .loginBtn:active {
   transform: scale(0.95);
+}
+
+
+.skeletonLogo {
+  width: 130px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeletonSearch {
+  width: 320px;
+  height: 48px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeletonIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeletonProfile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Анимация скелетона */
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* Скелетон всего хэдэра (если нужно скрыть всё содержимое) */
+.skeletonHeader {
+  width: 100%;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.skeletonHeader::before {
+  content: "";
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeletonHeader::after {
+  content: "";
+  width: 300px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
 }

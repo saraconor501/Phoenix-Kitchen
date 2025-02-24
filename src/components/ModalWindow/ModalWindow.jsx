@@ -64,7 +64,7 @@ const ModalWindow = ({ product, onClose }) => {
                 <div className={styles.deshed}></div>
                 <div className={styles.modalFlex}>
                   <div className={styles.weight}>
-                    Вес:  {product.weight}  г
+                    Вес:  {!product.weight?' N/A ':product.weight}  г
                   </div>
                   <div className={styles.price}>
                     {product.price} coм
@@ -74,6 +74,7 @@ const ModalWindow = ({ product, onClose }) => {
             </div>
           </div>
           <div className={styles.desheds}></div>
+
           <div className={styles.modalFooter}>
             <div className={styles.increments}>
               <div className={styles.funtionModal}>
@@ -88,7 +89,7 @@ const ModalWindow = ({ product, onClose }) => {
               </div>
             </div>
             <div className={styles.modalBy}>
-              <button className={styles.modalBtn}>В КОРЗИНУ {product.price} c</button>
+              <button className={styles.modalBtn}>В КОРЗИНУ {product.price *count} c</button>
             </div>
           </div>
         </div>
