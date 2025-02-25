@@ -14,8 +14,9 @@ const useProducts = create((set) => ({
       const menuCollectionRef = collection(db, "restaurants", "ImpirePizza", "menu");
       const snapshot = await getDocs(menuCollectionRef);
       const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
       set({ products, isLoading: false });
+
+      
     } catch (error) {
       console.error("Ошибка при получении продуктов:", error);
       set({ error: "Не удалось загрузить продукты", isLoading: false });

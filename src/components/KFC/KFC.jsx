@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import useProducts from "../../store/products-slice/kfc-slice";
 import styles from "./KFC.module.css";
 import CardSkeleton from "../Card-Skeleton/Card-Skeleton";
 
 const KFC = () => {
   const { products, fetchProducts, isLoading, error } = useProducts();
-
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -13,7 +12,7 @@ const KFC = () => {
   if (error) {
     return <div className={styles.error}>{error}</div>;
   }
-
+ 
   return (
     <div className={styles.productsGrid}>
       {isLoading
@@ -59,7 +58,7 @@ const KFC = () => {
                   <button className={styles.saveButton}>
                     <img src="/images/icon-save.svg" alt="save" /> Save for later
                   </button>
-                  <button className={styles.addToCartButton}>Add to cart</button>
+                  <button className={styles.addToCartButton} >Add to cart</button>
                 </div>
               </div>
             </div>
