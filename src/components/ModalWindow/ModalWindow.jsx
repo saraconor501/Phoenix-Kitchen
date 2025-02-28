@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'; 
 import styles from './ModalWindow.module.css';
@@ -54,7 +53,7 @@ const ModalWindow = ({ product, onClose }) => {
                 <div>
                   <div style={{ width: "100%" }} className={styles.closeIcon}>
                     <button style={{ border: "none" }}>
-                      <img onClick={handleWrapperClick} style={{ width: "26px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcgl60WxmPhOLIzMcuMZfktKr3oazFSbzyw&s" />
+                      <img onClick={handleWrapperClick} className={styles.closeModale} style={{ width: "26px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcgl60WxmPhOLIzMcuMZfktKr3oazFSbzyw&s" />
                     </button>
                   </div>
                 </div>
@@ -64,7 +63,7 @@ const ModalWindow = ({ product, onClose }) => {
                 <div className={styles.deshed}></div>
                 <div className={styles.modalFlex}>
                   <div className={styles.weight}>
-                    Вес:  {product.weight}  г
+                    Вес:  {!product.weight?' N/A ':product.weight}  г
                   </div>
                   <div className={styles.price}>
                     {product.price} coм
@@ -74,6 +73,7 @@ const ModalWindow = ({ product, onClose }) => {
             </div>
           </div>
           <div className={styles.desheds}></div>
+
           <div className={styles.modalFooter}>
             <div className={styles.increments}>
               <div className={styles.funtionModal}>
@@ -88,7 +88,7 @@ const ModalWindow = ({ product, onClose }) => {
               </div>
             </div>
             <div className={styles.modalBy}>
-              <button className={styles.modalBtn}>В КОРЗИНУ {product.price} c</button>
+              <button className={styles.modalBtn}>В КОРЗИНУ {product.price *count} c</button>
             </div>
           </div>
         </div>
