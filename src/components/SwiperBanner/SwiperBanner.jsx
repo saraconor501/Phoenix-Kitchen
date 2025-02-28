@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import KFCBanner from '../../../public/bannerImg/KFCBanner.jpg'
-import PapajonhsBanner from '../../../public/bannerImg/papajonhs.png'
+import KFCBanner from '/public/bannerImg/KFCBanner.jpg'
+import PapajonhsBanner from '/public/bannerImg/papajonhs.png'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';

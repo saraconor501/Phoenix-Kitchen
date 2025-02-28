@@ -1,101 +1,108 @@
-/* Затемненный фон с размытием */
+.no-scroll {
+    overflow: hidden;
+}
+
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-    backdrop-filter: blur(10px); /* Размытие */
-    z-index: 1000; /* Выше всего */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 1; /* Начальная непрозрачность */
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение фона */
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
 }
 
 .overlayClosing {
-    opacity: 0; /* Когда окно закрывается, фон исчезает */
+    opacity: 0;
 }
 
-/* Обертка для модального окна */
 .wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: transparent; /* Прозрачный фон */
+    background: transparent;
     position: relative;
-    opacity: 1; /* Начальная непрозрачность */
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
 }
 
 .wrapperClosing {
-    opacity: 0; /* Прозрачность обертки при закрытии */
+    opacity: 0;
 }
 
-/* Контейнер для модального окна */
+
 .modalContainer {
     width: 90%;
     max-width: 500px;
+    border-radius: 20px;
+    max-height: 80vh;
     z-index: 1001;
     opacity: 0;
     transform: translateY(50%);
-    animation: slideUp 0.5s forwards; /* Анимация появления */
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
+    animation: slideUp 0.5s forwards;
+    transition: opacity 0.3s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
 }
-.modalClosing {
-    opacity: 0; /* Окно исчезает */
-    transform: translateY(50%); /* Окно двигается вниз */
-}
-/* Анимация появления окна */
+
 @keyframes slideUp {
     0% {
         transform: translateY(50%);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* Анимация исчезновения окна */
+.modalClosing {
+    opacity: 0;
+    transform: translateY(50%);
+}
 
 
-/* Основное окно */
+
+
+
 .panel {
     background: white;
-    border-radius: 12px 12px 0 0; /* Закругляем только верх */
+    border-radius: 20px;
     padding: 20px;
-    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Заголовок */
 .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #323232;
 }
 
-/* Картинка */
+
 .image {
-    width: 100%;
+    width: 160px;
     height: auto;
     object-fit: cover;
     max-height: 300px;
     border-radius: 8px;
 }
 
-/* Описание */
+
 .description {
     font-size: 1rem;
     color: #666;
-    margin-top: 10px;
-    height: 100px;
-    overflow: auto;
+
 }
 
-/* Цена */
+
 .price {
     font-size: 1.25rem;
     color: #e4002b;
@@ -103,11 +110,10 @@
     font-weight: bold;
 }
 
-/* Кнопки */
+
 .actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
 .close,
@@ -134,6 +140,141 @@
     color: white;
 }
 
+.closeIcon {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
 .addToCart:hover {
     background: #c40023;
+}
+
+.TopContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.TitleSlise {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.deshed {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAAABCAYAAAD+UhOdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB3SURBVHgBxZOhDoAwDESLmZsCAwYUDrX//wQUDjUFCjU3xTWZANUTS3bJM8tLc1nTTkSC/JPBIXZ6sBBeBA/hrcAT3k44vsyzcoGb8Fp00z+LhDeDgfB0p9lwHNjETu1uJ0iEFwgnlXlWRjARXotutW9Ld+q+Dy/HQhg1AtKxlwAAAABJRU5ErkJggg==);
+    background-repeat: repeat-x;
+    background-position: 0;
+    height: 1px;
+    width: 100%;
+    margin: 16px 0;
+}
+
+.desheds {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAAABCAYAAAD+UhOdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB3SURBVHgBxZOhDoAwDESLmZsCAwYUDrX//wQUDjUFCjU3xTWZANUTS3bJM8tLc1nTTkSC/JPBIXZ6sBBeBA/hrcAT3k44vsyzcoGb8Fp00z+LhDeDgfB0p9lwHNjETu1uJ0iEFwgnlXlWRjARXotutW9Ld+q+Dy/HQhg1AtKxlwAAAABJRU5ErkJggg==);
+    background-repeat: repeat-x;
+    background-position: 0;
+    height: 1px;
+    width: 100%;
+    margin: 12px 0;
+}
+
+.modalFlex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weight {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #999;
+    margin-right: auto
+}
+
+.price {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+}
+
+.modalFooter {
+    width: 100%;
+    height: 139px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalBy {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.increments {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
+.funtionModal {
+    width: 44%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.funtionModal button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.funtionModal button:hover {
+    background-color: #ece8e8;
+}
+
+.funtionModal button:active {
+    background-color: #c9c5c5;
+    transition: background-color 0.1s ease;
+}
+
+
+.modalBtn {
+    background: #f93e03 !important;
+    border-radius: 8px;
+    height: 49px !important;
+    font-weight: 700;
+    font-size: 14px !important;
+    border: none;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff !important;
+    cursor: pointer;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.modalValue {
+    font-size: 17px;
 }

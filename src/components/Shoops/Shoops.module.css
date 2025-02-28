@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    column-gap: 20px;
+}
+.block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 233px;
+    height: 130px;
+    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
+    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
+    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
+    border-radius: 15px;
+}
+.block img{
+    height: 60%;
+}

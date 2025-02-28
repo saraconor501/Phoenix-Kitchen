@@ -1,4 +1,3 @@
-
 .container {
     display: flex;
     justify-content: space-between;
@@ -39,6 +38,14 @@
     flex-direction: column;
     align-items: center;
     gap: 34px;
+}
+
+.formTitle {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33.6px;
+    letter-spacing: 0%;
+    text-align: center;
 }
 
 .providers {
@@ -119,23 +126,32 @@ form {
     justify-content: center;
     column-gap: 4px;
 }
-.loginProvider:active{
+
+.loginProvider:hover {
     background-color: antiquewhite;
 }
-.toLogin{
+.loginProvider:active {
+    background-color: rgb(223, 197, 163);
+}
+
+
+.toLogin {
     display: flex;
     gap: 6px;
 }
-.titleLogin{
+
+.titleLogin {
     color: #FC8019;
     text-decoration: none;
     font-size: 18px;
     font-weight: 400;
 }
-.titleLogin:hover{
+
+.titleLogin:hover {
     text-decoration: underline;
 }
-.go_to_main{
+
+.go_to_main {
     display: flex;
     gap: 6px;
     color: #FC8019;
@@ -143,25 +159,26 @@ form {
     font-weight: 700;
     text-decoration: none;
 }
+
 .inputContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-  
-  .inputError {
+
+.inputError {
     border: 1px solid red;
     background-color: #ffe6e6;
-  }
-  
-  .errorText {
+}
+
+.errorText {
     color: red;
     font-size: 14px;
-  }
+}
 
-@media screen and (max-width:1023px){
-    .formContainer{
+@media screen and (max-width:1023px) {
+    .formContainer {
         margin-right: 0px;
     }
 }
