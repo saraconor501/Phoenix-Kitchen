@@ -8,6 +8,8 @@ const Cards = () => {
   const { products, fetchProducts, isLoading, error } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  
+
 
   useEffect(() => {
     fetchProducts();

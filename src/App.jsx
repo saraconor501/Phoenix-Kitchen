@@ -21,7 +21,6 @@ function App() {
         <Route path={'/auth/login'} element={<Login />}></Route>
         <Route path={'/profile'} element={<h1 onClick={logoutUser}>LogOut</h1>}></Route>
       </Routes>
-
     </>
   )
 }

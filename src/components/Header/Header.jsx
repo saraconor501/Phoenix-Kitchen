@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
-import useProducts from "../../store/products-slice/kfc-slice";
 import hr from "./Header.module.css";
 import Logo from "../../../public/logo.jpg";
 
 const Header = () => {
   const { user, isLoading: isAuthLoading } = useAuthStore();
-  const { isLoading: isProductsLoading } = useProducts();
-  const [isAuthenticated, setIsAuthenticated] = useState(!!user);
   const [isAtTop, setIsAtTop] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const isAuthenticated = !!user;
+
+  const isLoading = useMemo(() => isAuthLoading, [isAuthLoading]);
+
   useEffect(() => {
-    setIsAuthenticated(!!user);
     setTimeout(() => setIsLoaded(true), 100);
 
     const handleScroll = () => {
@@ -23,9 +23,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [user]);
-
-
-  const isLoading = isAuthLoading || isProductsLoading;
 
   return (
     <>
@@ -70,7 +67,7 @@ const Header = () => {
             ) : isAuthenticated ? (
               <div className={hr.profileContainer}>
                 <Link to="/profile" className={hr.profileLink}>
-                  <img style={{borderRadius:"50%"}} src={user?.photoURL || "/images/account.svg"} className={hr.icon} alt="Профиль" />
+                  <img style={{ borderRadius: "50%" }} src={user?.photoURL || "/images/account.svg"} className={hr.icon} alt="Профиль" />
                 </Link>
               </div>
             ) : (
@@ -83,6 +80,7 @@ const Header = () => {
       </header>
 
       <div style={{ height: "72px" }}></div>
+
     </>
   );
 };

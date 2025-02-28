@@ -1,17 +1,16 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Input,} from "antd";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
-import style from "./Log-In.module.css"
+import style from "./Log-In.module.css";
 
 const Login = () => {
-    const { loginUser, loginWithGoogle, isFetching, error } = useAuthStore()
-    const navigate = useNavigate()
+    const { loginUser, loginWithGoogle, isFetching, error } = useAuthStore();
+    const navigate = useNavigate();
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState({ email: "", password: "" })
-
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({ email: "", password: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +35,7 @@ const Login = () => {
         }
 
         const response = await loginUser(email, password);
-        console.log("Login Response:", response)
+        console.log("Login Response:", response);
 
         if (response?.success) {
             navigate('/');
@@ -59,7 +58,11 @@ const Login = () => {
                         {error && <p className={style.errorMessage}>{error}</p>}
 
                         <div className={style.providers}>
-                            <button className={style.loginProvider} onClick={() => loginWithGoogle().then(() => navigate("/"))} disabled={isFetching}>
+                            <button
+                                className={style.loginProvider}
+                                onClick={() => loginWithGoogle().then(() => navigate("/"))}
+                                disabled={isFetching}
+                            >
                                 <img src="/images/google-icon.svg" alt="Google" /> Google
                             </button>
                             <button className={style.loginProvider}>
@@ -76,28 +79,32 @@ const Login = () => {
 
                         <form onSubmit={handleSubmit} className={style.formFill}>
                             <div className={style.inputContainer}>
-                                <input className={`${style.input} ${errors.email ? style.inputError : ""}`}
+                                <Input
+                                    className={`${style.input} ${errors.email ? style.inputError : ""}`}
                                     type="email"
                                     placeholder="Введите email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    required />
+                                    required
+                                />
                                 {errors.email && <p className={style.errorText}>{errors.email}</p>}
                             </div>
 
                             <div className={style.inputContainer}>
-                                <input className={`${style.input} ${errors.password ? style.inputError : ""}`}
-                                    type="password"
+                                {/* Использование Input.Password для поля пароля с глазиком */}
+                                <Input.Password
+
+                                    className={`${style.input} ${errors.password ? style.inputError : ""}`}
                                     placeholder="Введите пароль"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    required />
+                                    required
+                                />
                                 {errors.password && <p className={style.errorText}>{errors.password}</p>}
                             </div>
 
-
-<button type="submit" disabled={isFetching} className={style.submitButton}>
-                                {isFetching ? "Вход..." : "  Авторизоваться"}
+                            <button type="submit" disabled={isFetching} className={style.submitButton}>
+                                {isFetching ? "Вход..." : "Авторизоваться"}
                             </button>
                         </form>
                     </div>

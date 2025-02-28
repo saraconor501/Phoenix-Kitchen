@@ -21,7 +21,6 @@
     justify-content: space-between;
     align-items: center;
     gap: 40px;
-
 }
 
 .formFill {
@@ -46,6 +45,7 @@
     display: flex;
     justify-content: center;
 }
+
 .formTitle {
     font-weight: 700;
     font-size: 28px;
@@ -53,7 +53,6 @@
     letter-spacing: 0%;
     text-align: center;
 }
-
 
 .banner {
     display: flex;
@@ -93,7 +92,10 @@ form {
 
 .input:focus {
     outline: none;
-    border-color: #FC8019;
+}
+
+.inputError {
+    border: 2px solid red; 
 }
 
 .submitButton {
@@ -124,23 +126,28 @@ form {
     justify-content: center;
     column-gap: 4px;
 }
-.loginProvider:active{
+
+.loginProvider:hover {
     background-color: antiquewhite;
 }
-.toLogin{
+
+.toLogin {
     display: flex;
     gap: 6px;
 }
-.titleLogin{
+
+.titleLogin {
     color: #FC8019;
     text-decoration: none;
     font-size: 18px;
     font-weight: 400;
 }
-.titleLogin:hover{
+
+.titleLogin:hover {
     text-decoration: underline;
 }
-.go_to_main{
+
+.go_to_main {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -149,25 +156,29 @@ form {
     font-weight: 700;
     text-decoration: none;
 }
+
 .inputContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-  
-  .inputError {
-    border: 1px solid red;
-    background-color: #ffe6e6;
-  }
-  
-  .errorText {
+
+.inputError {
+    border: 1px solid red; /* Красный бордер для ошибки в инпуте */
+}
+
+.errorText {
     color: red;
     font-size: 14px;
-  }
+}
 
-@media screen and (max-width:1023px){
-    .formContainer{
+.ant-input-password-icon {
+    color: #FC8019; /* Цвет глазика (иконки) */
+}
+
+@media screen and (max-width: 1023px) {
+    .formContainer {
         margin-right: 0px;
     }
 }

@@ -98,11 +98,8 @@
 }
 
 .searchButton:hover {
-  background-color: #eb812a;
-}
-
-.searchButton:active {
-  background-color: #fc8e34;
+  border: #e0731a ;
+  background-color: #e0731a;
 }
 
 .rightBlock {
@@ -121,11 +118,16 @@
 .icon:hover {
   transform: scale(1.1);
 }
+.searchInput {
+  transition: box-shadow 0.3s ease; 
+}
 
 .searchInput:focus {
   box-shadow: 0 0 10px rgba(252, 142, 52, 0.5);
   outline: none;
 }
+
+
 
 .loginBtn {
   width: 92px;
@@ -136,6 +138,7 @@
   text-decoration: none;
   font-family: YSText, sans-serif;
   font-size: 16px;
+  font-weight: 700;
   line-height: 21px;
   color: #21201F;
   transition: all 0.2s ease-in-out;
@@ -187,14 +190,11 @@
   animation: skeleton-loading 1.5s infinite;
 }
 
-/* Анимация скелетона */
 @keyframes skeleton-loading {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
-
-/* Скелетон всего хэдэра (если нужно скрыть всё содержимое) */
 .skeletonHeader {
   width: 100%;
   height: 72px;

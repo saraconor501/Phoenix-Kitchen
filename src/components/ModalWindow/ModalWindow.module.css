@@ -278,3 +278,6 @@
 .modalValue {
     font-size: 17px;
 }
+.closeModale:active{
+    transform: scale(0.94);
+}

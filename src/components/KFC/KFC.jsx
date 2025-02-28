@@ -3,8 +3,10 @@ import useProducts from "../../store/products-slice/kfc-slice";
 import styles from "./KFC.module.css";
 import CardSkeleton from "../Card-Skeleton/Card-Skeleton";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import useAuthStore from "../../store/auth-slice/auth-slice";
 
 const KFC = () => {
+  const { logoutUser } = useAuthStore()
   const { products, fetchProducts, isLoading, error } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -72,7 +74,7 @@ const KFC = () => {
                   </div>
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
-                    <button className={styles.saveButton}>
+                    <button onClick={logoutUser} className={styles.saveButton}>
                       <img src="/images/icon-save.svg" alt="save" /> Save for later
                     </button>
                     <button className={styles.addToCartButton}>Add to cart</button>

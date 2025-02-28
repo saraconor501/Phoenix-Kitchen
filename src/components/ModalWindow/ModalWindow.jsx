@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'; 
 import styles from './ModalWindow.module.css';
@@ -54,7 +53,7 @@ const ModalWindow = ({ product, onClose }) => {
                 <div>
                   <div style={{ width: "100%" }} className={styles.closeIcon}>
                     <button style={{ border: "none" }}>
-                      <img onClick={handleWrapperClick} style={{ width: "26px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcgl60WxmPhOLIzMcuMZfktKr3oazFSbzyw&s" />
+                      <img onClick={handleWrapperClick} className={styles.closeModale} style={{ width: "26px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcgl60WxmPhOLIzMcuMZfktKr3oazFSbzyw&s" />
                     </button>
                   </div>
                 </div>
