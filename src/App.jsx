@@ -8,7 +8,6 @@ import EmpirePizza from './components/ShoopsDetails/Details'
 import KFC from './components/KFC/KFC'
 import Papajonhs from './components/Papajonhs/Papajonhs'
 import Basket from './components/Basket/Basket'
-import Footer from './components/Footer/Footer'
 import AdminPage from './pages/Admin/AdminPage'
 function App() {
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useEffect} from "react";
 import useProducts from "../../store/products-slice/kfc-slice";
 import styles from "./KFC.module.css";
 import CardSkeleton from "../Card-Skeleton/Card-Skeleton";
@@ -39,11 +38,11 @@ const KFC = () => {
                   <img src={item.imageUrl} alt={item.name} style={{ width: "220px" }} />
                   {item.isAvailable ? (
                     <div className={styles.statusBadge}>
-                      <div className={styles.open}></div> Open
+                      <div className={styles.open}></div> Открыть
                     </div>
                   ) : (
                     <div className={styles.statusBadgeNone}>
-                      <div className={styles.close}></div> Close
+                      <div className={styles.close}></div> Закрыть
                     </div>
                   )}
                 </div>
@@ -74,9 +73,9 @@ const KFC = () => {
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
                     <button className={styles.saveButton}>
-                      <img src="/images/icon-save.svg" alt="save" /> Save for later
+                      <img src="/images/icon-save.svg" alt="save" /> Сохранить в избранное
                     </button>
-                    <button className={styles.addToCartButton}>Add to cart</button>
+                    <button className={styles.addToCartButton}>Добавить в корзину</button>
                   </div>
                 </div>
               </div>
@@ -87,38 +86,6 @@ const KFC = () => {
         <ModalWindow product={selectedProduct} onClose={closeModal} />
       )}
     </>
-              <div className={styles.productInfo}>
-                <div className={styles.rating}>
-                  <span className={styles.star}>⭐️</span>
-                  <span style={{color: !item.rating?"red":'black'}}>{item?.rating || "(No rating)"}</span>{"  "}
-                  {item.isAvailable ? "Dining & Delivery" : "  Dining"}
-                </div>
-                <h2 className={styles.productName}>{item.name}</h2>
-                <div className={styles.titleProduct}>
-                  <p className={styles.deliveryTime}>
-                    <img
-                      style={{ width: "30px" }}
-                      src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png"
-                      alt="weight"
-                    />{" "}
-                    Вес: {item.weight || "N/A"} г
-                  </p>
-                  <p className={styles.restaurantName}>
-                    <img src="/images/product-icon.svg" alt="restaurant" />{" "}
-                    {item.restauran || "Not restaurant"}
-                  </p>
-                </div>
-                <p className={styles.price}>{item.price} coм</p>
-                <div className={styles.buttons}>
-                  <button className={styles.saveButton}>
-                    <img src="/images/icon-save.svg" alt="save" /> Save for later
-                  </button>
-                  <button className={styles.addToCartButton} >Add to cart</button>
-                </div>
-              </div>
-            </div>
-          ))}
-    </div>
   );
 };
 

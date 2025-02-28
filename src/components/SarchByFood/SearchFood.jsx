@@ -1,6 +1,8 @@
 import styles from './SearchFood.module.css';
 import pizza from '../../../public/images/pizza.svg'
 import burger from '../../../public/images/burger.svg'
+import chicken from '../../../public/images/chicken.svg'
+import dessert from '../../../public/images/dessert.jpg'
 
 const SearchFood = () => {
   return (
@@ -14,10 +16,10 @@ const SearchFood = () => {
           <img src={burger} alt="" />
         </div>
         <div className={styles.block}>
-          <img src={pizza} alt="" />
+          <img src={chicken} alt="" />
         </div>
         <div className={styles.block}>
-          <img src={pizza} alt="" />
+          <img src={dessert} alt="" />
         </div>
       </div>
     </>

@@ -1,6 +1,8 @@
 .container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 140px;
+    margin-top: 15px;
     flex-wrap: wrap;
     column-gap: 20px;
 }

@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'; 
-import  { useState, useEffect } from 'react';
 import styles from './ModalWindow.module.css';
 
 const ModalWindow = ({ product, onClose }) => {
