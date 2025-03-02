@@ -28,7 +28,7 @@ const KFC = () => {
   if (error) {
     return <div className={styles.error}>{error}</div>;
   }
-
+ 
   return (
     <>
       <div className={styles.productsGrid}>
@@ -40,11 +40,11 @@ const KFC = () => {
                   <img src={item.imageUrl} alt={item.name} style={{ width: "220px" }} />
                   {item.isAvailable ? (
                     <div className={styles.statusBadge}>
-                      <div className={styles.open}></div> Open
+                      <div className={styles.open}></div> Открыть
                     </div>
                   ) : (
                     <div className={styles.statusBadgeNone}>
-                      <div className={styles.close}></div> Close
+                      <div className={styles.close}></div> Закрыть
                     </div>
                   )}
                 </div>
@@ -74,10 +74,10 @@ const KFC = () => {
                   </div>
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
-                    <button onClick={logoutUser} className={styles.saveButton}>
-                      <img src="/images/icon-save.svg" alt="save" /> Save for later
+                    <button className={styles.saveButton}>
+                      <img src="/images/icon-save.svg" alt="save" /> Сохранить в избранное
                     </button>
-                    <button className={styles.addToCartButton}>Add to cart</button>
+                    <button className={styles.addToCartButton}>Добавить в корзину</button>
                   </div>
                 </div>
               </div>

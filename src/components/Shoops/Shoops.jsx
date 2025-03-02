@@ -1,9 +1,11 @@
 import Restauraunts from "../Restauraunts/Restauraunts"
+import SearchFood from "../SarchByFood/SearchFood"
 
 const Shoops = () => {
   return (
     <>
-        <Restauraunts></Restauraunts>
+        <Restauraunts/>
+        <SearchFood/>
     </>
   )
 }

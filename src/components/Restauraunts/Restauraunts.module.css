@@ -5,6 +5,7 @@
 .container{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 15px;
     column-gap: 20px;
 }

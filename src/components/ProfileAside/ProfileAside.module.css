@@ -1,0 +1,40 @@
+.icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
+    background: none;
+  }
+
+  .icon:hover {
+    transform: scale(1.1);
+  }
+  .searchInput:focus {
+    box-shadow: 0 0 10px rgba(252, 142, 52, 0.5);
+    outline: none;
+  }
+  .loginBtn {
+    width: 92px;
+    height: 48px;
+    border-radius: 16px;
+    border: none;
+    background-color: #5C5A571A;
+    text-decoration: none;
+    font-family: YSText, sans-serif;
+    font-size: 16px;
+    line-height: 21px;
+    color: #21201F;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .loginBtn:hover {
+    background-color: #3b37351a;
+  }
+  
+  .loginBtn:active {
+    transform: scale(0.95);
+  }
+  .iconbtn{
+    background: none;
+    border: none;
+  }
