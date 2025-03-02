@@ -12,7 +12,6 @@ const Header = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const isAuthenticated = !!user;
-
   const isLoading = useMemo(() => isAuthLoading, [isAuthLoading]);
 
   useEffect(() => {
@@ -53,21 +52,34 @@ const Header = () => {
                 </>
               )}
             </div>
-          <AdressButton/>
+            <AdressButton />
           </div>
+
           <div className={hr.rightBlock}>
-            {isAuthenticated && !isLoading ? (
-              <Link className={hr.cartLink}>
-                <img src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768" className={hr.icon} alt="cart" />
-              </Link>
+            {isLoading ? (
+              <>
+                <div className={hr.skeletonIcon}></div>
+                <div className={hr.skeletonProfile}></div>
+              </>
+            ) : isAuthenticated ? (
+              <>
+                <Link to="/basket" className={hr.cartLink}>
+                  <img
+                    src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768"
+                    className={hr.icon}
+                    alt="cart"
+                  />
+                </Link>
+                <ProfileAside />
+              </>
+            ) : (
+              <ProfileAside />
             )}
-            <ProfileAside/>
           </div>
         </div>
       </header>
 
       <div style={{ height: "72px" }}></div>
-
     </>
   );
 };

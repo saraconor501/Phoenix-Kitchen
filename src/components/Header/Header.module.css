@@ -33,6 +33,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: transparent;
 }
 
 .header.loaded .header_content {
@@ -42,6 +43,7 @@
 .leftBlock {
   display: flex;
   align-items: center;
+  background: transparent;
 }
 
 .logoContainer {

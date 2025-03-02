@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "antd": "^5.24.0",
     "axios": "^1.7.9",
     "firebase": "^11.3.0",

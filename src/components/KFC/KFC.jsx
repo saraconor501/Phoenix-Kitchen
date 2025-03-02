@@ -3,10 +3,9 @@ import useProducts from "../../store/products-slice/kfc-slice";
 import styles from "./KFC.module.css";
 import CardSkeleton from "../Card-Skeleton/Card-Skeleton";
 import ModalWindow from "../ModalWindow/ModalWindow";
-import useAuthStore from "../../store/auth-slice/auth-slice";
+
 
 const KFC = () => {
-  const { logoutUser } = useAuthStore()
   const { products, fetchProducts, isLoading, error } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
