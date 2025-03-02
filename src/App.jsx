@@ -9,6 +9,7 @@ import KFC from './components/KFC/KFC'
 import Papajonhs from './components/Papajonhs/Papajonhs'
 import Basket from './components/Basket/Basket'
 import AdminPage from './pages/Admin/AdminPage'
+import Navat from './components/Navat/Navat'
 function App() {
  
 
@@ -20,6 +21,7 @@ function App() {
         <Route path={'/basket'} element={<Basket/>}/>
         <Route path={'/myaccount'} element={<AdminPage/>}/>
         <Route path={'/restaraunts/mypizza'} element={<EmpirePizza/>}/>
+        <Route path={'/restaraunts/navat'} element={<Navat/>}/>
         <Route path={'/restaraunts/kfc'} element={<KFC/>}/>
         <Route path={'/restaraunts/papajonhs'} element={<Papajonhs/>}/>
         <Route path={'/auth/sign-up'} element={<SignUp/>}></Route>

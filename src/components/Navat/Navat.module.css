@@ -1,0 +1,168 @@
+.productsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  
+  .productCard {
+    width: 370px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0px 8px 24px -4px #8888883D;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .imageContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 240px;
+  }
+  
+  .imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .open {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #94C763;
+  }
+  
+  .close {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #FFC94D;
+  }
+  
+  .statusBadge,
+  .statusBadgeNone {
+    width: 94px;
+    height: 36px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(170, 170, 170, 0.2);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .statusBadgeNone {
+    width: 100px;
+  }
+  
+  .productInfo {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .star {
+    margin-bottom: 5px;
+    color: gold;
+  }
+  
+  .productName {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .titleProduct {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .deliveryTime,
+  .restaurantName {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6600;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .saveButton {
+    width: 143px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: #FFF2E8;
+    border: none;
+    color: #FC8019;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .saveButton:active {
+    transform: scale(0.98);
+  }
+  
+  .addToCartButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 143px;
+    height: 40px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .addToCartButton:active {
+    transform: scale(0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  }
