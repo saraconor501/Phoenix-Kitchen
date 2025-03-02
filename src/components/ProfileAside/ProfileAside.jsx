@@ -3,18 +3,19 @@ import { Button, Drawer } from "antd";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import styles from './ProfileAside.module.css'
 import { Link } from "react-router-dom";
+import MyData from "../MyData/MyData";
 const ProfileAside = () => {
     const { user } = useAuthStore()
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(!!user);
+  const [isAuthenticated, setIsAuthenticated] = useState(!user);
   const showLoading = () => {
     setOpen(true);
     setLoading(true);
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   };
   return (
     <>
@@ -45,9 +46,9 @@ const ProfileAside = () => {
             >
           Reload
         </Button>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <MyData/>
+        <p>Мои адреса</p>
+        <p>Мои заказы</p>
       </Drawer>
     </>
   );
