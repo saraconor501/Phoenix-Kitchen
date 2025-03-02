@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import hr from "./Header.module.css";
 import Logo from "../../../public/logo.jpg";
+import AdressButton from "../AdressButton/AdressButton";
+import ProfileAside from "../ProfileAside/ProfileAside";
 
 const Header = () => {
   const { user } = useAuthStore();
@@ -39,24 +41,15 @@ const Header = () => {
               <input type="text" placeholder="Название, кухня или блюдо" className={hr.searchInput} />
               <button className={hr.searchButton}>Найти</button>
             </div>
+          <AdressButton/>
           </div>
-
           <div className={hr.rightBlock}>
             {isAuthenticated && (
               <Link className={hr.cartLink}>
                 <img src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768" className={hr.icon} alt="cart" />
               </Link>
             )}
-
-            {isAuthenticated ? (
-              <div className={hr.profileContainer}>
-                <Link to="/profile" className={hr.profileLink}>
-                  <img style={{borderRadius:"50%"}} src={user?.photoURL || "/images/account.svg"} className={hr.icon} alt="Профиль" />
-                </Link>
-              </div>
-            ) : (
-              <Link className={hr.LinkLogin} to="/auth/login"><button className={hr.loginBtn}>Войти</button></Link>
-            )}
+            <ProfileAside/>
           </div>
         </div>
       </header>

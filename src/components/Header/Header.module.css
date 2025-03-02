@@ -57,9 +57,10 @@
 .logoTitle {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: orange;
   text-decoration: none;
   transition: opacity 0.5s ease-in-out;
+  font-style: italic;
 }
 
 .searchContainer {
@@ -67,6 +68,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 20px;
+  margin-right: 15px;
 }
 
 .searchInput {

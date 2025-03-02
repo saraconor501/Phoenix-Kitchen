@@ -31,7 +31,7 @@ const Restauraunts = () => {
           <img src={Kulikov} alt=""/>
         </div>
         </Link>
-        <Link to={'/restaraunts/navat'}>
+        <Link to={'/restaraunts/papajonhs'}>
         <div className={sp.blockPapajonhs}>
           <img src={PapaJonhs} alt=""/>
         </div>
