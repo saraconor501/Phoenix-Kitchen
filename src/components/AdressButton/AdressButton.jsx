@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { YandexMapsKey } from "../../utils/yandex/yandex-config";
-import styles from "./AdressButton.module.css";
+import styles from './AdressButton.module.css'
+import search from '../../../public/images/search.svg'
 
 const YandexLocationPicker = () => {
   const [showMap, setShowMap] = useState(false);
@@ -10,36 +11,43 @@ const YandexLocationPicker = () => {
   const handleMapClick = (e) => {
     const coords = e.get("coords");
     setCoordinates(coords);
-
   };
-
 
   return (
     <div className={styles.container}>
       <button onClick={() => setShowMap(!showMap)} className={styles.button}>
+        <img src='/public/images/location.svg'/>
         Выбрать местоположение
-      </button>
-
+        </button>
       {showMap && (
-        <div className={`${styles.overlay} ${showMap ? styles.show : ""}`}>
+        <div className={styles.overlay}>
           <div className={styles.modal}>
-            <YMaps query={{ apikey: YandexMapsKey, lang: "ru_RU", enterprise: false }}>
+            <div className={styles.close}>
+          <img src='/public/images/close.svg' alt="" onClick={() => setShowMap(false)} className={styles.close__img}/>
+            </div>
+          <h3>Укажите адрес доставки</h3>
+          <p>Чтобы курьер смог вас найти</p>
+          <label htmlFor="">
+            <div className={styles.input}>
+              <img src={search} alt="" className={styles.searchImg}/>
+          <input type="text" placeholder="Ведите улицу или дом"/>
+            </div>
+          <button className={styles.sumbitButton}>OK</button>
+          </label>
+            <YMaps query={{ apikey: YandexMapsKey }}>
               <Map
                 state={{ center: coordinates, zoom: 10 }}
-                style={{ width: "600px", height: "400px" }}
+                width="890px"
+                height="400px"
                 onClick={handleMapClick}
-                modules={["geoObject.addon.balloon"]}
               >
                 <Placemark geometry={coordinates} />
               </Map>
             </YMaps>
-
-            <button onClick={() => setShowMap(false)} className={styles.closeButton}>
-              Закрыть
-            </button>
           </div>
         </div>
       )}
+      {/* <p>Выбранные координаты: {coordinates.join(", ")}</p> */}
     </div>
   );
 };
