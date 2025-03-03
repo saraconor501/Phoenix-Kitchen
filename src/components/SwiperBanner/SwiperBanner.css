@@ -6,6 +6,10 @@ body {
   position: relative;
   height: 100%;
 }
+.s{
+  width: 100%;
+  object-fit: cover;
+}
 
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;

@@ -21,7 +21,6 @@
     justify-content: space-between;
     align-items: center;
     gap: 40px;
-
 }
 
 .formFill {
@@ -53,14 +52,13 @@
     height: 48px;
     display: flex;
     gap: 8px;
-
 }
 
 .banner {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    min-width: 100vh;
     width: 50%;
 }
 
@@ -92,9 +90,10 @@ form {
     border: rgb(151, 147, 147) solid 2.2px;
 }
 
+
 .input:focus {
     outline: none;
-    border-color: #FC8019;
+    
 }
 
 .submitButton {
@@ -130,6 +129,7 @@ form {
 .loginProvider:hover {
     background-color: antiquewhite;
 }
+
 .loginProvider:active {
     background-color: rgb(223, 197, 163);
 }
@@ -168,8 +168,7 @@ form {
 }
 
 .inputError {
-    border: 1px solid red;
-    background-color: #ffe6e6;
+    border: 2px solid red;
 }
 
 .errorText {
