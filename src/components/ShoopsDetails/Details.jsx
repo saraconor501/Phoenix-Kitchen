@@ -9,6 +9,8 @@ const Cards = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -27,7 +29,7 @@ const Cards = () => {
     return <div>{error}</div>;
   }
 
-  
+
 
   return (
     <>
@@ -35,8 +37,8 @@ const Cards = () => {
         {isLoading
           ? Array.from({ length: 8 }).map((_, index) => <CardSkeleton key={index} />)
           : products.map((item) => (
-            <div key={item.id} className={main.productCard} onClick={() => openModal(item)}>
-              <div className={main.imageContainer}>
+            <div key={item.id} className={main.productCard}>
+              <div className={main.imageContainer} onClick={() => openModal(item)}>
                 <img
                   style={{ width: 'auto', cursor: 'pointer' }}
                   src={item.imageUrl}
@@ -64,23 +66,22 @@ const Cards = () => {
                     <img style={{ width: '30px' }} src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png" />
                     Вес: {item.weight} г
                   </p>
-                  <p className={main.restaurantName}>
+                  <div className={main.restaurantName}>
                     <img src="/images/product-icon.svg" /> {item.restauran || 'Not restaurant'}
-                  </p>
+                  </div>
                 </div>
                 <p className={main.price}>{item.price} coм</p>
                 <div className={main.buttons}>
                   <button className={main.saveButton}>
                     <img src="/images/icon-save.svg" /> Save for later
                   </button>
-                  <button className={main.addToCartButton}>Add to cart</button>
+                  <button className={main.addToCartButton} onClick={() => openModal(item)}>Add to cart</button>
                 </div>
               </div>
             </div>
           ))}
       </div>
 
-      {/* Модальное окно */}
       {isModalOpen && selectedProduct && (
         <ModalWindow
           product={selectedProduct}

@@ -1,9 +1,19 @@
 import styles from './Papajonhs.module.css'
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useProducts from '../../store/products-slice/papajonhs';
 const Papajonhs = () => {
     const { products, fetchProducts, isLoading, error } = useProducts();
+    const [save,setSave]=useState(false)
+
+    const ChangeImageSave=()=>{
+      if (save) {
+        setSave(false)
+      }
+      else{
+        setSave(true)
+      }
+    }
 
     useEffect(() => {
         fetchProducts();
@@ -19,8 +29,8 @@ const Papajonhs = () => {
         ? Array.from({ length: 8 }).map((_, index) => <CardSkeleton key={index} />)
         : products.map((item, index) => (
             <div key={index} className={styles.productCard}>
-              <div className={styles.imageContainer}>
-                <img src={item.imageUrl} alt={item.name} style={{width:"220px"}} />
+              <div className={styles.imageContainer} style={{justifyContent:item.category[0]=='Pizza'?'start':'center'}}>
+                <img src={item.imageUrl} alt={item.name} style={{width:"220px",}} />
                 {item.isAvailable ? (
                   <div className={styles.statusBadge}>
                     <div className={styles.open}></div> Open
@@ -55,10 +65,10 @@ const Papajonhs = () => {
                 </div>
                 <p className={styles.price}>{item.price} coм</p>
                 <div className={styles.buttons}>
-                  <button className={styles.saveButton}>
-                    <img src="/images/icon-save.svg" alt="save" /> Save for later
+                  <button className={styles.saveButton} onClick={ChangeImageSave}>
+                    <img  src={save?'https://cdn-icons-png.flaticon.com/512/7093/7093762.png':"/images/icon-save.svg"} style={{width:save?'18px':"12px"}} alt="save" /> Save for later
                   </button>
-                  <button className={styles.addToCartButton}>Add to cart</button>
+                  <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> Add to cart</button>
                 </div>
               </div>
             </div>

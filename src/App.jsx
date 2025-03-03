@@ -11,10 +11,11 @@ import Basket from './components/Basket/Basket'
 import AdminPage from './pages/Admin/AdminPage'
 import Navat from './components/Navat/Navat'
 function App() {
+ 
 
   return (
     <>
-    <Header/>
+      <Header />
       <Routes>
         <Route path={'/'} element={<HomePage/>} />
         <Route path={'/basket'} element={<Basket/>}/>
