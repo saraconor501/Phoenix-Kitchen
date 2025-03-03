@@ -1,34 +1,50 @@
-import HomePage from './pages/Home/HomePage'
-import './App.css'
-import { Route, Routes } from 'react-router-dom'
-import SignUp from './pages/Authentication/Sign-up/Sign-up'
-import Login from './pages/Authentication/Log-In/Log-In'
-import Header from './components/Header/Header'
-import EmpirePizza from './components/ShoopsDetails/Details'
-import KFC from './components/KFC/KFC'
-import Papajonhs from './components/Papajonhs/Papajonhs'
-import Basket from './components/Basket/Basket'
-import AdminPage from './pages/Admin/AdminPage'
-import Navat from './components/Navat/Navat'
-function App() {
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/Home/HomePage';
+import SignUp from './pages/Authentication/Sign-up/Sign-up';
+import Login from './pages/Authentication/Log-In/Log-In';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import EmpirePizza from './components/ShoopsDetails/Details';
+import KFC from './components/KFC/KFC';
+import Papajonhs from './components/Papajonhs/Papajonhs';
+import Basket from './components/Basket/Basket';
+import AdminPage from './pages/Admin/AdminPage';
+import Navat from './components/Navat/Navat';
+import './App.css';
 
+function Layout({ children }) {
   return (
     <>
-    <Header/>
-      <Routes>
-        <Route path={'/'} element={<HomePage/>} />
-        <Route path={'/basket'} element={<Basket/>}/>
-        <Route path={'/myaccount'} element={<AdminPage/>}/>
-        <Route path={'/restaraunts/mypizza'} element={<EmpirePizza/>}/>
-        <Route path={'/restaraunts/navat'} element={<Navat/>}/>
-        <Route path={'/restaraunts/kfc'} element={<KFC/>}/>
-        <Route path={'/restaraunts/papajonhs'} element={<Papajonhs/>}/>
-        <Route path={'/auth/sign-up'} element={<SignUp/>}></Route>
-        <Route path={'/auth/login'} element={<Login/>}></Route>
-      </Routes>
-      {/* <Footer/> */}
+      <Header />
+      {children}
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Routes>
+      <Route path="/auth/sign-up" element={<SignUp />} />
+      <Route path="/auth/login" element={<Login />} />
+      <Route
+        path="/*"
+        element={
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/basket" element={<Basket />} />
+              <Route path="/myaccount" element={<AdminPage />} />
+              <Route path="/restaraunts/mypizza" element={<EmpirePizza />} />
+              <Route path="/restaraunts/navat" element={<Navat />} />
+              <Route path="/restaraunts/kfc" element={<KFC />} />
+              <Route path="/restaraunts/papajonhs" element={<Papajonhs />} />
+            </Routes>
+          </Layout>
+        }
+      />
+    </Routes>
+  );
+}
+
+export default App;

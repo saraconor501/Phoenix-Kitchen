@@ -8,11 +8,12 @@
 }
 
 .block img{
-    width: 100%;
+    width: 174px;
     height: 200px;
     border-radius: 10px;
-    object-fit: fill;
+    object-fit: cover;
 }
+
 .resTitle{
     margin-left: 140px;
     margin-top: 30px;
