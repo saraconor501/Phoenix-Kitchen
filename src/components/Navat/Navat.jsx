@@ -73,7 +73,7 @@ const { products, fetchProducts, isLoading, error } = useNavat();
                     <button className={styles.saveButton}>
                       <img src="/images/icon-save.svg" alt="save" /> Сохранить
                     </button>
-                    <button className={styles.addToCartButton}>Добавить в корзину</button>
+                    <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> в корзину</button>
                   </div>
                 </div>
               </div>

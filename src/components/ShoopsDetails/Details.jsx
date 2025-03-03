@@ -66,9 +66,9 @@ const Cards = () => {
                     <img style={{ width: '30px' }} src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png" />
                     Вес: {item.weight} г
                   </p>
-                  <p className={main.restaurantName}>
+                  <div className={main.restaurantName}>
                     <img src="/images/product-icon.svg" /> {item.restauran || 'Not restaurant'}
-                  </p>
+                  </div>
                 </div>
                 <p className={main.price}>{item.price} coм</p>
                 <div className={main.buttons}>
