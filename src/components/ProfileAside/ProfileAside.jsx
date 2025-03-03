@@ -3,15 +3,12 @@ import { Drawer } from "antd";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import styles from "./ProfileAside.module.css";
 import { Link } from "react-router-dom";
-
+import MyData from "../MyData/MyData";
 const ProfileAside = () => {
-  const { user } = useAuthStore();
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const {logoutUser}=useAuthStore()
-
-  const isAuthenticated = !!user;
-
+    const { user } = useAuthStore()
+  const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(!user);
   const showLoading = () => {
     setOpen(true);
     setLoading(true);
@@ -55,20 +52,19 @@ const ProfileAside = () => {
         placement="right"
         open={open}
         onClose={() => setOpen(false)}
-        maskClosable={true}
-        maskStyle={{ background: "rgba(0, 0, 0, 0.5)" }}
-        bodyStyle={{ overflow: "hidden" }}
-      >
-        {loading ? (
-          <p>Загрузка...</p>
-        ) : (
-          <>
-            <div onClick={logoutUser}>
-              Профиль
-            </div>
-           
-          </>
-        )}
+        >
+        <Button
+          type="primary"
+          style={{
+              marginBottom: 16,
+            }}
+            onClick={showLoading}
+            >
+          Reload
+        </Button>
+        <MyData/>
+        <p>Мои адреса</p>
+        <p>Мои заказы</p>
       </Drawer>
     </>
   );
