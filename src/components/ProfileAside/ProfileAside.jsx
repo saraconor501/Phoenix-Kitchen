@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Drawer, Button } from "antd";
 import useAuthStore from "../../store/auth-slice/auth-slice";
+import { Drawer, Button } from "antd";
 import styles from "./ProfileAside.module.css";
+import account from '../../assets/images/account.svg'
 import { Link } from "react-router-dom";
 import MyData from "../MyData/MyData";
 const ProfileAside = () => {
   const { user } = useAuthStore(); 
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(true); // Теперь правильно!
+  const [loading, setLoading] = useState(true);
 
   const isAuthenticated = !!user; 
 
@@ -32,7 +33,7 @@ const ProfileAside = () => {
               <button onClick={showLoading} className={styles.iconbtn}>
                   <img
                       style={{ borderRadius: "50%" }}
-                      src={user?.photoURL || "/images/account.svg"}
+                      src={user?.photoURL || {account}}
                       className={styles.icon}
                       alt="Профиль"
                   />

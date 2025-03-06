@@ -2,6 +2,8 @@ import styles from './Papajonhs.module.css'
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton'
 import { useEffect, useState } from 'react';
 import useProducts from '../../store/products-slice/papajonhs';
+// import save from '../../assets/images/save.svg'
+
 const Papajonhs = () => {
     const { products, fetchProducts, isLoading, error } = useProducts();
     const [save,setSave]=useState(false)
@@ -66,7 +68,7 @@ const Papajonhs = () => {
                 <p className={styles.price}>{item.price} coм</p>
                 <div className={styles.buttons}>
                   <button className={styles.saveButton} onClick={ChangeImageSave}>
-                    <img  src={save?'https://cdn-icons-png.flaticon.com/512/7093/7093762.png':"/images/icon-save.svg"} style={{width:save?'18px':"12px"}} alt="save" /> Save for later
+                    {/* <img  src={save?'https://cdn-icons-png.flaticon.com/512/7093/7093762.png': } style={{width:save?'18px':"12px"}} alt="save" /> Save for later */}
                   </button>
                   <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> Add to cart</button>
                 </div>

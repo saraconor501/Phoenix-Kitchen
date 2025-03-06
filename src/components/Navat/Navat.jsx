@@ -3,6 +3,8 @@ import styles from './Navat.module.css'
 import useNavat from "../../store/products-slice/navat-slice";
 import CardSkeleton from '../../components/Card-Skeleton/Card-Skeleton';
 import ModalWindow from '../ModalWindow/ModalWindow'
+// import save from '../../assets/images/save.svg'
+
 const Navat = () => {
 const { products, fetchProducts, isLoading, error } = useNavat();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,7 +73,7 @@ const { products, fetchProducts, isLoading, error } = useNavat();
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
                     <button className={styles.saveButton}>
-                      <img src="/images/icon-save.svg" alt="save" /> Сохранить
+                      {/* <img src={save} alt="save" /> Сохранить */}
                     </button>
                     <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> в корзину</button>
                   </div>

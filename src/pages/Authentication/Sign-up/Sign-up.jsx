@@ -4,6 +4,11 @@ import useAuthStore from "../../../store/auth-slice/auth-slice";
 import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import style from "./Sign-up.module.css";
+import auth from '../../../assets/images/auth.jpg';
+import appleIcon from '../../../assets/images/apple-icon.svg';
+import gogleIcon from '../../../assets/images/google-icon.svg';
+import goToMain from '../../../assets/images/go-to-main.svg'
+
 
 const SignUp = () => {
   const { registerUser, loginWithGoogle, isFetching, error } = useAuthStore();
@@ -46,7 +51,7 @@ const SignUp = () => {
     <>
       <div className={style.container}>
         <div className={style.banner}>
-          <img src="/images/auth.svg" alt="banner" />
+          <img src={auth} alt="banner" />
         </div>
 
         <div className={style.formContainer}>
@@ -62,10 +67,10 @@ const SignUp = () => {
                   onClick={() => loginWithGoogle().then(() => navigate("/"))}
                   disabled={isFetching}
                 >
-                  <img style={{ borderRadius: "50%" }} src="/images/google-icon.svg" alt="Google" /> Google
+                  <img style={{ borderRadius: "50%" }} src={gogleIcon} alt="Google" /> Google
                 </button>
                 <button className={style.loginProvider}>
-                  <img style={{ borderRadius: "50%" }} src="/images/apple-icon.svg" alt="Apple" /> Apple
+                  <img style={{ borderRadius: "50%" }} src={appleIcon} alt="Apple" /> Apple
                 </button>
               </div>
 
@@ -124,7 +129,7 @@ const SignUp = () => {
             </div>
 
             <Link className={style.go_to_main} to="/">
-              <img src="/images/go-to-main.svg" alt="Go back" /> Вернуться на главную страницу.
+              <img src={goToMain} alt="Go back" /> Вернуться на главную страницу.
             </Link>
           </div>
         </div>

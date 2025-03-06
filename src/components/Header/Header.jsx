@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import hr from "./Header.module.css";
-import Logo from "../../../public/logo.jpg";
+import Logo from "../../assets/images/logo.jpg";
 import AdressButton from "../AdressButton/AdressButton";
 import ProfileAside from "../ProfileAside/ProfileAside";
 

@@ -3,7 +3,7 @@ import useProducts from '../../store/products-slice/products-slice';
 import main from './Details.module.css';
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton';
 import ModalWindow from '../ModalWindow/ModalWindow';
-
+// import save from '../../assets/images/save.svg'
 const Cards = () => {
   const { products, fetchProducts, isLoading, error } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,7 +73,7 @@ const Cards = () => {
                 <p className={main.price}>{item.price} coм</p>
                 <div className={main.buttons}>
                   <button className={main.saveButton}>
-                    <img src="/images/icon-save.svg" /> Save for later
+                    {/* <img src={save} /> Save for later */}
                   </button>
                   <button className={main.addToCartButton} onClick={() => openModal(item)}>Add to cart</button>
                 </div>

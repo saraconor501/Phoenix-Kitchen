@@ -1,8 +1,8 @@
 import styles from './SearchFood.module.css';
-import pizza from '../../../public/images/pizza.svg'
-import burger from '../../../public/images/burger.svg'
-import chicken from '../../../public/images/chicken.svg'
-import dessert from '../../../public/images/dessert.jpg'
+import burger from '../../assets/images/burger.jpg';
+import pizza from '../../assets/images/pizza.jpg';
+import chicken from '../../assets/images/chicken.jpg';
+import dessert from '../../assets/images/dessert.jpg';
 
 const SearchFood = () => {
   return (

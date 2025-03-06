@@ -3,7 +3,7 @@ import useProducts from "../../store/products-slice/kfc-slice";
 import styles from "./KFC.module.css";
 import CardSkeleton from "../Card-Skeleton/Card-Skeleton";
 import ModalWindow from "../ModalWindow/ModalWindow";
-
+// import save from '../../assets/images/save.svg'
 
 const KFC = () => {
   const { products, fetchProducts, isLoading, error } = useProducts();
@@ -74,7 +74,7 @@ const KFC = () => {
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
                     <button className={styles.saveButton}>
-                      <img src="/images/icon-save.svg" alt="save" /> Сохранить
+                      {/* <img src={save} alt="save" /> Сохранить */}
                     </button>
                     <button className={styles.addToCartButton}>в корзину</button>
                   </div>
