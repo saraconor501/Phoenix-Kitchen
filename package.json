@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@react-google-maps/api": "^2.20.6",
     "@tanstack/react-query": "^5.67.2",
     "antd": "^5.24.0",
     "axios": "^1.7.9",
