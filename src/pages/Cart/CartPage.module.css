@@ -28,7 +28,7 @@
     width: 90%;
     height: 29px;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 29px;
     color: #323232;
     margin-bottom: 24px;
@@ -90,12 +90,15 @@
 .cartList {
     list-style: none;
     padding: 0;
+
 }
 
 .cartItem {
     display: flex;
     align-items: center;
     height: 200px;
+    justify-content: space-between;
+
 }
 
 .itemImage {
@@ -106,7 +109,7 @@
 }
 
 .itemInfo {
-    flex: 1;
+    width: 470px;
 }
 
 .itemInfo h2 {
@@ -153,10 +156,6 @@
     background-color: darkred;
 }
 
-.itemPrice {
-    font-size: 18px;
-    font-weight: bold;
-}
 
 .cartFooter {
     display: flex;
@@ -165,8 +164,19 @@
     margin-top: 20px;
 }
 
-.totalPrice {
-    font-size: 18px;
+.totalPrice span {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #323232;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #323232;
     font-weight: bold;
 }
 
@@ -191,8 +201,8 @@
 
 
 .funtionModal {
-    width: 112px;
-    width: 116px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -209,19 +219,53 @@
     background-color: transparent;
     transition: background-color 0.3s ease;
 }
-.incriment{
+
+.incriment {
     display: flex;
     flex-direction: row;
     align-items: center;
+    column-gap: 6px;
 }
+
+.funtionItem {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+}
+
+
 .funtionModal button:hover {
     background-color: #ece8e8;
 }
-.delete{
+
+.delete {
     display: flex;
     justify-content: end;
+    transition: background-color 0.2s ease-in-out;
 }
-.modalValue span{
+.delete div{
+    transition: background-color 0.2s ease-in-out;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+}
+
+.delete div:hover {
+    background-color: #ece8e8;
+}
+
+.delete div:active {
+    background-color: #c9c5c5;
+    transition: background-color 0.1s ease;
+}
+
+.modalValue span {
     font-weight: 700;
     width: 40px;
     height: 36px;
@@ -236,4 +280,46 @@
 .funtionModal button:active {
     background-color: #c9c5c5;
     transition: background-color 0.1s ease;
+}
+
+.titleItem {
+    margin-bottom: 8px;
+    display: flex;
+    grid-gap: 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.titleItem h2 {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 24px;
+    color: #323232;
+}
+
+.titleItem h4 {
+    font-weight: 400;
+    font-size: 18px;
+    color: #999;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 18px;
+    color: #323232;
+    opacity: .66;
+}
+
+.description span {
+    font-weight: 700;
+}
+
+.itemPrice {
+    font-size: 19px;
+    line-height: 19px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 14px;
+    white-space: nowrap
 }
