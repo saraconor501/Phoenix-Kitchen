@@ -1,24 +1,28 @@
 import { useEffect } from "react";
-import useCartStore from "../../store/cart-slice/cart-slice";
+import { useCart } from "../../store/cart-slice/cart-slice";
 import cartStyle from "./CartPage.module.css";
 
 const CartPage = () => {
-  const { cart, loadCart, removeFromCart, clearCart, isLoading, updateItemQuantity } = useCartStore();
+  const { cart, isLoading, addToCartMutation, removeFromCartMutation, refetch } = useCart();
 
   useEffect(() => {
-    loadCart();
-  }, []);
+
+    refetch();
+  }, [refetch]);
 
   const handleLengthProduct = (itemId, operation) => {
-    if (operation === '-') {
-      updateItemQuantity(itemId, 'decrease');
-    } else if (operation === '+') {
-      updateItemQuantity(itemId, 'increase');
+    if (operation === "+") {
+      addToCartMutation.mutate({ ...cart.find(item => item.id === itemId), quantity: 1 });
+    } else if (operation === "-") {
+      const item = cart.find(item => item.id === itemId);
+      if (item.quantity > 1) {
+        addToCartMutation.mutate({ ...item, quantity: -1 });
+      } 
     }
   };
 
   if (isLoading) {
-    return <div className={cartStyle.loading}>Загрузка..</div>;
+    return <div className={cartStyle.loading}>Загрузка...</div>;
   }
 
   return (
@@ -28,9 +32,7 @@ const CartPage = () => {
           Корзина:
         </div>
 
-        <div className={cartStyle.desheds}>
-
-        </div>
+        <div className={cartStyle.desheds}></div>
 
         <div className={cartStyle.deliveryInfo}>
           <div className={cartStyle.content}>
@@ -48,17 +50,17 @@ const CartPage = () => {
                   <img src={item.imageUrl} alt={item.name} className={cartStyle.itemImage} />
                 </div>
                 <div className={cartStyle.itemInfo}>
-                  <div style={{ display: "flex" }}>
+                  <div className={cartStyle.titleItem}>
                     <h2>{item.name}</h2>
-                    <h4>Вес: {item.weight}</h4>
+                    <h4>Вес: {item.weight} гр</h4>
                   </div>
-                  <div>Состав: {item.ingredients || item.description}</div>
+                  <div className={cartStyle.description}><span>Состав:</span> {item.ingredients || item.description}</div>
                   <div className={cartStyle.itemPrice}>{item.price} с</div>
                 </div>
-                <div>
+                <div className={cartStyle.funtionItem}>
                   <div className={cartStyle.funtionModal}>
                     <div className={cartStyle.delete}>
-                      <img onClick={() => removeFromCart(item.id)} style={{ width: "36px" }} src="https://img.icons8.com/?size=100&id=99961&format=png&color=4D4D4D" alt="" />
+                      <div><img onClick={() => removeFromCartMutation.mutate(item.id)} style={{ width: "36px" }} src="https://img.icons8.com/?size=100&id=99961&format=png&color=4D4D4D" alt="" /></div>
                     </div>
                     <div className={cartStyle.incriment}>
                       <button onClick={() => handleLengthProduct(item.id, '-')} style={{ border: "none" }}>
@@ -74,21 +76,17 @@ const CartPage = () => {
                   </div>
                 </div>
               </li>
-              <div className={cartStyle.desheds}>
-
-              </div>
+              <div className={cartStyle.desheds}></div>
             </>
           ))}
         </ul>
 
+
         <div className={cartStyle.cartFooter}>
           <div className={cartStyle.totalPrice}>
-            <span>Итого:</span>
-            <span>{cart.reduce((total, item) => total + item.price * item.quantity, 0)} с</span>
+            <span>Итоговая стоимость заказа:</span>
           </div>
-          <button className={cartStyle.clearButton} onClick={clearCart}>
-            Очистить корзину
-          </button>
+          <div className={cartStyle.price}>{cart.reduce((total, item) => total + item.price * item.quantity, 0)} с</div>
         </div>
 
       </div>
