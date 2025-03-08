@@ -323,3 +323,11 @@
     margin-top: 14px;
     white-space: nowrap
 }
+
+.paymentContainer h1{
+    margin-bottom: 20px;
+}
+.paymentContainer p{
+    font-size: 13px;
+    color: #323232
+}

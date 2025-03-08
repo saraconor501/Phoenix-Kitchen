@@ -92,7 +92,12 @@ const CartPage = () => {
       </div>
 
       <div className={cartStyle.paymentContainer}>
-        {/* Здесь можно добавить информацию для оформления оплаты */}
+        <h1>Оформление заказа</h1>
+        <div className={cartStyle.desheds}></div>
+        <p>ЗАПОЛНИТЕ ДАННЫЕ ДЛЯ ДОСТАВКИ</p>
+        <form action="">
+          
+        </form>
       </div>
     </div>
   );
