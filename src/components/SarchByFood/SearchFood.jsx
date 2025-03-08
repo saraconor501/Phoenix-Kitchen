@@ -3,7 +3,8 @@ import burger from '../../assets/images/burger.jpg';
 import pizza from '../../assets/images/pizza.jpg';
 import chicken from '../../assets/images/chicken.jpg';
 import dessert from '../../assets/images/dessert.jpg';
-
+import meat from '../../assets/images/meat.webp';
+import drinks from '../../assets/images/drinks.jpg'
 const SearchFood = () => {
   return (
     <>
@@ -20,6 +21,12 @@ const SearchFood = () => {
         </div>
         <div className={styles.block}>
           <img src={dessert} alt="" />
+        </div>
+        <div className={styles.block}>
+          <img src={meat} alt="" />
+        </div>
+        <div className={styles.block}>
+          <img src={drinks} alt="" />
         </div>
       </div>
     </>
