@@ -3,7 +3,9 @@ import styles from './Navat.module.css'
 import useNavat from "../../store/products-slice/navat-slice";
 import CardSkeleton from '../../components/Card-Skeleton/Card-Skeleton';
 import ModalWindow from '../ModalWindow/ModalWindow'
-// import save from '../../assets/images/save.svg'
+import save from '../../assets/images/icon-save.svg'
+import cartIcon from '../../assets/images/toCartIcon.svg'
+import location from '../../assets/images/product-icon.svg'
 
 const Navat = () => {
 const { products, fetchProducts, isLoading, error } = useNavat();
@@ -62,20 +64,21 @@ const { products, fetchProducts, isLoading, error } = useNavat();
                         style={{ width: "30px" }}
                         src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png"
                         alt="weight"
-                      />{" "}
+                      />
                       Вес: {item.weight || "N/A"} г
                     </p>
                     <p className={styles.restaurantName}>
-                      <img src="/images/product-icon.svg" alt="restaurant" />{" "}
+                      <img src={location} alt="restaurant" />
                       {item.restauran || "Not restaurant"}
+                      
                     </p>
                   </div>
                   <p className={styles.price}>{item.price} coм</p>
                   <div className={styles.buttons}>
                     <button className={styles.saveButton}>
-                      {/* <img src={save} alt="save" /> Сохранить */}
+                       <img src={save} alt="save" /> Сохранить 
                     </button>
-                    <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> в корзину</button>
+                    <button className={styles.addToCartButton}><img src={cartIcon} alt="cart" /> в корзину</button>
                   </div>
                 </div>
               </div>

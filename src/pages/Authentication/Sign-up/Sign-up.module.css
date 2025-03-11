@@ -1,3 +1,10 @@
+.banner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 50%;
+}
 .container {
     display: flex;
     justify-content: space-between;
@@ -54,13 +61,6 @@
     gap: 8px;
 }
 
-.banner {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 100vh;
-    width: 50%;
-}
 
 .banner img {
     max-width: 100%;

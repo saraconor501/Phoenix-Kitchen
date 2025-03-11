@@ -52,7 +52,13 @@ const Header = () => {
                 </>
               )}
             </div>
-            <AdressButton />
+            {isLoading ? (
+                <div className={hr.skeletonAdress}></div>
+              ) : (
+                <>
+                  <AdressButton />
+                </>
+              )}
           </div>
 
           <div className={hr.rightBlock}>

@@ -50,7 +50,7 @@
   
   .statusBadge,
   .statusBadgeNone {
-    width: 94px;
+    width: auto;
     height: 36px;
     position: absolute;
     top: 10px;
@@ -67,10 +67,7 @@
     justify-content: center;
     gap: 5px;
   }
-  
-  .statusBadgeNone {
-    width: 100px;
-  }
+
   
   .productInfo {
     padding: 15px;

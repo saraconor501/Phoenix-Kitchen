@@ -1,21 +1,14 @@
 import styles from './Papajonhs.module.css'
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton'
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import useProducts from '../../store/products-slice/papajonhs';
-// import save from '../../assets/images/save.svg'
+import save from '../../assets/images/icon-save.svg'
+import cartIcon from '../../assets/images/toCartIcon.svg'
+import location from '../../assets/images/product-icon.svg'
 
 const Papajonhs = () => {
     const { products, fetchProducts, isLoading, error } = useProducts();
-    const [save,setSave]=useState(false)
-
-    const ChangeImageSave=()=>{
-      if (save) {
-        setSave(false)
-      }
-      else{
-        setSave(true)
-      }
-    }
+ 
 
     useEffect(() => {
         fetchProducts();
@@ -35,11 +28,11 @@ const Papajonhs = () => {
                 <img src={item.imageUrl} alt={item.name} style={{width:"220px",}} />
                 {item.isAvailable ? (
                   <div className={styles.statusBadge}>
-                    <div className={styles.open}></div> Open
+                    <div className={styles.open}></div> Открыто
                   </div>
                 ) : (
                   <div className={styles.statusBadgeNone}>
-                    <div className={styles.close}></div> Close
+                    <div className={styles.close}></div> Закрыто
                   </div>
                 )}
               </div>
@@ -60,17 +53,18 @@ const Papajonhs = () => {
                     />{" "}
                     Вес: {item.weight || "N/A"} г
                   </p>
+                  
                   <p className={styles.restaurantName}>
-                    <img src="/images/product-icon.svg" alt="restaurant" />{" "}
+                    <img src={location} alt="restaurant" />{" "}
                     {item.restauran || "Not restaurant"}
                   </p>
                 </div>
                 <p className={styles.price}>{item.price} coм</p>
                 <div className={styles.buttons}>
-                  <button className={styles.saveButton} onClick={ChangeImageSave}>
-                    {/* <img  src={save?'https://cdn-icons-png.flaticon.com/512/7093/7093762.png': } style={{width:save?'18px':"12px"}} alt="save" /> Save for later */}
+                  <button className={styles.saveButton}>
+                    <img  src={save} style={{width:"12px"}} alt="save" /> Сохранить 
                   </button>
-                  <button className={styles.addToCartButton}><img src="/images/toCartIcon.svg" alt="cart" /> Add to cart</button>
+                  <button className={styles.addToCartButton}><img src={cartIcon} alt="cart" /> в корзину</button>
                 </div>
               </div>
             </div>
@@ -81,3 +75,5 @@ const Papajonhs = () => {
 }
 
 export default Papajonhs
+
+// https://cdn-icons-png.flaticon.com/512/7093/7093762.png
