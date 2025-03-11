@@ -3,7 +3,9 @@ import useProducts from '../../store/products-slice/products-slice';
 import main from './Details.module.css';
 import CardSkeleton from '../Card-Skeleton/Card-Skeleton';
 import ModalWindow from '../ModalWindow/ModalWindow';
-// import save from '../../assets/images/save.svg'
+import save from '../../assets/images/icon-save.svg'
+import cartIcon from '../../assets/images/toCartIcon.svg'
+import location from '../../assets/images/product-icon.svg'
 const Cards = () => {
   const { products, fetchProducts, isLoading, error } = useProducts();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,11 +48,11 @@ const Cards = () => {
                 />
                 {item.isAvailable ? (
                   <div className={main.statusBadge}>
-                    <div className={main.open}></div> Open
+                    <div className={main.open}></div> Открыто
                   </div>
                 ) : (
                   <div className={main.statusBadgeNone}>
-                    <div className={main.close}></div> Close
+                    <div className={main.close}></div> Закрыто
                   </div>
                 )}
               </div>
@@ -67,15 +69,15 @@ const Cards = () => {
                     Вес: {item.weight} г
                   </p>
                   <div className={main.restaurantName}>
-                    <img src="/images/product-icon.svg" /> {item.restauran || 'Not restaurant'}
+                    <img src={location} /> {item.restauran || 'Not restaurant'}
                   </div>
                 </div>
                 <p className={main.price}>{item.price} coм</p>
                 <div className={main.buttons}>
                   <button className={main.saveButton}>
-                    {/* <img src={save} /> Save for later */}
+                  <img src={save} alt="save" /> Сохранить
                   </button>
-                  <button className={main.addToCartButton} onClick={() => openModal(item)}>Add to cart</button>
+                  <button className={main.addToCartButton} onClick={() => openModal(item)}><img src={cartIcon} alt="cart" /> в корзину</button>
                 </div>
               </div>
             </div>

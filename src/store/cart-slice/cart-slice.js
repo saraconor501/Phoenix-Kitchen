@@ -1,15 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { db, auth } from "../../utils/firebase/firebase-config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useEffect } from "react";
 
 const fetchCart = async () => {
     const user = auth.currentUser;
-    if (!user) return [];
+
 
     const userDocRef = doc(db, "users", user.uid);
     const userDocSnap = await getDoc(userDocRef);
 
-    return userDocSnap.exists() ? userDocSnap.data().cart || [] : [];
+    return  userDocSnap.data().cart
+
+
 };
 
 const updateCart = async (newCart) => {
@@ -22,14 +25,17 @@ const updateCart = async (newCart) => {
 
 export const useCart = () => {
     const queryClient = useQueryClient();
-
     const { data: cart = [], isLoading, refetch } = useQuery({
         queryKey: ["cart"],
         queryFn: fetchCart,
-        staleTime: 0,  // Убираем кэширование
-        refetchOnWindowFocus: true, // Перезапрашиваем при возврате на страницу
+        staleTime: 0,
+        refetchOnWindowFocus: true, 
+        refetchOnReconnect: true, 
+        onSuccess: () => {
+            
+            console.log("Cart fetched successfully");
+        }
     });
-
     const addToCartMutation = useMutation({
         mutationFn: async (product) => {
             let newCart = [...cart];
@@ -57,6 +63,10 @@ export const useCart = () => {
         },
         onSuccess: (newCart) => queryClient.setQueryData(["cart"], newCart),
     });
+
+    useEffect(() => {
+        refetch();
+    }, [refetch]);
 
     return { cart, isLoading, addToCartMutation, removeFromCartMutation, refetch };
 };

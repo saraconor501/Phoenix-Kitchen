@@ -31,7 +31,7 @@ const ProfileAside = () => {
                 <button onClick={showLoading} className={styles.iconbtn}>
                     <img
                         style={{ borderRadius: "50%" }}
-                        src={user?.photoURL || "/images/account.svg"}
+                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
                         className={styles.icon}
                         alt="Профиль"
                     />
@@ -54,7 +54,7 @@ const ProfileAside = () => {
                     <Link to="/auth/login">Мои данные</Link>
                     <img
                         style={{ borderRadius: "50%" }}
-                        src={user?.photoURL || "/images/account.svg"}
+                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
                         className={styles.icon}
                         alt="Профиль"
                     />
