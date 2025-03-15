@@ -1,87 +1,79 @@
 import { useState, useEffect } from "react";
 import { Drawer } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import ConfirmOut from "../Confirms/ConfirmLogOut/ConfrimLogOut";
-import styles from "./ProfileAside.module.css";
+import p from "./ProfileAside.module.css";
 
 const ProfileAside = () => {
-    const { user } = useAuthStore();
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
+  const { user } = useAuthStore();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const isAuthenticated = !!user;
+  const isAuthenticated = !!user;
 
-    const showLoading = () => {
-        setOpen(true);
-        setLoading(true);
-        setTimeout(() => setLoading(false), 1000);
-    };
 
-    useEffect(() => {
-        document.body.style.overflow = open ? "hidden" : "";
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [open]);
+  useEffect(() => {
+    if (location.pathname === "/profile") {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
-    return (
-        <>
-            {isAuthenticated ? (
-                <button onClick={showLoading} className={styles.iconbtn}>
-                    <img
-                        style={{ borderRadius: "50%" }}
-                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
-                        className={styles.icon}
-                        alt="Профиль"
-                    />
-                </button>
-            ) : (
-                <Link className={styles.LinkLogin} to="/auth/login">
-                    <button className={styles.loginBtn}>Войти</button>
-                </Link>
-            )}
+  const NavigateProfile = () => {
+    navigate("/profile");
+  };
 
-            <Drawer
-                closable
-                destroyOnClose
-                title="Ваш профиль"
-                placement="right"
-                open={open}
-                onClose={() => setOpen(false)}
-            >
-                <div className={styles.nav}>
-                    <Link to="/auth/login">Мои данные</Link>
-                    <img
-                        style={{ borderRadius: "50%" }}
-                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
-                        className={styles.icon}
-                        alt="Профиль"
-                    />
-                </div>
-                <div className={styles.nav}>
-                    Мои адреса <img className={styles.iconLocation} src="/images/location.svg" />
-                </div>
-                <div className={styles.nav}>
-                    Мои заказы{" "}
-                    <img
-                        className={styles.iconOrders}
-                        src="https://icons.veryicon.com/png/o/miscellaneous/icondian/icon-order-1.png"
-                        alt=""
-                    />
-                </div>
-                <div className={styles.nav}>
-                    Мои избранные{" "}
-                    <img
-                        className={styles.iconSave}
-                        src="https://static-00.iconduck.com/assets.00/save-2-icon-256x256-2dseotbs.png"
-                    />
-                </div>
+  return (
+    <>
+      {isAuthenticated ? (
+        <button onClick={() => setOpen(true)} className={p.iconbtn}>
+          <img
+            style={{ borderRadius: "50%" }}
+            src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
+            className={p.icon}
+            alt="Профиль"
+          />
+        </button>
+      ) : (
+        <div className={p.LinkLogin} onClick={NavigateProfile}>
+          <button className={p.loginBtn}>Войти</button>
+        </div>
+      )}
 
-                <ConfirmOut />
-            </Drawer>
-        </>
-    );
+      <Drawer
+        closable
+        destroyOnClose
+        title="Ваш профиль"
+        placement="right"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <Link
+          to={"/profile"}
+          className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
+          <div className={p.navi}>Мои данные</div>
+          <img
+            style={{ borderRadius: "50%" }}
+            src="https://www.svgrepo.com/show/497407/profile-circle.svg"
+            className={p.icon}
+            alt="Профиль"
+          />
+        </Link>
+        <div className={p.nav}>
+          Мои адреса
+        </div>
+        <div className={p.nav}>
+          Мои заказы
+        </div>
+        <div className={p.nav}>
+          Мои избранные
+        </div>
+
+        <ConfirmOut />
+      </Drawer>
+    </>
+  );
 };
 
 export default ProfileAside;

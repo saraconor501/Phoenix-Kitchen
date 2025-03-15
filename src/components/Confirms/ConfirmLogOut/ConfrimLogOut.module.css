@@ -13,7 +13,10 @@
     padding-left: 10px;
     transition: background-color 0.2s ease;
     margin-bottom: 18px;
-    font-size: 16.2px;
+    font-size: 18.2px;
+    font-weight: 500;
+    font-family: Roboto;
+    color: rgb(56, 55, 55);
 }
 .nav:hover{
     background-color: #ebe9e8;

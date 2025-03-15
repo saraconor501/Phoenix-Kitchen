@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import style from "./Sign-up.module.css";
 import auth from '../../../assets/images/auth.jpg';
 import appleIcon from '../../../assets/images/apple-icon.svg';
 import gogleIcon from '../../../assets/images/google-icon.svg';
 import goToMain from '../../../assets/images/go-to-main.svg'
-
 
 const SignUp = () => {
   const { registerUser, loginWithGoogle, isFetching, error } = useAuthStore();
@@ -83,11 +82,11 @@ const SignUp = () => {
                 <div className={style.inputContainer}>
                   <Input
                     className={errors.email ? `${style.input} ${style.inputError}` : style.input}
-                    type="email"
-                    placeholder="Введите свой email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
+                  type="email"
+                  placeholder="Введите свой email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   />
                   {errors.email && <p className={style.errorText}>{errors.email}</p>}
                 </div>
@@ -95,12 +94,12 @@ const SignUp = () => {
                 <div className={style.inputContainer}>
                   <Input.Password
                     className={errors.password ? `${style.input} ${style.inputError}` : style.input}
-                    placeholder="Введите свой пароль"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    iconRender={(visible) => visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  placeholder="Введите свой пароль"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  iconRender={(visible) => visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                  onClick={() => setPasswordVisible(!passwordVisible)}
                   />
                   {errors.password && <p className={style.errorText}>{errors.password}</p>}
                 </div>
@@ -127,6 +126,12 @@ const SignUp = () => {
                 </button>
               </form>
             </div>
+
+            {isFetching && (
+              <div className={style.loaderOverlay}>
+                <Spin size="large" className={style.loader} />
+              </div>
+            )}
 
             <Link className={style.go_to_main} to="/">
               <img src={goToMain} alt="Go back" /> Вернуться на главную страницу.

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Input,} from "antd";
+import { Input, Spin } from "antd";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
 import style from "./Log-In.module.css";
 import auth from '../../../assets/images/auth.jpg';
 import appleIcon from '../../../assets/images/apple-icon.svg';
 import gogleIcon from '../../../assets/images/google-icon.svg';
-import goToMain from '../../../assets/images/go-to-main.svg'
+import goToMain from '../../../assets/images/go-to-main.svg';
 
 const Login = () => {
     const { loginUser, loginWithGoogle, isFetching, error } = useAuthStore();
@@ -85,24 +85,22 @@ const Login = () => {
                             <div className={style.inputContainer}>
                                 <Input
                                     className={`${style.input} ${errors.email ? style.inputError : ""}`}
-                                    type="email"
-                                    placeholder="Введите email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
+                                type="email"
+                                placeholder="Введите email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                                 />
                                 {errors.email && <p className={style.errorText}>{errors.email}</p>}
                             </div>
-
                             <div className={style.inputContainer}>
                                 {/* Использование Input.Password для поля пароля с глазиком */}
                                 <Input.Password
-
                                     className={`${style.input} ${errors.password ? style.inputError : ""}`}
-                                    placeholder="Введите пароль"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
+                                placeholder="Введите пароль"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
                                 />
                                 {errors.password && <p className={style.errorText}>{errors.password}</p>}
                             </div>
@@ -112,6 +110,13 @@ const Login = () => {
                             </button>
                         </form>
                     </div>
+
+                    {/* Лоадер с затемнением */}
+                    {isFetching && (
+                        <div className={style.loaderOverlay}>
+                            <Spin size="large" className={style.loader} />
+                        </div>
+                    )}
 
                     <Link className={style.go_to_main} to="/">
                         <img src={goToMain} alt="Go back" /> Вернуться на главную страницу
