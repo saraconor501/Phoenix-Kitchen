@@ -3,6 +3,9 @@ footer{
   height: 574px;
   background-color: #212121;
 }
+.footBanner {
+  width: 100%;
+}
 .container{
   padding-top: 80px;
   max-width: 1240px;

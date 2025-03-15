@@ -1,91 +1,65 @@
-.resTitle{
-    margin-left: 140px;
-    margin-top: 30px;
-}
-.container{
+.container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    column-gap: 38px;
     margin-top: 15px;
-    column-gap: 20px;
 }
-.blockMyPizza {
+
+.link {
+    text-decoration: none;
+}
+.resTitle {
+    margin-left: 140px;
+    margin-top: 30px;
+}
+.block__wrapper {
+    -webkit-box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #424242;
+}
+
+.block__wrapper img {
+    width: 280px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.sub__block {
+    width: 280px;
+    height: 110px;
+}
+
+.sub__block h4{
+    margin: 5px 0px 5px 10px;
+}
+
+.sub__block h5{
+    margin-left: 10px;
+   }
+.raiting {
+    margin-top: 10px;
+    margin-left: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 233px;
-    height: 96px;
-    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    border-radius: 15px;
-    background-color: rgb(144, 141, 141);
+    align-items: center;
+    width: 60px;
+    height: 28px;
+    background-color: #6EA837;
+    border-radius: 10px;
 }
-.blockMyPizza img{
-    height: 60%;
+
+.raiting img {
+    width: 19px;
     background: none;
 }
-.blockKfc {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 233px;
-    height: 96px;
-    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    border-radius: 15px;
-    background-color: rgb(29, 29, 29);
-}
-.blockKfc img{
-    height: 60%;
-    background: none;
-}
-.blockNavat {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 233px;
-    height: 96px;
-    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    border-radius: 15px;
-    background-color: rgb(29, 57, 29);
-}
-.blockNavat img{
-    height: 60%;
-    background: none;
-}
-.blockKulikov {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 233px;
-    height: 96px;
-    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    border-radius: 15px;
-    background-color: rgb(110, 13, 83);
-}
-.blockKulikov img{
-    height: 40%;
-    background: none;
-}
-.blockPapajonhs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 233px;
-    height: 96px;
-    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.26);
-    border-radius: 15px;
-    background-color: rgb(56, 115, 56);
-}
-.blockPapajonhs img{
-    height: 34%;
-    background: none;
+
+.raiting span {
+    color: white;
 }
