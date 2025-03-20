@@ -236,3 +236,21 @@
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
+.cartLink {
+  position: relative;
+  display: inline-block;
+  right: 4px;
+}
+
+.cartBadge .ant-badge-count {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.cartIcon {
+  width: 40px;
+  height: 40px;
+}

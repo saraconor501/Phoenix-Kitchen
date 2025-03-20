@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 10px;
+  padding: 0 10px;
   transition: background-color 0.2s ease;
   margin-bottom: 18px;
   font-size: 18.2px;
@@ -60,7 +60,7 @@
 }
 .navi{
   font-size: 18.2px;
-  font-weight: 400;
+  font-weight: 450;
   font-family: Roboto;
   color: rgb(56, 55, 55);
 }
@@ -71,6 +71,10 @@
 .nav p{
   display: flex;
   align-items: center;
+}
+.nav img {
+  width: 18px;
+  background: transparent;
 }
 .iconLocation{
   width: 30px;

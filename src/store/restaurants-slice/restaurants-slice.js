@@ -2,18 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import { db } from "../../utils/firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
-const fetchProducts = async (restaurantId) => {
-  if (!restaurantId) return [];
-  const menuCollectionRef = collection(db, "restaurants", restaurantId, "menu");
+const fetchRestaurants = async () => {
+  const menuCollectionRef = collection(db, "restaurants");
   const snapshot = await getDocs(menuCollectionRef);
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
-export const useProducts = (restaurantId) => {
+export const useRestaurants = () => {
   return useQuery({
-    queryKey: ['products', restaurantId], 
-    queryFn: () => fetchProducts(restaurantId), 
+    queryKey: ['restaurants'], 
+    queryFn: fetchRestaurants, 
     staleTime: 1000 * 60 * 5, 
-    enabled: !!restaurantId, 
   });
 };

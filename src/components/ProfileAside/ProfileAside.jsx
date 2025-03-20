@@ -20,9 +20,6 @@ const ProfileAside = () => {
     }
   }, [location.pathname]);
 
-  const NavigateProfile = () => {
-    navigate("/profile");
-  };
 
   return (
     <>
@@ -36,9 +33,9 @@ const ProfileAside = () => {
           />
         </button>
       ) : (
-        <div className={p.LinkLogin} onClick={NavigateProfile}>
+        <Link className={p.LinkLogin} to={'/auth/login'}>
           <button className={p.loginBtn}>Войти</button>
-        </div>
+        </Link>
       )}
 
       <Drawer
@@ -54,20 +51,20 @@ const ProfileAside = () => {
           className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
           <div className={p.navi}>Мои данные</div>
           <img
-            style={{ borderRadius: "50%" }}
+            style={{ borderRadius: "50%",width:"40px" }}
             src="https://www.svgrepo.com/show/497407/profile-circle.svg"
             className={p.icon}
             alt="Профиль"
           />
         </Link>
         <div className={p.nav}>
-          Мои адреса
+          Мои адреса <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
         <div className={p.nav}>
-          Мои заказы
+          Мои заказы <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
         <div className={p.nav}>
-          Мои избранные
+          Мои избранные <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
 
         <ConfirmOut />

@@ -4,8 +4,8 @@ import SearchFood from "../SarchByFood/SearchFood"
 const Shoops = () => {
   return (
     <>
-        <Restauraunts/>
-        <SearchFood/>
+      <Restauraunts />
+      <SearchFood />
     </>
   )
 }
