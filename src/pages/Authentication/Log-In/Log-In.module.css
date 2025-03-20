@@ -124,6 +124,7 @@ form {
     align-items: center;
     justify-content: center;
     column-gap: 4px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .loginProvider:hover {
@@ -181,7 +182,6 @@ form {
         margin-right: 0px;
     }
 }
-/* Добавим стиль для затемненного фона и центровки лоадера */
 .loaderOverlay {
     position: absolute;
     top: 0;

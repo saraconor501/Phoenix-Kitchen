@@ -1,28 +1,19 @@
-import { create } from "zustand";
+import { useQuery } from '@tanstack/react-query';
 import { db } from "../../utils/firebase/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
-const useProducts = create((set) => ({
-  products: [], 
-  isLoading: false, 
-  error: null, 
+const fetchProducts = async (restaurantId) => {
+  if (!restaurantId) return [];
+  const menuCollectionRef = collection(db, "restaurants", restaurantId, "menu");
+  const snapshot = await getDocs(menuCollectionRef);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
 
-  fetchProducts: async () => {
-    set({ isLoading: true, error: null }); 
-
-    try {
-      const menuCollectionRef = collection(db, "restaurants", "ImpirePizza", "menu");
-      const snapshot = await getDocs(menuCollectionRef);
-      const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      set({ products, isLoading: false });
-
-      
-    } catch (error) {
-      console.error("Ошибка при получении продуктов:", error);
-      set({ error: "Не удалось загрузить продукты", isLoading: false });
-    }
-  },
-
-}));
-
-export default useProducts;
+export const useProducts = (restaurantId) => {
+  return useQuery({
+    queryKey: ['products', restaurantId], 
+    queryFn: () => fetchProducts(restaurantId), 
+    staleTime: 1000 * 60 * 5, 
+    enabled: !!restaurantId, 
+  });
+};

@@ -1,19 +1,18 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import HomePage from './pages/Home/HomePage';
 import SignUp from './pages/Authentication/Sign-up/Sign-up';
 import Login from './pages/Authentication/Log-In/Log-In';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import EmpirePizza from './components/ShoopsDetails/Details';
-import KFC from './components/KFC/KFC';
-import Papajonhs from './components/Papajonhs/Papajonhs';
 import AdminPage from './pages/Admin/AdminPage';
-import Navat from './components/Navat/Navat';
 import CartPage from './pages/Cart/CartPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import PageTransition from './hooks/TransitionPage/TransitionPage';
 
 import './App.css';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
+import RestaurantPage from './pages/RestaurantPage/RestaurantPage';
 
 function Layout({ children }) {
   return (
@@ -26,30 +25,31 @@ function Layout({ children }) {
 }
 
 function App() {
+  const location = useLocation(); 
+
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        <Route path="/auth/sign-up" element={<SignUp />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route
-          path="/*"
-          element={
-            <Layout>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/basket" element={<CartPage />} />
-                <Route path='/profile' element={<ProfilePage></ProfilePage>}></Route>
-                <Route path="/myaccount" element={<AdminPage />} />
-                <Route path="/restaraunts/mypizza" element={<EmpirePizza />} />
-                <Route path="/restaraunts/navat" element={<Navat />} />
-                <Route path="/restaraunts/kfc" element={<KFC />} />
-                <Route path="/restaraunts/papajonhs" element={<Papajonhs />} />
-              </Routes>
-            </Layout>
-          }
-        />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/auth/sign-up" element={<PageTransition><SignUp /></PageTransition>} />
+          <Route path="/auth/login" element={<PageTransition><Login /></PageTransition>} />
+          <Route
+            path="/*"
+            element={
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
+                  <Route path="/cart" element={<PageTransition><CartPage /></PageTransition>} />
+                  <Route path="/profile" element={<PageTransition><ProfilePage /></PageTransition>} />
+                  <Route path="/myaccount" element={<PageTransition><AdminPage /></PageTransition>} />
+                  <Route path="/restaraunts/:id" element={<PageTransition><RestaurantPage/></PageTransition>} />
+                </Routes>
+              </Layout>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 }

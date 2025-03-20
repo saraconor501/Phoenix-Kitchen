@@ -1,18 +1,34 @@
 .container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    column-gap: 38px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
     margin-top: 15px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    /* Чтобы блоки переносились при необходимости */
+    gap: 40px;
+    width: 88%;
 }
 
 .link {
     text-decoration: none;
+    width: 22%;
+    display: block;
+    height: auto;
+    /* Сделаем элемент блочным */
 }
+
 .resTitle {
-    margin-left: 140px;
+    text-align: center;
+    /* Центрируем заголовок */
     margin-top: 30px;
 }
+
 .block__wrapper {
     -webkit-box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
@@ -20,29 +36,46 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    height: auto;
     border-bottom-left-radius: 10px;
     color: #424242;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.block__wrapper:hover {
+    transform: translateY(-5px);
+    /* Подъем при hover */
 }
 
 .block__wrapper img {
-    width: 280px;
+    width: 100%;
+    height: 220px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .sub__block {
-    width: 280px;
+    width: 100%;
     height: 110px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.sub__block h4{
+.sub__block h4 {
     margin: 5px 0px 5px 10px;
 }
 
-.sub__block h5{
+.sub__block span {
+    font-weight: 500;
+}
+
+.sub__block h5,
+.sub__block h6 {
     margin-left: 10px;
-   }
+    font-size: 14px;
+}
+
 .raiting {
     margin-top: 10px;
     margin-left: 10px;
@@ -52,14 +85,52 @@
     width: 60px;
     height: 28px;
     background-color: #6EA837;
-    border-radius: 10px;
+    border-radius: 6px;
+    gap: 4px;
 }
 
 .raiting img {
     width: 19px;
-    background: none;
+    height: 19px;
 }
 
 .raiting span {
     color: white;
+}
+
+.skeletonWrapper {
+    width: 22%; /* Такой же, как у .link */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0px 0px 14px 3px rgba(34, 60, 80, 0.2);
+    border-radius: 10px;
+    padding-bottom: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.skeletonWrapper:hover {
+    transform: translateY(-5px);
+}
+
+.skeletonImage {
+    width: 100%;
+    height: 240px; /* Как у картинок ресторанов */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.skeletonText {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    row-gap: 8px;
+}
+
+.skeletonRating {
+    width: 60px;
+    height: 28px;
+    border-radius: 6px;
 }

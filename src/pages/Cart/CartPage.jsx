@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../store/cart-slice/cart-slice";
 import cartStyle from "./CartPage.module.css";
@@ -7,23 +8,42 @@ const CartPage = () => {
   const { cart, isLoading, removeFromCartMutation, refetch, addToCartMutation } = useCart();
   const [fadeCart, setFadeCart] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [debouncedCart, setDebouncedCart] = useState(cart);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedCart(cart);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [cart]);
 
   useEffect(() => {
     refetch();
+  
     if (cart.length === 0) {
-      setFadeCart(true);
-      setTimeout(() => setIsEmpty(true), 500);
+      setFadeCart(true); // Начинаем анимацию исчезновения
+      const timeout = setTimeout(() => {
+        // Проверяем, что корзина всё ещё пуста перед установкой isEmpty
+        if (cart.length === 0) {
+          setIsEmpty(true);
+        }
+      }, 1000); // Задержка для плавного перехода
+  
+      // Очищаем таймер при изменении корзины
+      return () => clearTimeout(timeout);
     } else {
       setFadeCart(false);
-      setIsEmpty(false);
+      setIsEmpty(false); // Сразу сбрасываем isEmpty, если корзина не пуста
     }
   }, [cart, refetch]);
 
   const handleLengthProduct = (itemId, operation) => {
-    const updatedCart = [...cart];
+    const updatedCart = [...debouncedCart];
     const itemIndex = updatedCart.findIndex((item) => item.id === itemId);
-    const currentQuantity = updatedCart[itemIndex].quantity || 1;
+    const currentQuantity = updatedCart[itemIndex]?.quantity || 1;
 
     if (operation === "+" && itemIndex !== -1) {
       updatedCart[itemIndex].quantity = currentQuantity + 1;
@@ -95,25 +115,18 @@ const CartPage = () => {
           <div className={cartStyle.cartTotal}>
             Итого:{" "}
             <span className={cartStyle.total}>
-              {cart.reduce(
-                (total, item) => total + item.price * (item.quantity || 1),
-                0
-              )}{" "}
-              с
+              {cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0)} с
             </span>
           </div>
         </div>
+
 
         <ul className={cartStyle.cartList}>
           {cart.map((item) => (
             <React.Fragment key={item.id}>
               <li className={cartStyle.cartItem}>
                 <div>
-                  <img
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className={cartStyle.itemImage}
-                  />
+                  <img src={item.imageUrl} alt={item.name} className={cartStyle.itemImage} />
                 </div>
                 <div className={cartStyle.itemInfo}>
                   <div className={cartStyle.titleItem}>
@@ -169,11 +182,7 @@ const CartPage = () => {
             <span>Итоговая стоимость заказа:</span>
           </div>
           <div className={cartStyle.price}>
-            {cart.reduce(
-              (total, item) => total + item.price * (item.quantity || 1),
-              0
-            )}{" "}
-            с
+            {cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0)} с
           </div>
         </div>
       </div>
