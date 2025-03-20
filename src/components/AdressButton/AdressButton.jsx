@@ -1,41 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AdressButton.module.css";
 import location from "../../assets/images/location.svg";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-import { Rate } from 'antd';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 const AdressButton = () => {
+  const position = [51.505, -0.09]
   const [showMap, setShowMap] = useState(false);
-  const [selectedMarker, setSelectedMarker] = useState(null); // Состояние для выбранного маркера
-  const containerStyle = {
-    width: "100%",
-    height: "500px",
+  const [markers, setMarkers] = useState([
+    { id: 1, lat: 51.505, lng: -0.09, text: "Маркер 1" },
+    { id: 2, lat: 51.51, lng: -0.1, text: "Маркер 2" },
+    { id: 3, lat: 51.515, lng: -0.11, text: "Маркер 3" }
+  ]);
+
+  const MapFix = () => {
+    const map = useMap();
+  
+    useEffect(() => {
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 500);
+    }, [map]);
+  
+    return null;
   };
-
-  const windowStyle = {
-    width: "300px",
-    height: "200px"
-  }
-  const center = {
-    lat: 42.8142,
-    lng: 73.8481,
-  };
-
-  const markers = [
-    { 
-      lat: 42.798482905690975,
-      lng: 73.84558608159031,
-      id: 1,
-      title: "Империя Пиццы",
-      src: ""
-    },
-    { lat: 42.8100, lng: 73.8450, id: 2, title: "KFC" },
-    { lat: 42.8200, lng: 73.8500, id: 3, title: "Ресторан 3" },
-  ];
-
-  const handleMarkerClick = (marker) => {
-    setSelectedMarker(marker);
-  };
-
+  
   return (
     <div className={styles.container}>
       <button onClick={() => setShowMap(!showMap)} className={styles.button}>
@@ -61,7 +48,15 @@ const AdressButton = () => {
                 />
               </div>
             </div>
-            <LoadScript googleMapsApiKey="AIzaSyDGablINFu89l7DgwcM9L7WMf6BsqXi_Ws">
+            <MapContainer center={[55.751244, 37.618423]} zoom={10} style={{ height: "400px", width: "600px", position: 'fixed' }}>
+              <MapFix/>
+              <TileLayer url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png" />
+      <Marker position={[55.751244, 37.618423]}>
+        <Popup>Москва</Popup>
+      </Marker>
+    </MapContainer>
+
+            {/* <LoadScript googleMapsApiKey="AIzaSyDGablINFu89l7DgwcM9L7WMf6BsqXi_Ws">
               <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
                 {markers.map((marker) => (
                   <Marker
@@ -87,7 +82,7 @@ const AdressButton = () => {
                   </InfoWindow>
                 )}
               </GoogleMap>
-            </LoadScript>
+            </LoadScript> */}
           </div>
         </div>
       )}

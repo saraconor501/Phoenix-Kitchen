@@ -2,12 +2,52 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../../store/cart-slice/cart-slice";
 import cartStyle from "./CartPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { Button, Input, Modal, Select } from "antd";
+import TextArea from "antd/es/input/TextArea";
+import ivan from '../../assets/images/ivan.jpg';
 
 const CartPage = () => {
+  const couriers = [
+    {
+      id: 1,
+      name: "Иван",
+      experience: "5 лет",
+      rating: 4.8,
+      avatar: ivan,
+    },
+    {
+      id: 2,
+      name: "Чынгыз",
+      experience: "5 лет",
+      rating: 5.0,
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    },
+    {
+      id: 3,
+      name: "Ерик",
+      experience: "2 года",
+      rating: 4.5,
+      avatar: "https://randomuser.me/api/portraits/men/56.jpg",
+    },
+  ]
+  const handleOrder = () => {
+    if (cart.length === 0) return;
+
+    const randomCourier = couriers[Math.floor(Math.random() * couriers.length)];
+    setCourier(randomCourier);
+    setTimeLeft(Math.floor(Math.random() * 30) + 20); // случайное время 20-50 минут
+    setIsModalVisible(true);
+  };
+
+
+  const [courier, setCourier] = useState(null);
   const { cart, isLoading, removeFromCartMutation, refetch, addToCartMutation } = useCart();
   const [fadeCart, setFadeCart] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const navigate = useNavigate();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(0);
+
 
   useEffect(() => {
     refetch();
@@ -19,7 +59,7 @@ const CartPage = () => {
       setIsEmpty(false);
     }
   }, [cart, refetch]);
-
+  
   const handleLengthProduct = (itemId, operation) => {
     const updatedCart = [...cart];
     const itemIndex = updatedCart.findIndex((item) => item.id === itemId);
@@ -153,7 +193,7 @@ const CartPage = () => {
                           style={{ width: "26px", borderRadius: "50%" }}
                           src="https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Plus-512.png"
                           alt=""
-                        />
+                          />
                       </button>
                     </div>
                   </div>
@@ -182,10 +222,64 @@ const CartPage = () => {
         <h1>Оформление заказа</h1>
         <div className={cartStyle.desheds}></div>
         <p>ЗАПОЛНИТЕ ДАННЫЕ ДЛЯ ДОСТАВКИ</p>
-        <form action=""></form>
+        <form action="">
+        <Input placeholder="ФИО" style={{height: '40px', marginBottom: "30px"}}/>
+        <Input placeholder="Номер телефона" style={{height: '40px' ,marginBottom: "30px"}}/>
+        <Input placeholder="Улица дом" style={{height: '40px', marginBottom: "30px"}}/>
+        <Select
+      defaultValue="Наличные"
+      style={{
+        width: 361,
+        height: 70,
+        marginBottom: "30px",
+      }}
+      options={[
+        {
+          value: 'Наличные',
+          label: 'Наличные',
+        },
+        {
+          value: 'VISA',
+          label: 'VISA',
+        },
+      ]}
+    />
+     <TextArea rows={4} placeholder="Комментарии к заказу" style={{marginBottom: "50px"}}/>
+     <Button style={{height: '50px'}} onClick={handleOrder}>ОФОРМИТЬ ЗАКАЗ</Button>
+        </form>
       </div>
+      <div>
+<Modal width={1000}   visible={isModalVisible} onCancel={() => setIsModalVisible(false)} footer={null}>
+{courier ? (
+  <div className={cartStyle.modal__wrapper}>
+    <p className={cartStyle.title}>Ваш заказ уже в пути!</p>
+    <span>Ваш курьер:</span>
+    <div className={cartStyle.modal__block}>
+    <img src={courier.avatar} alt={courier.name} width="200" style={{ borderRadius: "50%" }} />
     </div>
-  );
-};
+    <h3>{courier.name}</h3>
+    <div className={cartStyle.wrapper}>
+    <p>Стаж: {courier.experience}</p>
+    <p>Рейтинг: ⭐{courier.rating}</p>
+    </div>
+    <h3>Товары в доставке:</h3>
+            <ul>
+              {cart.map((item) => (
+                <li key={item.id}>
+                  <img src={item.imageUrl} alt={item.name} width="40" /> {item.name} - {item.quantity || 1} шт.
+                </li>
+              ))}
+            </ul>
+    <h4>Прибытие через: {timeLeft} мин</h4>
+    </div>
+) : (
+  <p>Поиск курьера...</p>
+)}
+  </Modal> 
+</div>
+    </div>
+
+  )
+}
 
 export default CartPage;

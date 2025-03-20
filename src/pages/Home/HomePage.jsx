@@ -10,6 +10,7 @@ const HomePage = () => {
       <div className={hp.container}>
         <Shoops />
       </div>
+      
     </>
   )
 }

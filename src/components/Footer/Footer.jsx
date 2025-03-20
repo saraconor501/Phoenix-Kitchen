@@ -1,6 +1,6 @@
 import styles from "./Footer.module.css";
 import instagram from '../../assets/follow/instagram.svg';
-import Banner from '../../assets/images/footBanner.svg'
+import Banner from '../../assets/images/footBanner.jpg'
 const Footer = () => {
   return (
     <>

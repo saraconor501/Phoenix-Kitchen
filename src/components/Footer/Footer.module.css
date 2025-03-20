@@ -5,6 +5,8 @@ footer{
 }
 .footBanner {
   width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .container{
   padding-top: 80px;
