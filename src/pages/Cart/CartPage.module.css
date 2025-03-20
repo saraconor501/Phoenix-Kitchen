@@ -97,10 +97,10 @@
 .cartItem {
     display: flex;
     align-items: center;
-    height: 200px;
+   
     justify-content: space-between;
     transition: display 0.3s ease;
-    ;
+    
 
 }
 
