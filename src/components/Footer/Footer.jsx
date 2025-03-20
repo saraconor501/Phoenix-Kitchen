@@ -1,7 +1,10 @@
 import styles from "./Footer.module.css";
-import instagram from '../../assets/follow/instagram.svg'
+import instagram from '../../assets/follow/instagram.svg';
+import Banner from '../../assets/images/footBanner.svg'
 const Footer = () => {
   return (
+    <>
+    <img src={Banner} alt="Banner" className={styles.footBanner}/>
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.block}>
@@ -49,6 +52,7 @@ const Footer = () => {
         <p>@saraconor501</p>
       </div>
     </footer>
+    </>
   );
 };
 
