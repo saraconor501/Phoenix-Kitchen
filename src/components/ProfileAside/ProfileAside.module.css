@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+*{
+  font-family: Roboto;
+}
 .icon {
   width: 40px;
   height: 40px;
@@ -46,17 +50,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 10px;
+  padding: 0 10px;
   transition: background-color 0.2s ease;
   margin-bottom: 18px;
-  font-size: 16.2px;
+  font-size: 18.2px;
+  font-weight: 500;
+  font-family: Roboto;
+  color: rgb(56, 55, 55);
+}
+.navi{
+  font-size: 18.2px;
+  font-weight: 450;
+  font-family: Roboto;
+  color: rgb(56, 55, 55);
 }
 .nav:hover{
   background-color: #ebe9e8;
+  color: rgb(56, 55, 55);
 }
 .nav p{
   display: flex;
   align-items: center;
+}
+.nav img {
+  width: 18px;
+  background: transparent;
 }
 .iconLocation{
   width: 30px;
@@ -77,4 +95,38 @@
 .iconLogout{
   width: 30px;
   padding-right: 4px;
+}
+.active{
+  background-color: #ebe9e8;
+}
+
+.Inputs {
+  width: 298px;
+  background: #fff;
+  color: #525865;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.07);
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.45;
+  outline: none;
+  padding: 0.6em 1.45em 0.7em;
+  -webkit-transition: .18s ease-out;
+  -moz-transition: .18s ease-out;
+  -o-transition: .18s ease-out;
+  transition: .18s ease-out;
+}
+
+.Input:hover {
+  box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
+}
+.Input:focus {
+  color: #4b515d;
+  border: 1px solid #B8B6B6;
+  box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: flex;
 }

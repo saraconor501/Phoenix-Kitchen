@@ -34,8 +34,9 @@ const useAuthStore = create((set) => ({
 
       const userDocRef = doc(db, "users", user.uid);
       await setDoc(userDocRef, {
+        name:'User',
         email: user.email,
-        phone: user.phoneNumber || null, // Исправлено
+        phone: user.phoneNumber || null, 
         cart: [],
         orderHistory: [],
         favoriteDishes: [],
@@ -45,7 +46,6 @@ const useAuthStore = create((set) => ({
         },
       });
 
-      // Только после успешного сохранения данных в Firestore устанавливаем user
       set({ user: { uid: user.uid, email: user.email }, isLoading: false });
     } catch (error) {
       let errorMessage = "Ошибка при регистрации. Попробуйте снова.";
@@ -77,6 +77,7 @@ const useAuthStore = create((set) => ({
       if (!userDocSnap.exists()) {
         console.warn("Документ пользователя отсутствует в Firestore, создаём новый...");
         await setDoc(userDocRef, {
+          name:'User',
           email: user.email,
           phone: user.phoneNumber || null,
           cart: [],
@@ -121,6 +122,7 @@ const useAuthStore = create((set) => ({
       if (!userDocSnap.exists()) {
 
         await setDoc(userDocRef, {
+          name:'User',
           email: user.email,
           phone: user.phoneNumber || null,
           cart: [],

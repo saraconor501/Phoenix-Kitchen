@@ -43,7 +43,7 @@ export const useCart = () => {
 
             if (existingItem) {
                 newCart = newCart.map((item) =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
+                    item.id === product.id ? { ...item, quantity: product.quantity } : item
                 );
             } else {
                 newCart.push(product);

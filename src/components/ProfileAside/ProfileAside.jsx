@@ -1,87 +1,101 @@
 import { useState, useEffect } from "react";
 import { Drawer } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import ConfirmOut from "../Confirms/ConfirmLogOut/ConfrimLogOut";
-import styles from "./ProfileAside.module.css";
-
+import p from "./ProfileAside.module.css";
+import { Modal } from 'antd';
 const ProfileAside = () => {
-    const { user } = useAuthStore();
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
+  const { user } = useAuthStore();
+  const [openResponsive, setOpenResponsive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
 
-    const isAuthenticated = !!user;
+  const isAuthenticated = !!user;
 
-    const showLoading = () => {
-        setOpen(true);
-        setLoading(true);
-        setTimeout(() => setLoading(false), 1000);
-    };
 
-    useEffect(() => {
-        document.body.style.overflow = open ? "hidden" : "";
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [open]);
+  useEffect(() => {
+    if (location.pathname === "/profile") {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
-    return (
-        <>
-            {isAuthenticated ? (
-                <button onClick={showLoading} className={styles.iconbtn}>
-                    <img
-                        style={{ borderRadius: "50%" }}
-                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
-                        className={styles.icon}
-                        alt="Профиль"
-                    />
-                </button>
-            ) : (
-                <Link className={styles.LinkLogin} to="/auth/login">
-                    <button className={styles.loginBtn}>Войти</button>
-                </Link>
-            )}
 
-            <Drawer
-                closable
-                destroyOnClose
-                title="Ваш профиль"
-                placement="right"
-                open={open}
-                onClose={() => setOpen(false)}
-            >
-                <div className={styles.nav}>
-                    <Link to="/auth/login">Мои данные</Link>
-                    <img
-                        style={{ borderRadius: "50%" }}
-                        src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
-                        className={styles.icon}
-                        alt="Профиль"
-                    />
-                </div>
-                <div className={styles.nav}>
-                    Мои адреса <img className={styles.iconLocation} src="/images/location.svg" />
-                </div>
-                <div className={styles.nav}>
-                    Мои заказы{" "}
-                    <img
-                        className={styles.iconOrders}
-                        src="https://icons.veryicon.com/png/o/miscellaneous/icondian/icon-order-1.png"
-                        alt=""
-                    />
-                </div>
-                <div className={styles.nav}>
-                    Мои избранные{" "}
-                    <img
-                        className={styles.iconSave}
-                        src="https://static-00.iconduck.com/assets.00/save-2-icon-256x256-2dseotbs.png"
-                    />
-                </div>
+  return (
+    <>
+      {isAuthenticated ? (
+        <button onClick={() => setOpen(true)} className={p.iconbtn}>
+          <img
+            style={{ borderRadius: "50%" }}
+            src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
+            className={p.icon}
+            alt="Профиль"
+          />
+        </button>
+      ) : (
+        <Link className={p.LinkLogin} to={'/auth/login'}>
+          <button className={p.loginBtn}>Войти</button>
+        </Link>
+      )}
 
-                <ConfirmOut />
-            </Drawer>
-        </>
-    );
+      <Drawer
+        closable
+        destroyOnClose
+        title="Ваш профиль"
+        placement="right"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <div
+         onClick={() => setOpenResponsive(true)}
+          className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
+          <div className={p.navi}>Мои данные</div>
+          <img
+            style={{ borderRadius: "50%",width:"40px" }}
+            src="https://www.svgrepo.com/show/497407/profile-circle.svg"
+            className={p.icon}
+            alt="Профиль"
+          />
+        </div>
+        <Modal
+        centered
+        open={openResponsive}
+        onOk={() => setOpenResponsive(false)}
+        onCancel={() => setOpenResponsive(false)}
+        width={{
+          xs: '90%',
+          sm: '80%',
+          md: '70%',
+          lg: '60%',
+          xl: '50%',
+          xxl: '40%',
+        }}
+      >
+        <h3 style={{paddingBottom: '20px'}}>Мои данные</h3>
+      <form action="">
+        <label htmlFor="">
+          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '80px'}}>Имя</p>
+          <input type="text" placeholder={user.name} className={p.Inputs}/>
+        </label>
+        <label htmlFor="">
+          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '30px'}}>Эл. Почта</p>
+          <input type="text" placeholder={user.email} className={p.Inputs}/>
+        </label>
+      </form>
+      </Modal>
+        <div className={p.nav}>
+          Мои адреса <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
+        </div>
+        <div className={p.nav}>
+          Мои заказы <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
+        </div>
+        <div className={p.nav}>
+          Мои избранные <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
+        </div>
+        <ConfirmOut />
+      </Drawer>
+    </>
+  );
 };
 
 export default ProfileAside;

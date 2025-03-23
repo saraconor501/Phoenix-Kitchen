@@ -20,7 +20,6 @@
     position: relative;
     display: flex;
     justify-content: center;
-    width: 100%;
     height: 240px;
 }
 
@@ -30,13 +29,15 @@
     object-fit: cover;
     border-radius: 16px 16px 0 0;
 }
-.open{
+
+.open {
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: #94C763;
 }
-.close{
+
+.close {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -61,7 +62,8 @@
     justify-content: center;
     gap: 5px;
 }
-.statusBadgeNone{
+
+.statusBadgeNone {
     width: auto;
     height: 36px;
     position: absolute;
@@ -126,11 +128,13 @@
     color: #555;
     margin: 5px 0;
 }
-.titleProduct{
+
+.titleProduct {
     width: 98%;
     display: flex;
     justify-content: space-between;
 }
+
 .price {
     font-size: 18px;
     font-weight: bold;
@@ -158,7 +162,8 @@
     font-size: 14px;
     font-weight: 700;
 }
-.saveButton:active{
+
+.saveButton:active {
     transform: scale(0.98);
 }
 
@@ -178,13 +183,25 @@
     font-weight: bold;
 }
 
-.saveButton, 
+.saveButton,
 .addToCartButton {
     transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.saveButton:active, 
+.saveButton:active,
 .addToCartButton:active {
     transform: scale(0.95);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
+.ratingContent{
+    margin-right: 3px;
+}
+.notFound {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:22px;
+    font-weight: 500;
+    color: #888;
+  }

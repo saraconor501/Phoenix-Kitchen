@@ -16,12 +16,19 @@
 }
 
 .paymentContainer {
+    position: sticky;
     width: 409px;
     background: #fff;
     box-shadow: 0 66px 85px rgba(0, 0, 0, .04), 0 33.0322px 51.8826px rgba(0, 0, 0, .0248149), 0 19.8971px 37.6024px rgba(0, 0, 0, .0178441), 0 12.7511px 30.212px rgba(0, 0, 0, .014396), 0 8.26422px 25.0679px rgba(0, 0, 0, .0126768), 0 5.20224px 20.1731px rgba(0, 0, 0, .0116077), 0 2.98901px 14.6108px rgba(0, 0, 0, .0102379), 0 1.31554px 7.95112px rgba(0, 0, 0, .00729727);
     border-radius: 16px;
     padding: 24px;
     height: 700px;
+}
+.paymentContainer h1{
+    display: flex;
+    font-size: 26px;
+    align-items: center;
+    gap: 10px;
 }
 
 
@@ -97,10 +104,10 @@
 .cartItem {
     display: flex;
     align-items: center;
-    height: 200px;
+   
     justify-content: space-between;
     transition: display 0.3s ease;
-    ;
+    
 
 }
 
@@ -473,4 +480,43 @@
 .fadeOut {
     opacity: 0;
     transition: opacity 0.6s ease-out;
+}
+
+.modal__block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.Input:hover {
+    border: 1px solid #fc8e34;
+}
+
+.Input:focus {
+    border: 1px solid #fc8e34;
+}
+
+.Input::selection {
+    border: 1px solid #fc8e34;
+}
+
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.modal__wrapper li {
+    list-style-type: none;
+}
+.modal__wrapper h3{
+    text-align: center;
+}
+
+.modal__wrapper {
+    font-size: 20px;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
 }

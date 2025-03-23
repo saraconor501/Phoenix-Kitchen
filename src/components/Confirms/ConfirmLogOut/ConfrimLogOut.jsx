@@ -1,37 +1,48 @@
-import { ExclamationCircleFilled } from "@ant-design/icons";
+import { useState } from 'react';
+import { Modal } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import useAuthStore from "../../../store/auth-slice/auth-slice";
-import c from './ConfrimLogOut.module.css'
-import Modal from "antd/es/modal/Modal";
-
-const { confirm } = Modal;
+import c from './ConfrimLogOut.module.css';
 
 const ConfirmOut = () => {
     const { logoutUser } = useAuthStore();
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const navigate = useNavigate();
 
-    const handleLogOut = async () => {
-        await logoutUser();
+    const showModal = () => {
+        setIsModalVisible(true);
     };
 
-    const showLogoutConfirm = () => {
-        confirm({
-            title: "Вы уверены, что хотите выйти?",
-            icon: <ExclamationCircleFilled />,
-            content: "После выхода вам потребуется снова ввести учетные данные.",
-            okText: "Выйти",
-            okType: "danger",
-            cancelText: "Отмена",
-            async onOk() {
-                await handleLogOut();
-            },
-        });
+    const handleOk = async () => {
+        await logoutUser();
+        setIsModalVisible(false);
+        navigate("/"); // Перенос на главную
+        window.location.reload(); // Обновление страницы
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
     };
 
     return (
-        <div className="logout-container" onClick={logoutUser}>
-            <div onClick={showLogoutConfirm} className={c.nav}>
-                Выйти из аккаунта
-                <img className={c.iconLogout} src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M14.6667%2015.5833L19.25%2011M19.25%2011L14.6667%206.41667M19.25%2011H8.25M8.25%202.75H7.15C5.60986%202.75%204.83978%202.75%204.25153%203.04973C3.73408%203.31338%203.31338%203.73408%203.04973%204.25153C2.75%204.83978%202.75%205.60986%202.75%207.15V14.85C2.75%2016.3901%202.75%2017.1602%203.04973%2017.7485C3.31338%2018.2659%203.73408%2018.6866%204.25153%2018.9503C4.83978%2019.25%205.60986%2019.25%207.15%2019.25H8.25'%20stroke='%23807D7E'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="Logout" />
+        <div className="logout-container">
+            <div onClick={showModal} className={c.nav}>
+                Выйти из аккаунта <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="out" />
             </div>
+
+            <Modal
+                title="Вы уверены, что хотите выйти?"
+                open={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText="Выйти"
+                okType="danger"
+                cancelText="Отмена"
+                icon={<ExclamationCircleFilled />}
+            >
+                <p>После выхода вам потребуется снова ввести учетные данные.</p>
+            </Modal>
         </div>
     );
 };
