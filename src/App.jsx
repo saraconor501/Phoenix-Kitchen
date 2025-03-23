@@ -10,9 +10,9 @@ import CartPage from './pages/Cart/CartPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import PageTransition from './hooks/TransitionPage/TransitionPage';
-
 import './App.css';
 import RestaurantPage from './pages/RestaurantPage/RestaurantPage';
+import CourierSearch from './components/test/test';
 
 function Layout({ children }) {
   return (
@@ -43,6 +43,7 @@ function App() {
                   <Route path="/cart" element={<PageTransition><CartPage /></PageTransition>} />
                   <Route path="/profile" element={<PageTransition><ProfilePage /></PageTransition>} />
                   <Route path="/myaccount" element={<PageTransition><AdminPage /></PageTransition>} />
+                  <Route path="/test" element={<CourierSearch />} />
                   <Route path="/restaraunts/:id" element={<PageTransition><RestaurantPage/></PageTransition>} />
                 </Routes>
               </Layout>

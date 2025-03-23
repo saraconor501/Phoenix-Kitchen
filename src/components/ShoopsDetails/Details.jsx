@@ -10,15 +10,13 @@ import location from "../../assets/images/product-icon.svg";
 import { message } from 'antd';
 
 const Cards = ({ restaurantId }) => {
-  
-  
   const { data: products, isLoading, error } = useProducts(restaurantId);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  
   const auth = getAuth();  
   const [messageApi, contextHolder] = message.useMessage(); 
-
+  
   const openModal = (product) => {
     if (!auth.currentUser) {  
       messageApi.open({
@@ -35,7 +33,7 @@ const Cards = ({ restaurantId }) => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
-
+  
   const handleAddToCart = (product) => {
     if (!auth.currentUser) { 
       messageApi.open({
@@ -50,9 +48,11 @@ const Cards = ({ restaurantId }) => {
   if (error) {
     return <div>{error.message}</div>;
   }
-
   
 
+  
+  
+  
   return (
     <>
       {contextHolder}
@@ -93,7 +93,7 @@ const Cards = ({ restaurantId }) => {
                     Вес: {item.weight} г
                   </p>
                   <div className={main.restaurantName}>
-                    <img src={location} /> {item.restauran || "Not restaurant"}
+                    <img src={location} /> {item.restauran || "Not restaurant" }
                   </div>
                 </div>
                 <p className={main.price}>{item.price} coм</p>
@@ -103,7 +103,7 @@ const Cards = ({ restaurantId }) => {
                     <img src={save} alt="save" /> Сохранить
                   </button>
                   <button className={main.addToCartButton} onClick={() => handleAddToCart(item)}>
-                    <img src={cartIcon} alt="cart" /> в корзину
+                    <img src={cartIcon} alt="cart" /> В корзину
                   </button>
                 </div>
               </div>

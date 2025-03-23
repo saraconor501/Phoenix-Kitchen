@@ -1,27 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./AdressButton.module.css";
 import location from "../../assets/images/location.svg";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
 const AdressButton = () => {
-  const position = [51.505, -0.09]
   const [showMap, setShowMap] = useState(false);
   const [markers, setMarkers] = useState([
-    { id: 1, lat: 51.505, lng: -0.09, text: "Маркер 1" },
-    { id: 2, lat: 51.51, lng: -0.1, text: "Маркер 2" },
-    { id: 3, lat: 51.515, lng: -0.11, text: "Маркер 3" }
+    { id: 1, lat: 42.798269, lng: 73.845641, text: 'Империя Пиццы' }, 
+    { id: 2, lat: 42.869487, lng: 74.610648, text: 'KFC' }, 
+    { id: 3, lat: 42.799261, lng: 73.843996, text: 'Kulikov' },
+    { id: 4, lat: 42.828028, lng: 74.603809, text: 'Navat' },
+    { id: 5, lat: 42.827282, lng: 74.623349, text: 'PapaJonhs' },
   ]);
 
-  const MapFix = () => {
-    const map = useMap();
-  
-    useEffect(() => {
-      setTimeout(() => {
-        map.invalidateSize();
-      }, 500);
-    }, [map]);
-  
-    return null;
-  };
+  const customIcon = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      iconSize: [25, 41], // Размер иконки
+      iconAnchor: [12, 41], // Точка привязки иконки
+    });
   
   return (
     <div className={styles.container}>
@@ -48,41 +46,12 @@ const AdressButton = () => {
                 />
               </div>
             </div>
-            <MapContainer center={[55.751244, 37.618423]} zoom={10} style={{ height: "400px", width: "600px", position: 'fixed' }}>
-              <MapFix/>
+            <MapContainer scrollWheelZoom={false} center={[42.819791,  73.844014]}  zoom={9} style={{ height: "400px", width: "890px" }}>
               <TileLayer url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png" />
-      <Marker position={[55.751244, 37.618423]}>
-        <Popup>Москва</Popup>
-      </Marker>
+              {markers.map((marker) => (
+                <Marker icon={customIcon} key={marker.id} position={[marker.lat, marker.lng]}></Marker>
+      ))}
     </MapContainer>
-
-            {/* <LoadScript googleMapsApiKey="AIzaSyDGablINFu89l7DgwcM9L7WMf6BsqXi_Ws">
-              <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-                {markers.map((marker) => (
-                  <Marker
-                    key={marker.id}
-                    position={{ lat: marker.lat, lng: marker.lng }}
-                    onClick={() => handleMarkerClick(marker)} // Обработчик клика по маркеру
-                  />
-                ))}
-
-                {selectedMarker && (
-                  <InfoWindow
-                  style={windowStyle}
-                    position={{
-                      lat: selectedMarker.lat,
-                      lng: selectedMarker.lng,
-                    }}
-                    onCloseClick={() => setSelectedMarker(null)}
-                  >
-                    <div>
-                      <h3>{selectedMarker.title}</h3>
-                      <Rate allowHalf defaultValue={4.5}/>
-                    </div>
-                  </InfoWindow>
-                )}
-              </GoogleMap>
-            </LoadScript> */}
           </div>
         </div>
       )}

@@ -1,64 +1,122 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCart } from "../../store/cart-slice/cart-slice";
 import cartStyle from "./CartPage.module.css";
 import { useNavigate } from "react-router-dom";
-import { Button, Input, Modal, Select } from "antd";
+import {  Button, Input, List, Modal, Select, Skeleton } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import ivan from '../../assets/images/ivan.jpg';
-
+import { MapContainer, Marker, Polyline, Popup, TileLayer } from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 const CartPage = () => {
-  const couriers = [
-    {
-      id: 1,
-      name: "Иван",
-      experience: "5 лет",
-      rating: 4.8,
-      avatar: ivan,
-    },
-    {
-      id: 2,
-      name: "Чынгыз",
-      experience: "5 лет",
-      rating: 5.0,
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    },
-    {
-      id: 3,
-      name: "Ерик",
-      experience: "2 года",
-      rating: 4.5,
-      avatar: "https://randomuser.me/api/portraits/men/56.jpg",
-    },
-  ]
-  const handleOrder = () => {
-    if (cart.length === 0) return;
-
-    const randomCourier = couriers[Math.floor(Math.random() * couriers.length)];
-    setCourier(randomCourier);
-    setTimeLeft(Math.floor(Math.random() * 30) + 20); // случайное время 20-50 минут
-    setIsModalVisible(true);
-  };
-
-
   const [courier, setCourier] = useState(null);
   const { cart, isLoading, removeFromCartMutation, refetch, addToCartMutation } = useCart();
   const [fadeCart, setFadeCart] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [debouncedCart, setDebouncedCart] = useState(cart);
   const navigate = useNavigate();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userAddress, setUserAddress] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+    const [timer, setTimer] = useState(4);
+    const [isCourierMoving, setIsCourierMoving] = useState(false);
+    const mapRef = useRef(null);
+    const markerRef = useRef(null);
+  // const [address, setAddress] = useState('');
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [directions, setDirections] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+    const onChange = (checked) => {
+      setLoading(!checked);
+    };
+
+  const restaurantCoords = [55.7558, 37.6176]; // Координаты ресторана (Москва)
+    const userCoords = [55.7602, 37.6175]; // Пример координат пользователя
+    const route = [
+      [restaurantCoords[0], restaurantCoords[1]],
+      [userCoords[0], userCoords[1]],
+    ];
+  
+    const handleOrderSubmit = () => {
+      const randomCourier = couriers[Math.floor(Math.random() * couriers.length)];
+      setCourier(randomCourier);  
+      if (userAddress.trim()) {
+        setIsModalOpen(true);
+        setIsSearching(true);
+        setTimer(4);
+        setCourier(null);
+  
+        const interval = setInterval(() => {
+          setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+  
+        const timeout = setTimeout(() => {
+          const randomCourier = couriers[Math.floor(Math.random() * couriers.length)];
+          setCourier(randomCourier);
+          setIsSearching(false);
+          clearInterval(interval);
+        }, 4000);
+  
+        return () => {
+          clearInterval(interval);
+          clearTimeout(timeout);
+        };
+      } else {
+        alert("Пожалуйста, введите адрес.");
+      }
+    };
+  
+    const startCourierMovement = () => {
+      if (mapRef.current && !isCourierMoving) {
+        setIsCourierMoving(true);
+  
+        // Создаем маркер для курьера
+        const carIcon = L.icon({
+          iconUrl: "https://cdn-icons-png.flaticon.com/512/744/744465.png", // Иконка машины
+          iconSize: [40, 40],
+        });
+  
+        const courierMarker = L.marker(restaurantCoords, { icon: carIcon }).addTo(mapRef.current);
+        markerRef.current = courierMarker;
+  
+        // Анимация движения
+        const duration = 5000; // Время анимации в миллисекундах
+        const startTime = Date.now();
+  
+        const animate = () => {
+          const progress = (Date.now() - startTime) / duration;
+          if (progress > 1) {
+            setIsCourierMoving(false);
+            alert("Курьер прибыл! Оставьте отзыв.");
+            return;
+          }
+  
+          const lat = restaurantCoords[0] + (userCoords[0] - restaurantCoords[0]) * progress;
+          const lng = restaurantCoords[1] + (userCoords[1] - restaurantCoords[1]) * progress;
+          courierMarker.setLatLng([lat, lng]);
+  
+          requestAnimationFrame(animate);
+        };
+  
+        animate();
+      }
+    }
+
+  const couriers = [
+    { name: 'Иван', experience: '2 года', rating: 4.5, reviews: 15 },
+  { name: 'Курьер 2', experience: '1 год', rating: 4.0, reviews: 10 },
+  { name: 'Курьер 3', experience: '3 года', rating: 5.0, reviews: 20 },
+  ]
+
+  const customIcon = L.icon({
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    iconSize: [25, 41], // Размер иконки
+    iconAnchor: [12, 41], // Точка привязки иконки
+  });
+  
 
 
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDebouncedCart(cart);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, [cart]);
 
   useEffect(() => {
     refetch();
@@ -94,6 +152,7 @@ const CartPage = () => {
     }
   };
 
+  
   if (isLoading) {
     return (
       <div className={cartStyle.contain}>
@@ -137,6 +196,7 @@ const CartPage = () => {
     );
   }
 
+  
   return (
     <div className={`${cartStyle.contain} ${fadeCart ? cartStyle.fadeOut : ""}`}>
       <div className={cartStyle.cartContainer}>
@@ -232,10 +292,13 @@ const CartPage = () => {
         <div className={cartStyle.desheds}></div>
         <p>ЗАПОЛНИТЕ ДАННЫЕ ДЛЯ ДОСТАВКИ</p>
         <form action="">
-        <Input placeholder="ФИО" style={{height: '40px', marginBottom: "30px"}}/>
-        <Input placeholder="Номер телефона" style={{height: '40px' ,marginBottom: "30px"}}/>
-        <Input placeholder="Улица дом" style={{height: '40px', marginBottom: "30px"}}/>
+        <Input placeholder="ФИО" style={{height: '40px', marginBottom: "30px"}} className={cartStyle.Input}/>
+        <Input placeholder="Номер телефона" style={{height: '40px' ,marginBottom: "30px"}} className={cartStyle.Input}/>
+        <Input placeholder="Улица дом" style={{height: '40px', marginBottom: "30px"}} className={cartStyle.Input} 
+        value={userAddress}
+        onChange={(e) => setUserAddress(e.target.value)} />
         <Select
+        className={cartStyle.Input}
       defaultValue="Наличные"
       style={{
         width: 361,
@@ -253,38 +316,77 @@ const CartPage = () => {
         },
       ]}
     />
-     <TextArea rows={4} placeholder="Комментарии к заказу" style={{marginBottom: "50px"}}/>
-     <Button style={{height: '50px'}} onClick={handleOrder}>ОФОРМИТЬ ЗАКАЗ</Button>
+     <TextArea rows={4} placeholder="Комментарии к заказу" style={{marginBottom: "50px"}} className={cartStyle.Input}/>
+     <Button style={{height: '50px'}} onClick={handleOrderSubmit}   className={cartStyle.Button}>ОФОРМИТЬ ЗАКАЗ</Button>
         </form>
       </div>
       <div>
-<Modal width={1000}   visible={isModalVisible} onCancel={() => setIsModalVisible(false)} footer={null}>
-{courier ? (
-  <div className={cartStyle.modal__wrapper}>
-    <p className={cartStyle.title}>Ваш заказ уже в пути!</p>
-    <span>Ваш курьер:</span>
-    <div className={cartStyle.modal__block}>
-    <img src={courier.avatar} alt={courier.name} width="200" style={{ borderRadius: "50%" }} />
-    </div>
-    <h3>{courier.name}</h3>
-    <div className={cartStyle.wrapper}>
-    <p>Стаж: {courier.experience}</p>
-    <p>Рейтинг: ⭐{courier.rating}</p>
-    </div>
-    <h3>Товары в доставке:</h3>
-            <ul>
-              {cart.map((item) => (
-                <li key={item.id}>
-                  <img src={item.imageUrl} alt={item.name} width="40" /> {item.name} - {item.quantity || 1} шт.
-                </li>
-              ))}
-            </ul>
-    <h4>Прибытие через: {timeLeft} мин</h4>
-    </div>
-) : (
-  <p>Поиск курьера...</p>
-)}
-  </Modal> 
+            <Modal
+              open={isModalOpen}
+              onCancel={() => setIsModalOpen(false)}
+              footer={[
+                <Button key="close" onClick={() => setIsModalOpen(false)}>
+                  Закрыть
+                </Button>,
+                !isSearching && (
+                  <Button
+                    key="start"
+                    type="primary"
+                    onClick={startCourierMovement}
+                    disabled={isCourierMoving}
+                  >
+                    {isCourierMoving ? "Курьер в пути..." : "Начать доставку"}
+                  </Button>
+                ),
+              ]}
+            >
+      <h3>{isSearching ? "Поиск курьера" : "Ваш курьер:"}</h3>
+        {isSearching ? (
+          <div>
+          <p>Идет поиск курьера... Осталось: {timer} секунд</p>
+          <div style={{ textAlign: "center" }}>
+             <Skeleton loading={loading} active avatar>
+              <List.Item.Meta
+                
+                />
+            </Skeleton>
+          </div>
+                </div>
+        ) : (
+          courier && (
+            <div className="courier-found">
+              
+              <hr style={{backgroundColor: "gray"}}/>
+              <div className="courier-info">
+                <img src={courier.avatar} alt={courier.name} />
+                <p>{courier.name}</p>
+                <p>Стаж: {courier.experience}</p>
+                <p>Отзывы: {courier.reviews}</p>
+                <p>Автомобиль: {courier.car}</p>
+              </div>
+              <div className="map-container">
+                <MapContainer
+                  center={restaurantCoords}
+                  zoom={13}
+                  style={{ height: "300px", width: "100%" }}
+                  whenCreated={(map) => (mapRef.current = map)}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker position={restaurantCoords}>
+                    <Popup>Ресторан</Popup>
+                  </Marker>
+                  <Marker position={userCoords}>
+                    <Popup>Ваш адрес</Popup>
+                  </Marker>
+                  <Polyline positions={route} color="blue" />
+                </MapContainer>
+              </div>
+            </div>
+          )
+        )}
+    </Modal>
 </div>
     </div>
 
