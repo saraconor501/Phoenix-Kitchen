@@ -24,6 +24,12 @@
     padding: 24px;
     height: 700px;
 }
+.paymentContainer h1{
+    display: flex;
+    font-size: 26px;
+    align-items: center;
+    gap: 10px;
+}
 
 
 .cartTitle {

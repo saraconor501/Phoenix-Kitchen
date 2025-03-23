@@ -20,7 +20,7 @@ const Restauraunts = () => {
                     className={sp.skeletonImage}
                   />
                   <div className={sp.skeletonText}>
-                    <Skeleton.Button className={sp.skeletonRating} active />
+                   
                     <Skeleton title={false} paragraph={{ rows: 1, width: "60%" }} active />
                     <Skeleton title={false} paragraph={{ rows: 1, width: "80%" }} active />
                   </div>
