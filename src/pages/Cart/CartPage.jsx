@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Input, Modal, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import ivan from '../../assets/images/ivan.jpg';
+import money from '../../assets/images/money.svg'
 
 const CartPage = () => {
   const couriers = [
@@ -36,7 +37,7 @@ const CartPage = () => {
 
     const randomCourier = couriers[Math.floor(Math.random() * couriers.length)];
     setCourier(randomCourier);
-    setTimeLeft(Math.floor(Math.random() * 30) + 20); // случайное время 20-50 минут
+    setTimeLeft(Math.floor(Math.random() * 30) + 20);
     setIsModalVisible(true);
   };
 
@@ -62,24 +63,21 @@ const CartPage = () => {
 
   useEffect(() => {
     refetch();
-  
+
     if (cart.length === 0) {
-      setFadeCart(true); // Начинаем анимацию исчезновения
+      setFadeCart(true);
       const timeout = setTimeout(() => {
-        // Проверяем, что корзина всё ещё пуста перед установкой isEmpty
         if (cart.length === 0) {
           setIsEmpty(true);
         }
-      }, 1000); // Задержка для плавного перехода
-  
-      // Очищаем таймер при изменении корзины
+      }, 1000);
       return () => clearTimeout(timeout);
     } else {
       setFadeCart(false);
-      setIsEmpty(false); // Сразу сбрасываем isEmpty, если корзина не пуста
+      setIsEmpty(false);
     }
   }, [cart, refetch]);
-  
+
   const handleLengthProduct = (itemId, operation) => {
     const updatedCart = [...debouncedCart];
     const itemIndex = updatedCart.findIndex((item) => item.id === itemId);
@@ -206,7 +204,7 @@ const CartPage = () => {
                           style={{ width: "26px", borderRadius: "50%" }}
                           src="https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Plus-512.png"
                           alt=""
-                          />
+                        />
                       </button>
                     </div>
                   </div>
@@ -228,64 +226,64 @@ const CartPage = () => {
       </div>
 
       <div className={cartStyle.paymentContainer}>
-        <h1>Оформление заказа</h1>
+        <h1>Оформление заказа <img src={money} /></h1>
         <div className={cartStyle.desheds}></div>
-        <p>ЗАПОЛНИТЕ ДАННЫЕ ДЛЯ ДОСТАВКИ</p>
+
         <form action="">
-        <Input placeholder="ФИО" style={{height: '40px', marginBottom: "30px"}}/>
-        <Input placeholder="Номер телефона" style={{height: '40px' ,marginBottom: "30px"}}/>
-        <Input placeholder="Улица дом" style={{height: '40px', marginBottom: "30px"}}/>
-        <Select
-      defaultValue="Наличные"
-      style={{
-        width: 361,
-        height: 70,
-        marginBottom: "30px",
-      }}
-      options={[
-        {
-          value: 'Наличные',
-          label: 'Наличные',
-        },
-        {
-          value: 'VISA',
-          label: 'VISA',
-        },
-      ]}
-    />
-     <TextArea rows={4} placeholder="Комментарии к заказу" style={{marginBottom: "50px"}}/>
-     <Button style={{height: '50px'}} onClick={handleOrder}>ОФОРМИТЬ ЗАКАЗ</Button>
+          <Input placeholder="ФИО" style={{ height: '40px', marginBottom: "30px" }} />
+          <Input placeholder="Номер телефона" style={{ height: '40px', marginBottom: "30px" }} />
+          <Input placeholder="Улица дом" style={{ height: '40px', marginBottom: "30px" }} />
+          <Select
+            defaultValue="Наличные"
+            style={{
+              width: 361,
+              height: 70,
+              marginBottom: "30px",
+            }}
+            options={[
+              {
+                value: 'Наличные',
+                label: 'Наличные',
+              },
+              {
+                value: 'VISA',
+                label: 'VISA',
+              },
+            ]}
+          />
+          <TextArea rows={4} placeholder="Комментарии к заказу" style={{ marginBottom: "50px" }} />
+          <Button style={{ height: '50px' }} onClick={handleOrder}>ОФОРМИТЬ ЗАКАЗ</Button>
         </form>
       </div>
       <div>
-<Modal width={1000}   visible={isModalVisible} onCancel={() => setIsModalVisible(false)} footer={null}>
-{courier ? (
-  <div className={cartStyle.modal__wrapper}>
-    <p className={cartStyle.title}>Ваш заказ уже в пути!</p>
-    <span>Ваш курьер:</span>
-    <div className={cartStyle.modal__block}>
-    <img src={courier.avatar} alt={courier.name} width="200" style={{ borderRadius: "50%" }} />
-    </div>
-    <h3>{courier.name}</h3>
-    <div className={cartStyle.wrapper}>
-    <p>Стаж: {courier.experience}</p>
-    <p>Рейтинг: ⭐{courier.rating}</p>
-    </div>
-    <h3>Товары в доставке:</h3>
-            <ul>
-              {cart.map((item) => (
-                <li key={item.id}>
-                  <img src={item.imageUrl} alt={item.name} width="40" /> {item.name} - {item.quantity || 1} шт.
-                </li>
-              ))}
-            </ul>
-    <h4>Прибытие через: {timeLeft} мин</h4>
-    </div>
-) : (
-  <p>Поиск курьера...</p>
-)}
-  </Modal> 
-</div>
+        <Modal width={1000} visible={isModalVisible} onCancel={() => setIsModalVisible(false)} footer={null}>
+          {courier ? (
+            <div className={cartStyle.modal__wrapper}>
+              <p className={cartStyle.title}>Ваш заказ уже в пути!</p>
+              <span>Ваш курьер:</span>
+              <div className={cartStyle.modal__block}>
+                <img src={courier.avatar} alt={courier.name} width="200" style={{ borderRadius: "50%" }} />
+              </div>
+              <h3>{courier.name}</h3>
+              <div className={cartStyle.wrapper}>
+                <p>Стаж: {courier.experience}</p>
+                <p>Рейтинг: ⭐{courier.rating}</p>
+              </div>
+              <h3>Товары в доставке:</h3>
+              <ul>
+                {cart.map((item) => (
+                  <li key={item.id}>
+                    <img src={item.imageUrl} alt={item.name} width="40" /> {item.name} - {item.quantity || 1} шт.
+                  </li>
+                ))}
+              </ul>
+              <h4>Прибытие через: {timeLeft} мин</h4>
+            </div>
+          ) : (
+            <p>Поиск курьера...</p>
+          )}
+        </Modal>
+      </div>
     </div>
 
   )

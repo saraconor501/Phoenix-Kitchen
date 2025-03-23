@@ -193,3 +193,15 @@
     transform: scale(0.95);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
+.ratingContent{
+    margin-right: 3px;
+}
+.notFound {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:22px;
+    font-weight: 500;
+    color: #888;
+  }

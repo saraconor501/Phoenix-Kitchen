@@ -13,16 +13,16 @@ const AdressButton = () => {
 
   const MapFix = () => {
     const map = useMap();
-  
+
     useEffect(() => {
       setTimeout(() => {
         map.invalidateSize();
       }, 500);
     }, [map]);
-  
+
     return null;
   };
-  
+
   return (
     <div className={styles.container}>
       <button onClick={() => setShowMap(!showMap)} className={styles.button}>
@@ -48,13 +48,13 @@ const AdressButton = () => {
                 />
               </div>
             </div>
-            <MapContainer center={[55.751244, 37.618423]} zoom={10} style={{ height: "400px", width: "600px", position: 'fixed' }}>
-              <MapFix/>
+            <MapContainer center={[55.751244, 37.618423]} zoom={10} style={{ height: "400px", width: "600px", }}>
+              <MapFix />
               <TileLayer url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png" />
-      <Marker position={[55.751244, 37.618423]}>
-        <Popup>Москва</Popup>
-      </Marker>
-    </MapContainer>
+              <Marker position={[55.751244, 37.618423]}>
+                <Popup>Москва</Popup>
+              </Marker>
+            </MapContainer>
 
             {/* <LoadScript googleMapsApiKey="AIzaSyDGablINFu89l7DgwcM9L7WMf6BsqXi_Ws">
               <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>

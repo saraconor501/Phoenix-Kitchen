@@ -22,7 +22,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    smoothScrollToTop(100); // 300 мс для быстрого, но плавного скролла
+    smoothScrollToTop(300); // 300 мс для быстрого, но плавного скролла
   }, [pathname]);
 
   return null;

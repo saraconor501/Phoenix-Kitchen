@@ -1,0 +1,76 @@
+.SearchContain {
+    width: 100%;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+    background: #fbfbfb;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.SearchItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-bottom: 20px;
+}
+
+.SearchContent {
+    margin-top: 40px;
+    width: 92%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.ItemImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.Items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+    row-gap: 24px;
+}
+
+/* Адаптация для экранов меньше 1024px (например, планшеты) */
+@media (max-width: 1024px) {
+    .Items {
+        grid-template-columns: repeat(2, 1fr);
+        /* 3 карточки в ряд */
+    }
+}
+
+/* Адаптация для экранов меньше 768px (например, мобильные) */
+@media (max-width: 768px) {
+    .Items {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 карточки в ряд */
+    }
+}
+
+/* Адаптация для очень узких экранов (мобильные телефоны) */
+@media (max-width: 480px) {
+    .Items {
+        grid-template-columns: repeat(1, 1fr);
+        /* 1 карточка в ряд */
+    }
+}
+
+.Restaurant {
+    width: 100%;
+    display: flex;
+    gap: 14px;
+}
+
+.ItemInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
