@@ -5,3 +5,9 @@
   box-sizing: border-box;
   font-family: 'Metropolis', sans-serif;
 }
+.content{
+  width: 100%;
+}
+.layout{
+  width: 100%;
+}
