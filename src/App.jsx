@@ -10,7 +10,6 @@ import CartPage from './pages/Cart/CartPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import PageTransition from './hooks/TransitionPage/TransitionPage';
-
 import './App.css';
 import RestaurantPage from './pages/RestaurantPage/RestaurantPage';
 import SearchPage from './pages/SearchPage/SearchPage';

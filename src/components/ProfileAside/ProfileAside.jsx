@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Drawer } from "antd";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
 import ConfirmOut from "../Confirms/ConfirmLogOut/ConfrimLogOut";
 import p from "./ProfileAside.module.css";
-
+import { Modal } from 'antd';
 const ProfileAside = () => {
   const { user } = useAuthStore();
+  const [openResponsive, setOpenResponsive] = useState(false);
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const isAuthenticated = !!user;
@@ -46,8 +46,8 @@ const ProfileAside = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Link
-          to={"/profile"}
+        <div
+         onClick={() => setOpenResponsive(true)}
           className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
           <div className={p.navi}>Мои данные</div>
           <img
@@ -56,7 +56,33 @@ const ProfileAside = () => {
             className={p.icon}
             alt="Профиль"
           />
-        </Link>
+        </div>
+        <Modal
+        centered
+        open={openResponsive}
+        onOk={() => setOpenResponsive(false)}
+        onCancel={() => setOpenResponsive(false)}
+        width={{
+          xs: '90%',
+          sm: '80%',
+          md: '70%',
+          lg: '60%',
+          xl: '50%',
+          xxl: '40%',
+        }}
+      >
+        <h3 style={{paddingBottom: '20px'}}>Мои данные</h3>
+      <form action="">
+        <label htmlFor="">
+          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '80px'}}>Имя</p>
+          <input type="text" placeholder={user.name} className={p.Inputs}/>
+        </label>
+        <label htmlFor="">
+          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '30px'}}>Эл. Почта</p>
+          <input type="text" placeholder={user.email} className={p.Inputs}/>
+        </label>
+      </form>
+      </Modal>
         <div className={p.nav}>
           Мои адреса <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
@@ -66,7 +92,6 @@ const ProfileAside = () => {
         <div className={p.nav}>
           Мои избранные <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
-
         <ConfirmOut />
       </Drawer>
     </>

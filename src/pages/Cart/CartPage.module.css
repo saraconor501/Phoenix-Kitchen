@@ -487,6 +487,20 @@
     justify-content: center;
     margin-bottom: 10px;
 }
+
+.Input:hover {
+    border: 1px solid #fc8e34;
+}
+
+.Input:focus {
+    border: 1px solid #fc8e34;
+}
+
+.Input::selection {
+    border: 1px solid #fc8e34;
+}
+
+
 .title {
     font-size: 22px;
     font-weight: 700;

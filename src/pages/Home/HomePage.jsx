@@ -1,12 +1,12 @@
+import Banner from "../../components/Banner/Banner"
 import Shoops from "../../components/Shoops/Shoops"
-import SwiperBanner from "../../components/SwiperBanner/SwiperBanner"
 import hp from './HomePage.module.css'
 
 const HomePage = () => {
 
   return (
     <>
-      <SwiperBanner />
+      <Banner />
       <div className={hp.container}>
         <Shoops />
       </div>

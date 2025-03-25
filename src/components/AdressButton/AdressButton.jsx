@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./AdressButton.module.css";
 import location from "../../assets/images/location.svg";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
 const AdressButton = () => {
-  const position = [51.505, -0.09]
   const [showMap, setShowMap] = useState(false);
   const [markers, setMarkers] = useState([
     { id: 1, lat: 51.505, lng: -0.09, text: "Маркер 1" },
