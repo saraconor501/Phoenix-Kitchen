@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Rate } from 'antd';
 import Cards from '../../components/ShoopsDetails/Details';
 import s from './SearchPage.module.css';
@@ -107,7 +107,7 @@ const SearchPage = () => {
                         className={`${s.SearchItem} ${isTransitioning ? s.fadeOut : s.fadeIn}`}
                         key={restaurant.id}
                     >
-                        <div className={s.Restaurant}>
+                        <Link to={`/restaraunts/${restaurant.id}`} className={s.Restaurant}>
                             <div className={s.ItemLogo}>
                                 <img className={s.ItemImg} src={restaurant.image} alt={restaurant.name} />
                             </div>
@@ -118,7 +118,7 @@ const SearchPage = () => {
                                     <Rate disabled allowHalf defaultValue={restaurant.rating} />
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                         <div className={s.Items}>
                             <Cards
                                 restaurantId={restaurant.id}

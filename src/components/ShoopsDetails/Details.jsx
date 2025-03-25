@@ -7,7 +7,7 @@ import ModalWindow from "../ModalWindow/ModalWindow";
 import { message } from 'antd';
 import main from "./Details.module.css";
 import ProductCard from "./ProductCard/ProductCard";
-import { array } from "prop-types";
+
 
 const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
   const { data: products, isLoading, error } = useProducts(restaurantId);

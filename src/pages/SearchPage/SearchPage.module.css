@@ -77,6 +77,13 @@
     display: flex;
     gap: 14px;
     margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    transition: all 0.2s ease;
+}
+.Restaurant:hover{
+    filter: contrast(70%);
+    color: #666;
 }
 
 .ItemInfo {

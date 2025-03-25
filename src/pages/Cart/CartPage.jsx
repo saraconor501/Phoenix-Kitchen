@@ -22,9 +22,7 @@ const CartPage = () => {
     const [isCourierMoving, setIsCourierMoving] = useState(false);
     const mapRef = useRef(null);
     const markerRef = useRef(null);
-  // const [address, setAddress] = useState('');
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // const [directions, setDirections] = useState(null);
+
 
   const [loading, setLoading] = useState(true);
     const onChange = (checked) => {
@@ -80,8 +78,8 @@ const CartPage = () => {
         const courierMarker = L.marker(restaurantCoords, { icon: carIcon }).addTo(mapRef.current);
         markerRef.current = courierMarker;
   
-        // Анимация движения
-        const duration = 5000; // Время анимации в миллисекундах
+        
+        const duration = 5000; 
         const startTime = Date.now();
   
         const animate = () => {
@@ -111,8 +109,8 @@ const CartPage = () => {
 
   const customIcon = L.icon({
     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    iconSize: [25, 41], // Размер иконки
-    iconAnchor: [12, 41], // Точка привязки иконки
+    iconSize: [25, 41], 
+    iconAnchor: [12, 41],
   });
   
 
@@ -122,19 +120,17 @@ const CartPage = () => {
     refetch();
   
     if (cart.length === 0) {
-      setFadeCart(true); // Начинаем анимацию исчезновения
+      setFadeCart(true); 
       const timeout = setTimeout(() => {
-        // Проверяем, что корзина всё ещё пуста перед установкой isEmpty
+        
         if (cart.length === 0) {
           setIsEmpty(true);
         }
-      }, 1000); // Задержка для плавного перехода
-  
-      // Очищаем таймер при изменении корзины
+      }, 1000);
       return () => clearTimeout(timeout);
     } else {
       setFadeCart(false);
-      setIsEmpty(false); // Сразу сбрасываем isEmpty, если корзина не пуста
+      setIsEmpty(false);
     }
   }, [cart, refetch]);
   
