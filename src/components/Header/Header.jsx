@@ -1,20 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,  useLocation  } from 'react-router-dom';
+import burgerIcon from '../../assets/images/burger.svg'
 import { Badge } from 'antd';
+import cartIcon from '../../assets/images/cart.svg'
 import useAuthStore from '../../store/auth-slice/auth-slice';
 import { useCart } from '../../store/cart-slice/cart-slice';
 import hr from './Header.module.css';
-import Logo from '../../assets/images/logo.jpg';
 import AdressButton from '../AdressButton/AdressButton';
 import ProfileAside from '../ProfileAside/ProfileAside';
-
+import Pizza from "../../assets/images/mypizza.svg";
+import Icon from '../../assets/images/logo.jpg';
+import close from '../../assets/images/close.svg'
 const Header = () => {
   const { user, isLoading: isAuthLoading } = useAuthStore();
   const { cart } = useCart();
   const [isAtTop, setIsAtTop] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isAuthenticated = !!user;
   const isLoading = useMemo(() => isAuthLoading, [isAuthLoading]);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -33,22 +36,25 @@ const Header = () => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
+   const location = useLocation()
+
+   const isEmpirePizza = location.pathname === "/restaraunts/ImpirePizza";
 
   return (
     <>
       <header className={`${hr.header} ${isAtTop ? hr.atTop : ''} ${isLoaded ? hr.loaded : ''}`}>
         <div className={hr.header_content}>
           <div className={hr.leftBlock}>
+          <button className={hr.burger} onClick={() => setIsMenuOpen(true)}>
+            <img src={burgerIcon} alt="" className={hr.burgerIcon}/>
+          </button>
             <div className={hr.logoContainer}>
               {isLoading ? (
                 <div className={hr.skeletonLogo}></div>
               ) : (
                 <>
-                  <Link to="/">
-                    <img src={Logo} alt="Logo" className={hr.Logo} />
-                  </Link>
                   <Link to="/" className={hr.logoTitle}>
-                    Phoenix Kitchen
+                    <img src={isEmpirePizza ? Pizza : Icon} style={{width: "60px"}}/>
                   </Link>
                 </>
               )}
@@ -98,13 +104,33 @@ const Header = () => {
                 <ProfileAside />
               </>
             ) : (
+              <div className={hr.profileResp}>
               <ProfileAside />
+              </div>
             )}
           </div>
         </div>
       </header>
 
-      <div style={{ height: '72px' }}></div>
+      {isMenuOpen && (
+        <div className={hr.fullscreenMenu}>
+          <button className={hr.closeButton} onClick={() => setIsMenuOpen(false)}><img src={close} alt='close' className={hr.closeImg}/></button>
+          <AdressButton />
+          <div style={{display: "flex", justifyContent: "center"}}>
+          <p>Профиль</p>
+          <ProfileAside />
+          </div>
+          <Link to="/cart">
+          <div style={{display: "flex", justifyContent: "center"}}>
+          <p style={{color: "black"}}>Корзина</p>
+          <img
+          src={cartIcon}
+          className={hr.cartIcon}
+          alt="cart" />
+          </div>
+          </Link>
+        </div>
+        )}
     </>
   );
 };

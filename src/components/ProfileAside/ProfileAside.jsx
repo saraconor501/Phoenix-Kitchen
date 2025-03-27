@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import userIcon from '../../assets/images/user.svg';
 import { Drawer } from "antd";
 import { Link, useLocation } from "react-router-dom";
 import useAuthStore from "../../store/auth-slice/auth-slice";
@@ -27,7 +28,7 @@ const ProfileAside = () => {
         <button onClick={() => setOpen(true)} className={p.iconbtn}>
           <img
             style={{ borderRadius: "50%" }}
-            src={"https://www.svgrepo.com/show/497407/profile-circle.svg"}
+            src={userIcon}
             className={p.icon}
             alt="Профиль"
           />

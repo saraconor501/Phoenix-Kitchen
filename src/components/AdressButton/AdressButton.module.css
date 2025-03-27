@@ -160,3 +160,11 @@ input {
 .resetButton:hover {
   background: #f0f0f0;
 }
+
+@media screen and (max-width: 1037px){
+  .container {
+    display: none;
+  }
+
+
+}

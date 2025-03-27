@@ -41,9 +41,12 @@
 
 }
 
-@media (max-width: 1480px) {
+@media (max-width: 1680px) {
     .Items {
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        column-gap: 30px;
     }
 }
 

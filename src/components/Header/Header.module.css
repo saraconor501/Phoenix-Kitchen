@@ -51,9 +51,6 @@
   align-items: center;
 }
 
-.Logo {
-  width: 55px;
-}
 
 .logoTitle {
   font-size: 24px;
@@ -86,8 +83,27 @@
   background-position-x: 20px;
   background-position-y: center;
   font-size: 16px;
-  
   font-family: Noto Sans;
+}
+
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .searchButton {
@@ -204,6 +220,38 @@
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
+.burger {
+  font-size: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+  display: none;
+}
+.fullscreenMenu {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 72px);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  z-index: 999;
+}
+
+.fullscreenMenu a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.fullscreenMenu a:hover {
+  color: #fc8e34;
+}
 
 @keyframes skeleton-loading {
   0% { background-position: 200% 0; }
@@ -255,4 +303,35 @@
 .cartIcon {
   width: 40px;
   height: 40px;
+  background-image: none;
+}
+
+.burgerIcon {
+  width: 30px;
+}
+
+
+.closeImg {
+  width: 40px;
+}
+@media screen and (max-width: 1037px){
+  .burger {
+    display: block;
+  }
+
+  .cartLink {
+    display: none;
+  }
+
+  .profileRes {
+    display: none;
+  }
+
+  .searchInput {
+    width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+    padding-left: 45px;
+    background-size: 18px;
+  }
 }
