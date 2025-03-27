@@ -86,7 +86,7 @@
   background-position-x: 20px;
   background-position-y: center;
   font-size: 16px;
-  
+
   font-family: Noto Sans;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .searchButton:hover {
-  border: #e0731a ;
+  border: #e0731a;
   background-color: #e0731a;
 }
 
@@ -125,8 +125,9 @@
 .icon:hover {
   transform: scale(1.1);
 }
+
 .searchInput {
-  transition: box-shadow 0.3s ease; 
+  transition: box-shadow 0.3s ease;
 }
 
 .searchInput:focus {
@@ -178,7 +179,8 @@
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
-.skeletonAdress{
+
+.skeletonAdress {
   width: 220px;
   height: 48px;
   border-radius: 20px;
@@ -206,8 +208,13 @@
 }
 
 @keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .skeletonHeader {
@@ -238,6 +245,7 @@
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
+
 .cartLink {
   position: relative;
   display: inline-block;
@@ -255,4 +263,37 @@
 .cartIcon {
   width: 40px;
   height: 40px;
+}
+
+.searchInputWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.clearButton:hover {
+  background: #d8d8d8;
+}
+
+.searchInput {
+  padding-right: 36px !important;
 }

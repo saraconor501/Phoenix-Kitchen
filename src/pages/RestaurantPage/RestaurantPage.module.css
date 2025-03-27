@@ -4,15 +4,15 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  padding: 0 24px;
+
 }
 
 .banner {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 1200px;
-
+  width: 80%;
+  position: relative;
   border-radius: 36px;
   display: flex;
   flex-direction: column;
@@ -39,11 +39,49 @@
 }
 
 .ProductGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
   justify-content: center;
-  margin-top: 30px;
+  column-gap: 17px;
+  row-gap: 24px;
+}
+
+@media (max-width: 2000px) {
+  .ProductGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1680px) {
+  .ProductGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1170px) {
+  .ProductGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .ProductGrid {
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ProductGrid {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
 }
 
 .content {
@@ -204,10 +242,11 @@
 
 .fiterContain div {
   display: flex;
-  max-width: 1200px;
+  max-width: 80%;
   justify-content: center;
   column-gap: 20px;
 }
+
 
 .filterNav {
   width: 150px;
@@ -222,12 +261,31 @@
   font-size: 17px;
   font-weight: 500;
   transition: color 0.3s ease-in-out, background-color 0.2s ease-in-out;
-
+  
 }
 
 .filterNav:hover {
   color: #f93e03 !important;
   background-color: #fff1f1;
+}
+@media (max-width: 767px) {
+  .fiterContain div {
+    justify-content: start;
+  }
+  .fiterContain{
+    overflow: auto;
+    display: none;
+  }
+  .filterNav{
+    width: 150px;
+  }
+  .banner{
+    width: 100%;
+    border-radius: 10px;
+  }
+  .contaninBanner{
+    width: 100%;
+  }
 }
 
 .filterNav.active {
@@ -235,6 +293,7 @@
   color: #f93e03 !important;
   font-weight: 600;
 }
+
 .ProductGrid {
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -248,6 +307,7 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -269,8 +329,9 @@
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
+
 .productsGrid {
   display: flex;
   flex-wrap: wrap;

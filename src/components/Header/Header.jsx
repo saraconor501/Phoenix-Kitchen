@@ -34,30 +34,35 @@ const Header = () => {
     setSearchQuery(e.target.value);
   };
 
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
   return (
     <>
       <header className={`${hr.header} ${isAtTop ? hr.atTop : ''} ${isLoaded ? hr.loaded : ''}`}>
-        <div className={hr.header_content}>
-          <div className={hr.leftBlock}>
-            <div className={hr.logoContainer}>
-              {isLoading ? (
-                <div className={hr.skeletonLogo}></div>
-              ) : (
-                <>
-                  <Link to="/">
-                    <img src={Logo} alt="Logo" className={hr.Logo} />
-                  </Link>
-                  <Link to="/" className={hr.logoTitle}>
-                    Phoenix Kitchen
-                  </Link>
-                </>
-              )}
-            </div>
-            <div className={hr.searchContainer}>
-              {isLoading ? (
-                <div className={hr.skeletonSearch}></div>
-              ) : (
-                <>
+      <div className={hr.header_content}>
+        <div className={hr.leftBlock}>
+          <div className={hr.logoContainer}>
+            {isLoading ? (
+              <div className={hr.skeletonLogo}></div>
+            ) : (
+              <>
+                <Link to="/">
+                  <img src={Logo} alt="Logo" className={hr.Logo} />
+                </Link>
+                <Link to="/" className={hr.logoTitle}>
+                  Phoenix Kitchen
+                </Link>
+              </>
+            )}
+          </div>
+          <div className={hr.searchContainer}>
+            {isLoading ? (
+              <div className={hr.skeletonSearch}></div>
+            ) : (
+              <>
+                <div className={hr.searchInputWrapper}>
                   <input
                     type="text"
                     placeholder="Название, кухня или блюдо"
@@ -65,44 +70,53 @@ const Header = () => {
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
-                  <Link to={`/search?query=${searchQuery}`}>
-                    <button className={hr.searchButton}>Найти</button>
-                  </Link>
-                </>
-              )}
-            </div>
-            {isLoading ? (
-              <div className={hr.skeletonAdress}></div>
-            ) : (
-              <AdressButton />
-            )}
-          </div>
-
-          <div className={hr.rightBlock}>
-            {isLoading ? (
-              <>
-                <div className={hr.skeletonIcon}></div>
-                <div className={hr.skeletonProfile}></div>
-              </>
-            ) : isAuthenticated ? (
-              <>
-                <Link to="/cart" className={hr.cartLink}>
-                  <Badge count={totalItems} overflowCount={99} className={hr.cartBadge}>
-                    <img
-                      src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768"
-                      className={hr.cartIcon}
-                      alt="cart"
-                    />
-                  </Badge>
+                  {searchQuery && (
+                    <button
+                      className={hr.clearButton}
+                      onClick={clearSearch}
+                    >
+                      <img style={{width:"16px"}} src="https://icones.pro/wp-content/uploads/2021/08/icone-x-grise.png"/>
+                    </button>
+                  )}
+                </div>
+                <Link to={`/search?query=${searchQuery}`}>
+                  <button className={hr.searchButton}>Найти</button>
                 </Link>
-                <ProfileAside />
               </>
-            ) : (
-              <ProfileAside />
             )}
           </div>
+          {isLoading ? (
+            <div className={hr.skeletonAdress}></div>
+          ) : (
+            <AdressButton />
+          )}
         </div>
-      </header>
+
+        <div className={hr.rightBlock}>
+          {isLoading ? (
+            <>
+              <div className={hr.skeletonIcon}></div>
+              <div className={hr.skeletonProfile}></div>
+            </>
+          ) : isAuthenticated ? (
+            <>
+              <Link to="/cart" className={hr.cartLink}>
+                <Badge count={totalItems} overflowCount={99} className={hr.cartBadge}>
+                  <img
+                    src="https://thumbs.dreamstime.com/z/shopping-cart-icon-vector-sale-170608151.jpg?w=768"
+                    className={hr.cartIcon}
+                    alt="cart"
+                  />
+                </Badge>
+              </Link>
+              <ProfileAside />
+            </>
+          ) : (
+            <ProfileAside />
+          )}
+        </div>
+      </div>
+    </header >
 
       <div style={{ height: '72px' }}></div>
     </>

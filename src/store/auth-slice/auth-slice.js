@@ -9,22 +9,27 @@ import {
   signInWithRedirect,
   onAuthStateChanged,
 } from "firebase/auth";
-import { doc, setDoc, getDoc} from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { message } from "antd";
 
 const googleProvider = new GoogleAuthProvider();
 
 const useAuthStore = create((set) => ({
+
   user: null,
   isFetching: false,
   isLoading: true,
   error: null,
 
+
   setUser: (user) => set({ user }),
 
-  registerUser: async (email, password) => {
+
+  registerUser: async (email, password, additionalData = {}) => {
     set({ isFetching: true, error: null });
 
     try {
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
@@ -34,27 +39,57 @@ const useAuthStore = create((set) => ({
 
       const userDocRef = doc(db, "users", user.uid);
       await setDoc(userDocRef, {
-        name:'User',
+        name: additionalData.name || 'User',
         email: user.email,
-        phone: user.phoneNumber || null, 
+        phone: additionalData.phone || null,
         cart: [],
         orderHistory: [],
         favoriteDishes: [],
         location: {
-          address: "",
-          coordinates: { lat: null, lng: null },
+          address: additionalData.address || "",
+          coordinates: {
+            lat: additionalData.lat || null,
+            lng: additionalData.lng || null
+          },
         },
+        createdAt: new Date().toISOString(),
+      });
+      const userDocSnap = await getDoc(userDocRef);
+
+      set({
+        user: {
+          uid: user.uid,
+          email: user.email,
+          ...userDocSnap.data()
+        },
+        isLoading: false
       });
 
-      set({ user: { uid: user.uid, email: user.email }, isLoading: false });
+      message.success('Регистрация прошла успешно!');
+      return { success: true, user: userDocSnap.data() };
     } catch (error) {
       let errorMessage = "Ошибка при регистрации. Попробуйте снова.";
-      if (error.code === "auth/email-already-in-use") errorMessage = "Этот email уже зарегистрирован.";
-      if (error.code === "auth/invalid-email") errorMessage = "Некорректный email.";
-      if (error.code === "auth/weak-password") errorMessage = "Пароль должен содержать минимум 6 символов.";
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage = "Этот email уже зарегистрирован.";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Некорректный email.";
+          break;
+        case "auth/weak-password":
+          errorMessage = "Пароль должен содержать минимум 6 символов.";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage = "Операция не разрешена.";
+          break;
+        default:
+          console.error("Неизвестная ошибка регистрации:", error);
+      }
 
       set({ error: errorMessage, isLoading: false });
-      console.error(error);
+      message.error(errorMessage);
+      return { success: false, error: errorMessage };
     } finally {
       set({ isFetching: false });
     }
@@ -70,16 +105,14 @@ const useAuthStore = create((set) => ({
       if (!user) {
         throw new Error("Ошибка: пользователь не найден после входа!");
       }
-
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
 
       if (!userDocSnap.exists()) {
-        console.warn("Документ пользователя отсутствует в Firestore, создаём новый...");
         await setDoc(userDocRef, {
-          name:'User',
+          name: 'User',
           email: user.email,
-          phone: user.phoneNumber || null,
+          phone: null,
           cart: [],
           orderHistory: [],
           favoriteDishes: [],
@@ -87,17 +120,48 @@ const useAuthStore = create((set) => ({
             address: "",
             coordinates: { lat: null, lng: null },
           },
+          createdAt: new Date().toISOString(),
         });
       }
 
-      set({ user: { uid: user.uid, email: user.email, ...userDocSnap.data() }, isLoading: false });
+      set({
+        user: {
+          uid: user.uid,
+          email: user.email,
+          ...(userDocSnap.exists() ? userDocSnap.data() : {})
+        },
+        isLoading: false
+      });
+
+
+      message.success('Вход выполнен успешно!');
+      return { success: true, user: userDocSnap.data() };
     } catch (error) {
       let errorMessage = "Ошибка при входе. Попробуйте снова.";
-      if (error.code === "auth/user-not-found") errorMessage = "Пользователь не найден.";
-      if (error.code === "auth/wrong-password") errorMessage = "Неверный пароль.";
+
+      switch (error.code) {
+        case "auth/user-not-found":
+          errorMessage = "Пользователь не найден.";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Неверный пароль.";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Некорректный email.";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Слишком много попыток. Попробуйте позже.";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "Аккаунт отключен.";
+          break;
+        default:
+          console.error("Неизвестная ошибка входа:", error);
+      }
 
       set({ error: errorMessage, isLoading: false });
-      console.error(error);
+      message.error(errorMessage);
+      return { success: false, error: errorMessage };
     } finally {
       set({ isFetching: false });
     }
@@ -112,7 +176,7 @@ const useAuthStore = create((set) => ({
         result = await signInWithPopup(auth, googleProvider);
       } else {
         await signInWithRedirect(auth, googleProvider);
-        return;
+        return { success: true };
       }
 
       const user = result.user;
@@ -120,9 +184,8 @@ const useAuthStore = create((set) => ({
       const userDocSnap = await getDoc(userDocRef);
 
       if (!userDocSnap.exists()) {
-
         await setDoc(userDocRef, {
-          name:'User',
+          name: user.displayName || 'User',
           email: user.email,
           phone: user.phoneNumber || null,
           cart: [],
@@ -132,17 +195,41 @@ const useAuthStore = create((set) => ({
             address: "",
             coordinates: { lat: null, lng: null },
           },
+          createdAt: new Date().toISOString(),
         });
       }
 
-      set({ user: { uid: user.uid, email: user.email, ...userDocSnap.data() }, isLoading: false });
+      set({
+        user: {
+          uid: user.uid,
+          email: user.email,
+          ...(userDocSnap.exists() ? userDocSnap.data() : {})
+        },
+        isLoading: false
+      });
+
+      message.success('Вход через Google выполнен успешно!');
+      return { success: true, user: userDocSnap.data() };
     } catch (error) {
       let errorMessage = "Ошибка при входе через Google.";
-      if (error.code === "auth/popup-closed-by-user") errorMessage = "Вы закрыли окно входа.";
-      if (error.code === "auth/cancelled-popup-request") errorMessage = "Попытка входа отменена.";
+
+      switch (error.code) {
+        case "auth/popup-closed-by-user":
+          errorMessage = "Вы закрыли окно входа.";
+          break;
+        case "auth/cancelled-popup-request":
+          errorMessage = "Попытка входа отменена.";
+          break;
+        case "auth/account-exists-with-different-credential":
+          errorMessage = "Аккаунт уже существует с другими учетными данными.";
+          break;
+        default:
+          console.error("Неизвестная ошибка входа через Google:", error);
+      }
 
       set({ error: errorMessage, isLoading: false });
-      console.error(error);
+      message.error(errorMessage);
+      return { success: false, error: errorMessage };
     } finally {
       set({ isFetching: false });
     }
@@ -153,15 +240,21 @@ const useAuthStore = create((set) => ({
     try {
       await signOut(auth);
       set({ user: null, isLoading: false });
+      message.success('Вы успешно вышли из системы');
+      return { success: true };
     } catch (error) {
-      console.error("Ошибка при выходе:", error);
+      const errorMessage = "Ошибка при выходе из системы";
+      console.error(errorMessage, error);
+      message.error(errorMessage);
+      return { success: false, error: errorMessage };
     } finally {
       set({ isFetching: false });
     }
   },
 
+
   observeAuthState: () => {
-    onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       set({ isLoading: true });
 
       if (!user) {
@@ -169,22 +262,47 @@ const useAuthStore = create((set) => ({
         return;
       }
 
-      const userDocRef = doc(db, "users", user.uid);
-      const userDocSnap = await getDoc(userDocRef);
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnap = await getDoc(userDocRef);
 
-      let newUserData;
-      if (userDocSnap.exists()) {
-        newUserData = { uid: user.uid, email: user.email, ...userDocSnap.data() };
-      } else {
-        newUserData = { uid: user.uid, email: user.email };
-        console.warn("Документ пользователя не найден в Firestore.");
+        let userData = {
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName || 'User'
+        };
+
+        if (userDocSnap.exists()) {
+          userData = { ...userData, ...userDocSnap.data() };
+        } else {
+          await setDoc(userDocRef, {
+            name: user.displayName || 'User',
+            email: user.email,
+            phone: user.phoneNumber || null,
+            cart: [],
+            orderHistory: [],
+            favoriteDishes: [],
+            location: {
+              address: "",
+              coordinates: { lat: null, lng: null },
+            },
+            createdAt: new Date().toISOString(),
+          });
+        }
+
+        set({ user: userData, isLoading: false });
+      } catch (error) {
+        console.error("Ошибка при получении данных пользователя:", error);
+        set({ isLoading: false });
       }
-
-      set({ user: newUserData, isLoading: false });
     });
+
+    return unsubscribe;
   },
+
+  clearError: () => set({ error: null }),
 }));
 
-useAuthStore.getState().observeAuthState();
+const unsubscribe = useAuthStore.getState().observeAuthState();
 
 export default useAuthStore;

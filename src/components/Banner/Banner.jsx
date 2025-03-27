@@ -3,7 +3,7 @@ import b from './Banner.module.css'
 const Banner = () => {
   return (
     <>
-        <video width={"100%"} height={"600px"} className={b.banner} autoPlay muted loop>
+        <video width={"100%"} height={"480px"} className={b.banner} autoPlay muted loop>
             <source src={BannerVideo} type="video/mp4"/>
         </video>
     </>
