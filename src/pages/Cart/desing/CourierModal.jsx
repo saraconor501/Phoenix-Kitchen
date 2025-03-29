@@ -6,6 +6,7 @@ import { doc, updateDoc, arrayUnion, collection, getDocs } from "firebase/firest
 import { db } from "../../../utils/firebase/firebase-config";
 import 'leaflet/dist/leaflet.css';
 import '@ant-design/v5-patch-for-react-19';
+import ivan from '../../../assets/images/ivan.jpg';
 
 
 // Фиксированные координаты ресторана в Кара-Балте
@@ -103,7 +104,7 @@ const CourierModal = ({
 
             onOrderSuccess();
             onClose();
-            messageApi.success("Заказ успешно доставлен!");
+            message.success("Заказ успешно доставлен!");
         } catch (error) {
             messageApi.error("Ошибка при завершении заказа");
             console.error(error);
@@ -178,14 +179,14 @@ const CourierModal = ({
                         </div>
                     ) : courier ? (
                         <div>
-                            <hr style={{ backgroundColor: "gray" }} />
-                            <div style={{ display: "flex", gap: "20px", marginBottom: "20px", marginTop: "10px" }}>
+                          
+                            <div style={{ display: "flex", gap: "20px", marginBottom: "20px", marginTop: "10px",height:'100px' }}>
                                 <img
-                                    src={courier.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSHda-r77sKbUCplb7phvHpb14enJPe_6N6g&s"}
+                                    src={ivan}
                                     alt={courier.name}
-                                    style={{ width: "100px", borderRadius: "50%" }}
+                                    style={{ width: "100px", borderRadius: "50%",objectFit:"cover" }}
                                 />
-                                <div>
+                                <div style={{fontWeight:"500"}}>
                                     <h4>{courier.name}</h4>
                                     <p>Стаж: {courier.experience}</p>
                                     <p>Рейтинг: {courier.rating}/5</p>
