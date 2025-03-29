@@ -322,6 +322,30 @@
 .hover:hover {
   color: #fc8e34;
 }
+
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.clearButton:hover {
+  background: #d8d8d8;
+}
 @media screen and (max-width: 1060px){
   .burger {
     display: block;

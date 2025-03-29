@@ -6,7 +6,6 @@ import { doc, updateDoc, arrayUnion, collection, getDocs } from "firebase/firest
 import { db } from "../../../utils/firebase/firebase-config";
 import 'leaflet/dist/leaflet.css';
 import '@ant-design/v5-patch-for-react-19';
-import ivan from '../../../assets/images/ivan.jpg';
 
 
 // Фиксированные координаты ресторана в Кара-Балте
@@ -181,7 +180,7 @@ const CourierModal = ({
                           
                             <div style={{ display: "flex", gap: "20px", marginBottom: "20px", marginTop: "10px",height:'100px' }}>
                                 <img
-                                    src={ivan}
+                                    src=""
                                     alt={courier.name}
                                     style={{ width: "100px", borderRadius: "50%",objectFit:"cover" }}
                                 />
