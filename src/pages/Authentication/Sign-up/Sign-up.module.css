@@ -182,7 +182,6 @@ form {
         margin-right: 0px;
     }
 }
-/* Добавим стиль для затемненного фона и центровки лоадера */
 .loaderOverlay {
     position: absolute;
     top: 0;
@@ -199,3 +198,11 @@ form {
   .loader {
     color: white;
   }
+  @media (max-width:920px) {
+    .banner{
+        display: none;
+    }
+    .container{
+        justify-content: center;
+    }
+}

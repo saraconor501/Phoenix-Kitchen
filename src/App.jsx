@@ -25,7 +25,7 @@ function Layout({ children }) {
 }
 
 function App() {
-  const location = useLocation(); 
+  const location = useLocation();
 
   return (
     <>
@@ -43,8 +43,9 @@ function App() {
                   <Route path="/cart" element={<PageTransition><CartPage /></PageTransition>} />
                   <Route path="/profile" element={<PageTransition><ProfilePage /></PageTransition>} />
                   <Route path="/myaccount" element={<PageTransition><AdminPage /></PageTransition>} />
-                  <Route path="/search" element={<PageTransition><SearchPage/></PageTransition>}></Route>
-                  <Route path="/restaraunts/:id" element={<PageTransition><RestaurantPage/></PageTransition>} />
+                  <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>}></Route>             
+                  <Route path="/restaraunts/:id" element={<PageTransition><RestaurantPage /></PageTransition>} />
+                  <Route path='/admin' element={<PageTransition><AdminPage/></PageTransition>} />
                 </Routes>
               </Layout>
             }

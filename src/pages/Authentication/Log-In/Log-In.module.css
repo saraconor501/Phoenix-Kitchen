@@ -5,6 +5,7 @@
     height: 100vh;
     width: 50%;
 }
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -93,7 +94,7 @@ form {
 
 .input:focus {
     outline: none;
-    
+
 }
 
 .submitButton {
@@ -182,6 +183,7 @@ form {
         margin-right: 0px;
     }
 }
+
 .loaderOverlay {
     position: absolute;
     top: 0;
@@ -193,8 +195,18 @@ form {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .loader {
+}
+
+.loader {
     color: white;
-  }
+}
+
+@media (max-width:767px) {
+    .banner {
+        display: none;
+    }
+
+    .container {
+        justify-content: center;
+    }
+}

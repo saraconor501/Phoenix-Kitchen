@@ -2,6 +2,7 @@ import styles from "./Footer.module.css";
 import instagram from '../../assets/follow/instagram.svg';
 import fasebook from '../../assets/follow/fasebook.svg';
 import twitter from '../../assets/follow/twitter.svg';
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
@@ -13,7 +14,9 @@ const Footer = () => {
             <h1>Phoenix Kitchen</h1>
             <div className={styles.block__wrapper}>
               <div>Подпишись на нас:</div>
-              <div><img src={instagram} alt="instagram" /> <img src={fasebook} alt="" /> <img src={twitter} alt="" /></div>
+              <Link to={'https://www.instagram.com/chyky.10/'}><img src={instagram} alt="instagram" /></Link>
+               <Link to={''}><img src={fasebook} alt="" /></Link> <Link to={''} ><img src={twitter} alt="" />
+               </Link>
             </div>
           </div>
           <div className={styles.line}></div>

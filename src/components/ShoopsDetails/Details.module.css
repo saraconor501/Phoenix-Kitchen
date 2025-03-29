@@ -1,11 +1,3 @@
-.productsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-}
-
 .productCard {
     width: 370px;
     border-radius: 16px;
@@ -108,12 +100,13 @@
     font-size: 18px;
     font-weight: bold;
     margin: 5px 0;
+    font-family: "Inter", serif !important;
 }
 
 .restaurantName {
     font-size: 15px;
     font-weight: 600;
-    color: #777;
+    color: #818181;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -125,8 +118,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #555;
+    color: #323232;
     margin: 5px 0;
+    font-family: "Inter", serif !important;
 }
 
 .titleProduct {
@@ -139,6 +133,7 @@
     font-size: 18px;
     font-weight: bold;
     color: #ff6600;
+    font-family: "Inter", serif !important;
 }
 
 .buttons {
@@ -163,6 +158,7 @@
     font-weight: 700;
 }
 
+
 .saveButton:active {
     transform: scale(0.98);
 }
@@ -183,6 +179,21 @@
     font-weight: bold;
 }
 
+@media (max-width:767px) {
+    .saveButton {
+        width: 123px;
+    }
+
+    .addToCartButton {
+        width: 123px;
+    }
+
+    .productCard {
+        width: 340px;
+
+    }
+}
+
 .saveButton,
 .addToCartButton {
     transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -193,15 +204,19 @@
     transform: scale(0.95);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
-.ratingContent{
+
+.ratingContent {
     margin-right: 3px;
 }
+
 .notFound {
+    width: 100%;
     height: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size:22px;
+    font-size: 22px;
     font-weight: 500;
     color: #888;
-  }
+    font-family: "Inter", serif !important;
+}
