@@ -5,7 +5,6 @@ import 'swiper/css/navigation';
 import './SwiperBanner.css';
 import { Autoplay } from 'swiper/modules';
 
-// Оптимизированные изображения
 import KFCBanner from '/public/bannerImg/KFCBanner.jpg';
 import PapajonhsBanner from '/public/bannerImg/papajonhs.png';
 
@@ -25,7 +24,7 @@ export default function SwiperBanner() {
       autoplay={{ delay: 4000, disableOnInteraction: false }}
       modules={[Autoplay]}
       className="mySwiper"
-    >
+      >
       {banners.map((banner, index) => (
         <SwiperSlide key={index}>
           <div className="banner-slide" style={{ backgroundImage: `url(${banner.img})` }}>

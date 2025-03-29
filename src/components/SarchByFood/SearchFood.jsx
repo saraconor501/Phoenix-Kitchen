@@ -33,8 +33,11 @@ const SearchFood = () => {
   };
 
   return (
+    <>
+       <div className={styles.containTitle}>
+              <h1 className={styles.resTitle}>Разделы по еде</h1>
+            </div>
     <div className={styles.container}>
-      <h1 className={styles.resTitle}>Разделы по еде</h1>
 
       <div className={styles.contentFilter}>
         {foodCategories.map((category) => (
@@ -42,7 +45,7 @@ const SearchFood = () => {
             key={category.id}
             className={`${styles.block} ${activeCategory === category.name ? styles.active : ''}`}
             onClick={() => handleCategoryClick(category.name)}
-          >
+            >
             <div className={styles.imageContainer}>
               <img
                 src={category.image}
@@ -82,12 +85,13 @@ const SearchFood = () => {
               <Cards
                 restaurantId={null}
                 filterCategory={selectedCategory}
-              />
+                />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+                </>
   );
 };
 

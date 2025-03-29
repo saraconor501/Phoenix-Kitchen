@@ -11,7 +11,7 @@ const ProfileAside = () => {
   const [openResponsive, setOpenResponsive] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
-
+  // const [role, setRole] = useState(null)
   const isAuthenticated = !!user;
 
 
@@ -46,8 +46,16 @@ const ProfileAside = () => {
         placement="right"
         open={open}
         onClose={() => setOpen(false)}
-      >
-        <div
+        >
+        {user?.role === "admin" ? (
+          <Link to={'/admin'}>
+            <div className={p.nav}>
+              <div className={p.navi}>Панель админа </div>
+            </div>
+          </Link>
+            ) : (
+              <>
+              <div
           onClick={() => setOpenResponsive(true)}
           className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
           <div className={p.navi}>Мои данные</div>
@@ -59,6 +67,14 @@ const ProfileAside = () => {
           />
         </div>
         <Modal
+        footer={[
+          <button key="back" onClick={() => setOpenResponsive(false)}>
+            Отмена
+          </button>,
+           <button key="submit" type="primary" onClick={() => setOpenResponsive(false)}>
+           Потвердить
+         </button>,
+        ]}
           centered
           open={openResponsive}
           onOk={() => setOpenResponsive(false)}
@@ -76,23 +92,65 @@ const ProfileAside = () => {
           <form action="">
             <label htmlFor="">
               <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '80px' }}>Имя</p>
-              <input type="text" placeholder={user?.name} className={p.Inputs} />
+              <input type="text" value={user?.name} className={p.Inputs} readOnly/>
             </label>
             <label htmlFor="">
               <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '30px' }}>Эл. Почта</p>
-              <input type="text" placeholder={user?.email} className={p.Inputs} />
+              <input type="text" value={user?.email} className={p.Inputs}  readOnly/>
+            </label>
+          </form>
+        </Modal>
+
+
+        <div
+          onClick={() => setOpenResponsive(true)}
+          className={p.nav} >
+          <div className={p.navi}>Мои заказы</div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/32/32213.png"
+            alt="Профиль"
+          />
+        </div>
+        <Modal
+        footer={[
+          <button key="back" onClick={() => setOpenResponsive(false)}>
+            Return
+          </button>,
+           <button key="submit" type="primary" onClick={() => setOpenResponsive(false)}>
+           Submit
+         </button>
+        ]}
+          centered
+          open={openResponsive}
+          onOk={() => setOpenResponsive(false)}
+          onCancel={() => setOpenResponsive(false)}
+          width={{
+            xs: '90%',
+            sm: '80%',
+            md: '70%',
+            lg: '60%',
+            xl: '50%',
+            xxl: '40%',
+          }}
+        >
+          <h3 style={{ paddingBottom: '20px' }}>Мои заказы</h3>
+          <form action="">
+            <label htmlFor="">
+              <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '80px' }}>Имя</p>
+              <input type="text" value={user?.name} className={p.Inputs} readOnly/>
+            </label>
+            <label htmlFor="">
+              <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '30px' }}>Эл. Почта</p>
+              <input type="text" value={user?.email} className={p.Inputs}  readOnly/>
             </label>
           </form>
         </Modal>
         <div className={p.nav}>
-          Мои адреса <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
+         Избранные <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>
-        <div className={p.nav}>
-          Мои заказы <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-        </div>
-        <div className={p.nav}>
-          Мои избранные <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
-        </div>
+        </>
+            )}
+        
         <ConfirmOut />
       </Drawer>
     </>

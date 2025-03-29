@@ -314,7 +314,7 @@
 .closeImg {
   width: 40px;
 }
-@media screen and (max-width: 1037px){
+@media screen and (max-width: 1060px){
   .burger {
     display: block;
   }

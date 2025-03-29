@@ -45,6 +45,7 @@ function App() {
                   <Route path="/myaccount" element={<PageTransition><AdminPage /></PageTransition>} />
                   <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>}></Route>             
                   <Route path="/restaraunts/:id" element={<PageTransition><RestaurantPage /></PageTransition>} />
+                  <Route path='/admin' element={<PageTransition><AdminPage/></PageTransition>} />
                 </Routes>
               </Layout>
             }
