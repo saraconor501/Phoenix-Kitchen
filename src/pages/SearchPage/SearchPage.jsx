@@ -14,6 +14,10 @@ const SearchPage = () => {
     const [displayedRestaurants, setDisplayedRestaurants] = useState([]);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
+    const itemsStyle = {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+    };
     const filteredRestaurants = useMemo(() => {
         if (!searchQuery) return restaurants || [];
 
@@ -57,7 +61,7 @@ const SearchPage = () => {
             setDisplayedRestaurants(filteredRestaurants);
             setIsTransitioning(false);
 
-         
+
             if (filteredRestaurants.length === 0 && searchQuery) {
                 const notFoundTimer = setTimeout(() => {
                     setShowNotFound(true);
@@ -85,7 +89,7 @@ const SearchPage = () => {
                                     <SkeletonSearch width="120px" height="20px" borderRadius="5px" />
                                 </div>
                             </div>
-                            <div className={s.Items}>
+                            <div className={s.Items} style={window.innerWidth <= 1480 ? itemsStyle : {}}>
                                 {Array.from({ length: 4 }).map((_, i) => (
                                     <SkeletonSearch key={i} width="100%" height="150px" borderRadius="10px" />
                                 ))}
@@ -119,7 +123,7 @@ const SearchPage = () => {
                                 </div>
                             </div>
                         </Link>
-                        <div className={s.Items}>
+                        <div className={s.Items} >
                             <Cards
                                 restaurantId={restaurant.id}
                                 filterCategory="Все"
@@ -135,7 +139,7 @@ const SearchPage = () => {
                                 <h2 className={s.not}>По запросу <span style={{ color: "black" }}>{searchQuery}</span> ничего не найдено</h2>
                                 <div className={s.noResults}>
                                     <div>
-                                        <img src=''alt="" />
+                                        <img src='' alt="" />
                                     </div>
                                 </div>
                             </>
@@ -150,7 +154,7 @@ const SearchPage = () => {
                                             <SkeletonSearch width="120px" height="20px" borderRadius="5px" />
                                         </div>
                                     </div>
-                                    <div className={s.Items}>
+                                    <div className={s.Items} style={window.innerWidth <= 1480 ? itemsStyle : {}}>
                                         {Array.from({ length: 4 }).map((_, i) => (
                                             <SkeletonSearch key={i} width="100%" height="150px" borderRadius="10px" />
                                         ))}
@@ -165,7 +169,22 @@ const SearchPage = () => {
                                             <SkeletonSearch width="120px" height="20px" borderRadius="5px" />
                                         </div>
                                     </div>
-                                    <div className={s.Items}>
+                                    <div className={s.Items} style={window.innerWidth <= 1480 ? itemsStyle : {}}>
+                                        {Array.from({ length: 4 }).map((_, i) => (
+                                            <SkeletonSearch key={i} width="100%" height="150px" borderRadius="10px" />
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className={s.SearchItem}>
+                                    <div className={s.Restaurant}>
+                                        <SkeletonSearch width="80px" height="80px" borderRadius="20px" />
+                                        <div className={s.ItemInfo}>
+                                            <SkeletonSearch width="150px" height="20px" borderRadius="5px" />
+                                            <SkeletonSearch width="100px" height="15px" borderRadius="5px" />
+                                            <SkeletonSearch width="120px" height="20px" borderRadius="5px" />
+                                        </div>
+                                    </div>
+                                    <div className={s.Items} style={window.innerWidth <= 1480 ? itemsStyle : {}}>
                                         {Array.from({ length: 4 }).map((_, i) => (
                                             <SkeletonSearch key={i} width="100%" height="150px" borderRadius="10px" />
                                         ))}

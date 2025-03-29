@@ -14,7 +14,7 @@ export const useProducts = (restaurantId) => {
   return useQuery({
     queryKey: ['products', restaurantId],
     queryFn: () => fetchProducts(restaurantId),
-    staleTime: 1000 * 60 * 5, // 5 минут
+    staleTime: 1000 * 60 * 5,
     enabled: !!restaurantId,
   });
 };
@@ -29,7 +29,7 @@ export const useFavoriteDishes = (userId) => {
   return useQuery({
     queryKey: ['favoriteDishes', userId],
     queryFn: () => fetchFavoriteDishes(userId),
-    staleTime: 1000 * 60 * 5, // 5 минут
+    staleTime: 1000 * 60 * 5, 
     enabled: !!userId,
   });
 };
@@ -45,7 +45,6 @@ export const saveOrRemoveFavoriteDish = async (userId, product, isProductSaved, 
     if (isProductSaved) {
       updatedFavorites = favoriteDishes.filter((item) => item.id !== product.id);
     } else {
-      // Добавляем информацию о ресторане в избранное блюдо
       updatedFavorites = [...favoriteDishes, { ...product, restaurantId }];
     }
 

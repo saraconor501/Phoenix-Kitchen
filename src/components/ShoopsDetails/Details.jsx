@@ -31,15 +31,27 @@ const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
   }, [favoriteDishes]);
 
   const filteredProducts = useMemo(() => {
-    let filtered = products;
+    let filtered = products || [];
 
-    if (filterCategory === "Избранные") {
-      filtered = favoriteDishes
-        ?.filter((fav) => fav.restaurantId === restaurantId)
-        .map((fav) => products?.find((product) => product.id === fav.id))
-        .filter((product) => product !== undefined);
-    } else if (filterCategory !== "Все") {
-      filtered = products?.filter((item) => item?.category.includes(filterCategory));
+    if (!restaurantId) {
+      const allRestaurants = queryClient.getQueryData(['restaurants']) || [];
+      filtered = allRestaurants.flatMap(restaurant =>
+        restaurant.menu?.filter(item =>
+          filterCategory ? item?.category?.includes(filterCategory) : true
+        ) || []
+      );
+    }
+    else {
+      if (filterCategory === "Избранные") {
+        filtered = favoriteDishes
+          ?.filter((fav) => fav.restaurantId === restaurantId)
+          .map((fav) => products?.find((product) => product.id === fav.id))
+          .filter((product) => product !== undefined);
+      } else if (filterCategory && filterCategory !== "Все") {
+        filtered = products?.filter((item) =>
+          item?.category?.includes(filterCategory)
+        );
+      }
     }
 
     if (searchQuery) {
@@ -48,10 +60,8 @@ const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
       );
     }
 
-    return filtered;
-
-
-  }, [products, filterCategory, favoriteDishes, restaurantId, searchQuery]);
+    return filtered || [];
+  }, [products, filterCategory, favoriteDishes, restaurantId, searchQuery, queryClient]);
 
   const openModal = useCallback((product) => {
     if (!auth.currentUser) {
@@ -137,7 +147,11 @@ const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
                 onOpenModal={openModal}
               />
             ))
-            : <div className={main.notFound}>Не найдено</div>}
+            : <>
+              <div></div>
+              <div className={main.notFound}>Не найдено</div>
+              <div></div>
+            </>}
       </>
 
       {isModalOpen && selectedProduct && (

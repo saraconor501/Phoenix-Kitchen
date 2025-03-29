@@ -24,7 +24,8 @@
     padding: 24px;
     height: 700px;
 }
-.paymentContainer h1{
+
+.paymentContainer h1 {
     display: flex;
     font-size: 26px;
     align-items: center;
@@ -104,10 +105,10 @@
 .cartItem {
     display: flex;
     align-items: center;
-   
+
     justify-content: space-between;
     transition: display 0.3s ease;
-    
+
 
 }
 
@@ -509,14 +510,96 @@
 .modal__wrapper li {
     list-style-type: none;
 }
-.modal__wrapper h3{
+
+.modal__wrapper h3 {
     text-align: center;
 }
 
 .modal__wrapper {
     font-size: 20px;
 }
+
 .wrapper {
     display: flex;
     justify-content: space-evenly;
+}
+
+.deleteMedia {
+    display: none;
+}
+
+@media (max-width: 1250px) {
+    .contain {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .paymentContainer {
+        width: 72%;
+    }
+
+    .cartContainer {
+        width: 76%;
+    }
+}
+
+@media (max-width: 767px) {
+    .paymentContainer {
+        width: 96%;
+    }
+
+    .cartContainer {
+        width: 98%;
+    }
+
+    .cartItem {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .itemInfo {
+        width: 90%;
+    }
+
+    .funtionItem {
+        width: 90%;
+        height: auto;
+    }
+
+    .funtionModal {
+        width: 100%;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    .delete {
+        display: none;
+    }
+
+    .deleteMedia {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .itemHeader div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .itemHeader {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        flex-direction: row;
+    }
+
+    .titleItem h2 {
+        font-size: 20px;
+    }
+}
+
+.description {
+    font-family: "Inter", serif !important;
 }

@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { Skeleton, Rate } from "antd";
 import { useRestaurants } from "../../store/restaurants-slice/restaurants-slice";
 import sp from "./Restauraunts.module.css";
-
 const Restauraunts = () => {
   const { data: restaurants, isLoading } = useRestaurants();
 
   return (
     <>
-      <h1 className={sp.resTitle}>Рестораны</h1>
+      <div className={sp.containTitle}>
+        <h1 className={sp.resTitle}>Рестораны</h1>
+      </div>
       <div className={sp.container}>
         <div className={sp.content}>
           {isLoading
@@ -20,25 +21,53 @@ const Restauraunts = () => {
                     className={sp.skeletonImage}
                   />
                   <div className={sp.skeletonText}>
-                   
                     <Skeleton title={false} paragraph={{ rows: 1, width: "60%" }} active />
                     <Skeleton title={false} paragraph={{ rows: 1, width: "80%" }} active />
                   </div>
                 </div>
               ))
             : restaurants.map((restaurant) => (
-                <Link to={`/restaraunts/${restaurant.id}`} className={sp.link} key={restaurant.id}>
-                  <div className={sp.block__wrapper}>
-                    <img src={restaurant.image} alt={restaurant.name} />
-                    <div className={sp.sub__block}>
-                      <div >
-                        <Rate disabled allowHalf defaultValue={restaurant.rating} />
+                <div key={restaurant.id} className={sp.cardWrapper}>
+                  <Link to={`/restaraunts/${restaurant.id}`} className={sp.link}>
+                    <div className={sp.card}>
+                      <div className={sp.cardImageContainer}>
+                        <img src={restaurant.image} alt={restaurant.name} className={sp.cardImage} />
+                        <div className={sp.deliveryTime}>
+                          <span>{restaurant?.deliveryTime} минут</span>
+                        </div>
                       </div>
-                      <h4>{restaurant.name}</h4>
-                      <h5>{restaurant.address}</h5>
+                      <div className={sp.cardContent}>
+                        <div className={sp.cardHeader}>
+                          <h3 className={sp.cardTitle}>{restaurant.name}</h3>
+                          <div className={sp.rating}>
+                            <Rate 
+                              disabled 
+                              allowHalf 
+                              defaultValue={restaurant.rating} 
+                              style={{ fontSize: 14 }} 
+                            />
+                            <span className={sp.ratingValue}>{restaurant.rating}</span>
+                          </div>
+                        </div>
+                        <div className={sp.cardInfo}>
+                          <div className={sp.cuisineType}>
+                            {restaurant?.categories?.map((item,)=> `${item}, `)}
+                          </div>
+                          <div className={sp.cardDetails}>
+                            <div className={sp.detailItem}>
+                              <span className={sp.detailLabel}>Адрес:</span> 
+                              <span className={sp.addressItem}>{restaurant.address}</span>
+                            </div>
+                            <div className={sp.detailItem}>
+                              <span className={sp.detailLabel}><img style={{width:"19px"}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXwuNxN0yCS3oLHr27AouQM2vddf6BtXy8Tg&s' alt="" /></span>
+                              <span className={sp.phoneItem}>{restaurant.phone}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               ))}
         </div>
       </div>

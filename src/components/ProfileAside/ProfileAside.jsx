@@ -48,42 +48,42 @@ const ProfileAside = () => {
         onClose={() => setOpen(false)}
       >
         <div
-         onClick={() => setOpenResponsive(true)}
+          onClick={() => setOpenResponsive(true)}
           className={`${p.nav} ${location.pathname === "/profile" ? p.active : ""}`} >
           <div className={p.navi}>Мои данные</div>
           <img
-            style={{ borderRadius: "50%",width:"40px" }}
+            style={{ borderRadius: "50%", width: "40px" }}
             src="https://www.svgrepo.com/show/497407/profile-circle.svg"
             className={p.icon}
             alt="Профиль"
           />
         </div>
         <Modal
-        centered
-        open={openResponsive}
-        onOk={() => setOpenResponsive(false)}
-        onCancel={() => setOpenResponsive(false)}
-        width={{
-          xs: '90%',
-          sm: '80%',
-          md: '70%',
-          lg: '60%',
-          xl: '50%',
-          xxl: '40%',
-        }}
-      >
-        <h3 style={{paddingBottom: '20px'}}>Мои данные</h3>
-      <form action="">
-        <label htmlFor="">
-          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '80px'}}>Имя</p>
-          <input type="text" placeholder={user.name} className={p.Inputs}/>
-        </label>
-        <label htmlFor="">
-          <p style={{fontSize: '18px', fontWeight: 700, paddingRight: '30px'}}>Эл. Почта</p>
-          <input type="text" placeholder={user.email} className={p.Inputs}/>
-        </label>
-      </form>
-      </Modal>
+          centered
+          open={openResponsive}
+          onOk={() => setOpenResponsive(false)}
+          onCancel={() => setOpenResponsive(false)}
+          width={{
+            xs: '90%',
+            sm: '80%',
+            md: '70%',
+            lg: '60%',
+            xl: '50%',
+            xxl: '40%',
+          }}
+        >
+          <h3 style={{ paddingBottom: '20px' }}>Мои данные</h3>
+          <form action="">
+            <label htmlFor="">
+              <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '80px' }}>Имя</p>
+              <input type="text" placeholder={user?.name} className={p.Inputs} />
+            </label>
+            <label htmlFor="">
+              <p style={{ fontSize: '18px', fontWeight: 700, paddingRight: '30px' }}>Эл. Почта</p>
+              <input type="text" placeholder={user?.email} className={p.Inputs} />
+            </label>
+          </form>
+        </Modal>
         <div className={p.nav}>
           Мои адреса <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="" />
         </div>

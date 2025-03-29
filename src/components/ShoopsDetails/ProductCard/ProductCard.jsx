@@ -17,11 +17,11 @@ const ProductCard = memo(({ item, isSaved, onSaveProduct, onAddToCart, onOpenMod
         />
         {item.isAvailable ? (
           <div className={main.statusBadge}>
-            <div className={main.open}></div> Открыто
+            <div className={main.open}></div> Доступен
           </div>
         ) : (
           <div className={main.statusBadgeNone}>
-            <div className={main.close}></div> Закрыто
+            <div className={main.close}></div> Не доступен
           </div>
         )}
       </div>
@@ -35,7 +35,7 @@ const ProductCard = memo(({ item, isSaved, onSaveProduct, onAddToCart, onOpenMod
         <h2 className={main.productName}>{item.name}</h2>
         <div className={main.titleProduct}>
           <p className={main.deliveryTime}>
-            <img style={{ width: "30px" }} src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png" />
+            <img style={{ width: "30px", }} src="https://cdn-icons-png.flaticon.com/512/1023/1023346.png" />
             Вес: {item.weight} г
           </p>
           <div className={main.restaurantName}>
