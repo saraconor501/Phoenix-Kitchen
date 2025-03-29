@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Modal, Button, Skeleton, Spin, message } from "antd";
 import { MapContainer, Marker, Polyline, Popup, TileLayer } from "react-leaflet";
 import L from 'leaflet';
-import { doc, updateDoc, arrayUnion, collection, getDocs } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase/firebase-config";
 import 'leaflet/dist/leaflet.css';
 import '@ant-design/v5-patch-for-react-19';
 import ivan from '../../../assets/images/ivan.jpg';
-
 
 // Фиксированные координаты ресторана в Кара-Балте
 const RESTAURANT_COORDS = [42.8146, 73.8481];
@@ -66,6 +65,8 @@ const CourierModal = ({
 
     const saveOrderToHistory = async () => {
         const orderData = {
+            userId: user.uid,
+            userEmail: user.email || null,
             items: cart.map(item => ({
                 id: item.id || null,
                 name: item.name || 'Без названия',
@@ -83,25 +84,28 @@ const CourierModal = ({
                 id: courier.id || null,
                 name: courier.name || 'Курьер не указан',
                 phone: courier.phone || null
-            } : null
+            } : null,
+            restaurantCoords: RESTAURANT_COORDS,
+            deliveryCoords: userCoords
         };
 
         // Удаляем undefined значения
         const cleanOrderData = JSON.parse(JSON.stringify(orderData));
 
+        // Сохраняем в историю заказов пользователя
         await updateDoc(doc(db, "users", user.uid), {
             orderHistory: arrayUnion(cleanOrderData)
         });
+
+        // Сохраняем в общую коллекцию заказов
+        await addDoc(collection(db, "orders"), cleanOrderData);
     };
-
-
 
     const completeOrder = async () => {
         setIsCompleting(true);
         try {
             await saveOrderToHistory();
             await new Promise(resolve => setTimeout(resolve, 1500)); // Имитация загрузки
-
             onOrderSuccess();
             onClose();
             message.success("Заказ успешно доставлен!");
@@ -179,14 +183,13 @@ const CourierModal = ({
                         </div>
                     ) : courier ? (
                         <div>
-                          
-                            <div style={{ display: "flex", gap: "20px", marginBottom: "20px", marginTop: "10px",height:'100px' }}>
+                            <div style={{ display: "flex", gap: "20px", marginBottom: "20px", marginTop: "10px", height: '100px' }}>
                                 <img
                                     src={ivan}
                                     alt={courier.name}
-                                    style={{ width: "100px", borderRadius: "50%",objectFit:"cover" }}
+                                    style={{ width: "100px", borderRadius: "50%", objectFit: "cover" }}
                                 />
-                                <div style={{fontWeight:"500"}}>
+                                <div style={{ fontWeight: "500" }}>
                                     <h4>{courier.name}</h4>
                                     <p>Стаж: {courier.experience}</p>
                                     <p>Рейтинг: {courier.rating}/5</p>
@@ -199,6 +202,8 @@ const CourierModal = ({
                                     center={RESTAURANT_COORDS}
                                     zoom={13}
                                     style={{ height: "100%", width: "100%" }}
+
+
                                     whenCreated={mapInstance => { mapRef.current = mapInstance }}
                                 >
                                     <TileLayer
@@ -209,7 +214,6 @@ const CourierModal = ({
                                     </Marker>
                                     <Marker position={userCoords} icon={customIcon}>
                                         <Popup>Ваш адрес: {userAddress}</Popup>
-
                                     </Marker>
                                     <Marker position={RESTAURANT_COORDS} icon={carIcon}>
                                         <Popup>Курьер: {courier.name}</Popup>
