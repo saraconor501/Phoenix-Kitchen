@@ -163,7 +163,7 @@ const AddressButton = () => {
         className={styles.button}
       >
         <img src={locationIcon} alt="" className={styles.icon} />
-        Выбрать местоположение
+        <p>Выбрать местоположение</p>
       </button>
 
       {showMap && (

@@ -123,7 +123,7 @@ const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
         ...prev,
         [product.id]: isProductSaved,
       }));
-      console.error("Ошибка при сохранении продукта:", error);
+      messageApi.error("Ошибка при сохранении продукта:", error);
     }
   }, [auth.currentUser, messageApi, queryClient, savedProducts, restaurantId]);
   if (error) {

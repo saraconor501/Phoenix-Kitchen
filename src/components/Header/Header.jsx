@@ -142,14 +142,13 @@ const logoSrc = restaurantLogos[restaurantId] || Icon;
   {isMenuOpen && (
   <div className={hr.fullscreenMenu}>
     <button className={hr.closeButton} onClick={() => setIsMenuOpen(false)}><img src={close} alt='close' className={hr.closeImg}/></button>
-    <AdressButton />
-    <div style={{display: "flex", justifyContent: "center"}}>
-    <p>Профиль</p>
+    <div style={{display: "flex", justifyContent: "center", columnGap: '20px'}}>
+    <p className={hr.hover}>Профиль</p>
     <ProfileAside />
     </div>
     <Link to="/cart">
-    <div style={{display: "flex", justifyContent: "center"}}>
-    <p style={{color: "black"}}>Корзина</p>
+    <div style={{display: "flex", justifyContent: "center", columnGap: '20px'}}>
+    <p className={hr.hover}>Корзина</p>
     <img
     src={CartIcon}
     className={hr.cartIcon}

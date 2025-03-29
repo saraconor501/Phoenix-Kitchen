@@ -1,55 +1,72 @@
-import { useEffect, useState } from 'react';
-import { Table } from 'antd';
-import { db } from '../../utils/firebase/firebase-config'; // Импортируйте Firebase конфигурацию
-import { collection, getDocs } from 'firebase/firestore';
+import { useEffect, useState } from "react";
+import { getFirestore, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { Table, Button, Popconfirm, message } from "antd";
+import { app } from "../../utils/firebase/firebase-config";
 
-const columns = [
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Email', dataIndex: 'email', key: 'email' },
-  { title: 'Uid', dataIndex: 'uid', key: 'uid' },
-  {
-    title: 'Action',
-    dataIndex: '',
-    key: 'x',
-    render: () => <a>Delete</a>,
-  },
-];
-
-const AdminPage = () => {
+const AdminPanel = () => {
   const [users, setUsers] = useState([]);
+  const db = getFirestore(app);
+  useEffect(() => {
+    fetchUsers();
+  });
 
   const fetchUsers = async () => {
+    const usersRef = collection(db, "users");
+    const snapshot = await getDocs(usersRef);
+    const usersList = snapshot.docs.map((doc) => ({
+      key: doc.id, 
+      id: doc.id,
+      name: doc.data().name || "Не указано",
+      email: doc.data().email || "Не указано",
+      role: doc.data().role || "user",
+    }));
+    setUsers(usersList);
+  };
+
+  const handleDelete = async (userId) => {
     try {
-        const userCollection = collection(db, "users")
-        const querySnapshot = await getDocs(userCollection)
-        const userData = querySnapshot.docs.map((doc) => {
-            const data = doc.data();
-            return {
-                id: doc.id,
-                email: doc.id || "Нет email",
-                orders: Array.isArray(data.orders) ? data.orders : [],
-                isAdmin: data.isAdmin || false,
-                cart: data.cart || [],
-            };
-        })
-        setUsers(userData);
+      await deleteDoc(doc(db, "users", userId));
+      message.success("Пользователь удалён!");
+      setUsers(users.filter(user => user.id !== userId));
     } catch (error) {
-        console.error("Ошибка при получении пользователей:", error);
-    } 
-};
+      message.error("Ошибка при удалении пользователя");
+    }
+  };
 
-useEffect(() => {
-    fetchUsers()
-}, [])
 
+  const columns = [
+    { title: "ID", dataIndex: "id", key: "id" },
+    { title: "Имя", dataIndex: "name", key: "name" },
+    { title: "Email", dataIndex: "email", key: "email" },
+    { title: "Роль", dataIndex: "role", key: "role" },
+    {
+      title: "Действие",
+      key: "action",
+      render: (_, record) => (
+        <Popconfirm
+          title="Вы уверены, что хотите удалить?"
+          onConfirm={() => handleDelete(record.id)}
+          okText="Да"
+          cancelText="Нет"
+        >
+          <Button type="primary" danger>
+            Удалить
+          </Button>
+        </Popconfirm>
+      ),
+    },
+  ];
 
   return (
-    <Table 
-    columns={columns}
-    dataSource={users.map((user) => 
-      ({key: user.id, name: user.name, email: user.email}))}
-     />
+    <div style={{ padding: "20px" }}>
+      <h1 style={{ textAlign: "center" }}>Список пользователей</h1>
+      <Table
+        dataSource={users}
+        columns={columns}
+        pagination={{ pageSize: 5 }}
+      />
+    </div>
   );
 };
 
-export default AdminPage;
+export default AdminPanel;

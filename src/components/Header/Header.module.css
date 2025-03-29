@@ -314,6 +314,14 @@
 .closeImg {
   width: 40px;
 }
+
+.hover {
+  color: black;
+}
+
+.hover:hover {
+  color: #fc8e34;
+}
 @media screen and (max-width: 1060px){
   .burger {
     display: block;
@@ -333,5 +341,10 @@
     font-size: 14px;
     padding-left: 45px;
     background-size: 18px;
+  }
+
+  .searchButton {
+    width: 50px;
+    font-size: 12px;
   }
 }

@@ -28,7 +28,6 @@ const CourierModal = ({
     const mapRef = useRef(null);
     const [messageApi, contextHolder] = message.useMessage();
 
-    // Иконки для карты
     const customIcon = L.icon({
         iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
         iconSize: [25, 41],
