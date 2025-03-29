@@ -1,18 +1,26 @@
+import { create } from 'zustand';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { db, auth } from "../../utils/firebase/firebase-config";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { useEffect } from "react";
+
+export const useCartStore = create((set) => ({
+    cart: [],
+    isLoading: false,
+    error: null,
+
+   
+    setCart: (cart) => set({ cart }),
+    setLoading: (isLoading) => set({ isLoading }),
+    setError: (error) => set({ error }),
+}));
 
 const fetchCart = async () => {
     const user = auth.currentUser;
-
+    if (!user) return [];
 
     const userDocRef = doc(db, "users", user.uid);
     const userDocSnap = await getDoc(userDocRef);
-
-    return  userDocSnap.data().cart
-
-
+    return userDocSnap.data()?.cart || [];
 };
 
 const updateCart = async (newCart) => {
@@ -25,17 +33,25 @@ const updateCart = async (newCart) => {
 
 export const useCart = () => {
     const queryClient = useQueryClient();
-    const { data: cart = [], isLoading, refetch } = useQuery({
+    const { cart, setCart, setLoading, setError } = useCartStore();
+
+    const { isLoading, refetch } = useQuery({
         queryKey: ["cart"],
-        queryFn: fetchCart,
-        staleTime: 0,
-        refetchOnWindowFocus: true, 
-        refetchOnReconnect: true, 
-        onSuccess: () => {
-            
-            console.log("Cart fetched successfully");
-        }
+        queryFn: async () => {
+            try {
+                setLoading(true);
+                const data = await fetchCart();
+                setCart(data);
+                return data;
+            } catch (error) {
+                setError(error);
+                throw error;
+            } finally {
+                setLoading(false);
+            }
+        },
     });
+
     const addToCartMutation = useMutation({
         mutationFn: async (product) => {
             let newCart = [...cart];
@@ -52,7 +68,10 @@ export const useCart = () => {
             await updateCart(newCart);
             return newCart;
         },
-        onSuccess: (newCart) => queryClient.setQueryData(["cart"], newCart),
+        onSuccess: (newCart) => {
+            queryClient.setQueryData(["cart"], newCart);
+            setCart(newCart);
+        },
     });
 
     const removeFromCartMutation = useMutation({
@@ -61,12 +80,29 @@ export const useCart = () => {
             await updateCart(newCart);
             return newCart;
         },
-        onSuccess: (newCart) => queryClient.setQueryData(["cart"], newCart),
+        onSuccess: (newCart) => {
+            queryClient.setQueryData(["cart"], newCart);
+            setCart(newCart);
+        },
     });
 
-    useEffect(() => {
-        refetch();
-    }, [refetch]);
+    const clearCartMutation = useMutation({
+        mutationFn: async () => {
+            await updateCart([]);
+            return [];
+        },
+        onSuccess: () => {
+            queryClient.setQueryData(["cart"], []);
+            setCart([]);
+        },
+    });
 
-    return { cart, isLoading, addToCartMutation, removeFromCartMutation, refetch };
+    return {
+        cart,
+        isLoading,
+        addToCartMutation,
+        removeFromCartMutation,
+        clearCartMutation,
+        refetch,
+    };
 };

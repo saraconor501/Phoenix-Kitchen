@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { Skeleton, Rate } from "antd";
+import { Rate } from "antd";
+
 import { useRestaurants } from "../../store/restaurants-slice/restaurants-slice";
 import sp from "./Restauraunts.module.css";
+import SkeletonSearch from "../SkeletonSearch/SkeletonSearch";
 const Restauraunts = () => {
   const { data: restaurants, isLoading } = useRestaurants();
 
@@ -15,15 +17,9 @@ const Restauraunts = () => {
           {isLoading
             ? Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className={sp.skeletonWrapper}>
-                  <Skeleton.Image
-                    active
-                    style={{ width: "100%", height: "210px" }}
-                    className={sp.skeletonImage}
-                  />
-                  <div className={sp.skeletonText}>
-                    <Skeleton title={false} paragraph={{ rows: 1, width: "60%" }} active />
-                    <Skeleton title={false} paragraph={{ rows: 1, width: "80%" }} active />
-                  </div>
+                <SkeletonSearch width={'100%'} height={'220px'}>
+
+                </SkeletonSearch>
                 </div>
               ))
             : restaurants.map((restaurant) => (
@@ -59,7 +55,7 @@ const Restauraunts = () => {
                               <span className={sp.addressItem}>{restaurant.address}</span>
                             </div>
                             <div className={sp.detailItem}>
-                              <span className={sp.detailLabel}><img style={{width:"19px"}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXwuNxN0yCS3oLHr27AouQM2vddf6BtXy8Tg&s' alt="" /></span>
+                              <span className={sp.detailLabel}><img style={{width:"14px"}} src='https://cdn-icons-png.flaticon.com/512/15894/15894919.png' alt="" /></span>
                               <span className={sp.phoneItem}>{restaurant.phone}</span>
                             </div>
                           </div>

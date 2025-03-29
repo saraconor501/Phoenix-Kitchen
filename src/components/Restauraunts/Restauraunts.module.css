@@ -174,27 +174,12 @@
 /* Skeleton styles */
 .skeletonWrapper {
     width: 100%;
-    height: 100%;
-    background: #fff;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.skeletonImage {
-    width: 100%;
-    height: 180px;
-}
-
-.skeletonText {
-    padding: 16px;
+    height: 220px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
-.skeletonRating {
-    width: 60px;
-    height: 20px;
-    border-radius: 4px;
-}
