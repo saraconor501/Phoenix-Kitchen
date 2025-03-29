@@ -9,7 +9,7 @@ import main from "./Details.module.css";
 import ProductCard from "./ProductCard/ProductCard";
 
 
-const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
+const Cards = ({ restaurantId, filterCategory, searchQuery = ''}) => {
   const { data: products, isLoading, error } = useProducts(restaurantId);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);

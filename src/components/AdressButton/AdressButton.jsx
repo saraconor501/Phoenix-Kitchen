@@ -18,14 +18,16 @@ const markerIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-const CenterMarker = ({ setAddress }) => {
+const CenterMarker = ({ setAddress, setCoordinates }) => {
   const map = useMap();
   const markerRef = useRef(null);
 
   useMapEvents({
     moveend: () => {
       const center = map.getCenter();
-      reverseGeocode([center.lat, center.lng], setAddress);
+      const newCoords = [center.lat, center.lng];
+      setCoordinates(newCoords);
+      reverseGeocode(newCoords, setAddress);
     }
   });
 
@@ -80,6 +82,7 @@ const AddressButton = () => {
         if (docSnap.exists() && docSnap.data().location?.coordinates) {
           const { lat, lng } = docSnap.data().location.coordinates;
           setUserLocation([lat, lng]);
+          setCoordinates([lat, lng]);
         }
       }
     };
@@ -125,7 +128,7 @@ const AddressButton = () => {
       return;
     }
 
-    setIsSaving(true);
+setIsSaving(true);
     try {
       await updateDoc(doc(db, "users", user.uid), {
         "location": {
@@ -147,7 +150,6 @@ const AddressButton = () => {
       setIsSaving(false);
     }
   };
-
 
   const clearAddress = () => {
     setAddress("");
@@ -232,7 +234,10 @@ const AddressButton = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 />
-                <CenterMarker setAddress={setAddress} />
+                <CenterMarker 
+                  setAddress={setAddress}
+                  setCoordinates={setCoordinates}
+                />
               </MapContainer>
 
               <button

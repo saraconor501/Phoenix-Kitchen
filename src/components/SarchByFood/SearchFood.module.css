@@ -170,7 +170,7 @@
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
     justify-content: center;
-    gap: 20px;
+    row-gap: 25px;
     width: 100%;
     margin-top: 15px;
     margin-bottom: 10px;
