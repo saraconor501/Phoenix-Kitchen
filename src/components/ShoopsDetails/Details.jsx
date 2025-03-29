@@ -46,7 +46,7 @@ const Cards = ({ restaurantId, filterCategory, searchQuery = '' }) => {
         filtered = favoriteDishes
           ?.filter((fav) => fav.restaurantId === restaurantId)
           .map((fav) => products?.find((product) => product.id === fav.id))
-          .filter((product) => product !== undefined);
+          .filter((product) => product !== undefined)
       } else if (filterCategory && filterCategory !== "Все") {
         filtered = products?.filter((item) =>
           item?.category?.includes(filterCategory)

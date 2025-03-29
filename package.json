@@ -11,6 +11,7 @@
     "start": "BROWSER=none react-scripts start"
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@headlessui/react": "^2.2.0",
     "@tanstack/react-query": "^5.67.2",
     "@tanstack/react-query-devtools": "^5.67.2",
