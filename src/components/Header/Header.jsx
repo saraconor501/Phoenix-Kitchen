@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import mypizza from '../../assets/images/mypizza.svg';
 import burgerMenu from '../../assets/images/burger.svg';
-import navat from '../../assets/images/navat.webp';
+import navat from '../../assets/images/Navat.webp';
 import papajonhs from '../../assets/images/papajonhs.png';
 import close from '../../assets/images/close.svg'
 import useAuthStore from '../../store/auth-slice/auth-slice';
