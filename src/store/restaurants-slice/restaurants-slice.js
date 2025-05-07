@@ -1,8 +1,8 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../../utils/firebase/firebase-config';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchRestaurants = async () => {
+export const fetchRestaurants = async () => {
   const restaurantsCollectionRef = collection(db, 'restaurants');
   const snapshot = await getDocs(restaurantsCollectionRef);
   const restaurants = await Promise.all(
@@ -15,6 +15,18 @@ const fetchRestaurants = async () => {
   return restaurants;
 };
 
+
+export const addMenuItem = async (restaurantId, newItem) => {
+  const menuCollectionRef = collection(db, 'restaurants', restaurantId, 'menu');
+  await addDoc(menuCollectionRef, newItem);
+};
+
+export const deleteMenuItem = async (restaurantId, itemId) => {
+  const itemDocRef = doc(db, 'restaurants', restaurantId, 'menu', itemId);
+  await deleteDoc(itemDocRef);
+};
+
+
 export const useRestaurants = () => {
   return useQuery({
     queryKey: ['restaurants'],
@@ -22,3 +34,4 @@ export const useRestaurants = () => {
     staleTime: 1000 * 60 * 5, 
   });
 };
+

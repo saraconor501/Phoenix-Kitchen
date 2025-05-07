@@ -69,3 +69,55 @@
 .foter{
   margin-top: 20px;
 }
+
+@media screen and (max-width: 480px) {
+    .block__inside h3 {
+        font-size: 14px;
+    }
+
+    .block__inside li {
+      font-size: 12px;
+    }
+
+    .reserve {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .reserve p {
+      font-size: 12px;
+    }
+
+    .block h1 {
+      font-size: 14px;
+    }
+
+    .block__inside {
+      gap: 1rem;
+      padding-top: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .container {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+
+    .block__wrapper div {
+      display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+  .block__inside {
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}

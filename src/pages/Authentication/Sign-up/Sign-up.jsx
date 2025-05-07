@@ -74,7 +74,7 @@ const SignUp = () => {
               </div>
 
               <div className={style.toLogin}>
-                <span style={{ color: "#9E9E9E", fontSize: "18px", fontWeight: "400" }}>У вас уже есть аккаунт?</span>
+                <span style={{ color: "#9E9E9E" , fontWeight: "400" }}>У вас уже есть аккаунт?</span>
                 <Link className={style.titleLogin} to="/auth/login">Войти в аккаунт</Link>
               </div>
 

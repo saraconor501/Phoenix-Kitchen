@@ -73,7 +73,7 @@ const logoSrc = restaurantLogos[restaurantId] || Icon;
             ) : (
               <>
                 <Link to="/" className={hr.logoTitle}>
-             <img src={logoSrc} style={{width: "60px"}}/>
+             <img src={logoSrc} />
                 </Link>
               </>
             )}

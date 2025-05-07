@@ -112,7 +112,7 @@ form {
 }
 
 .loginProvider {
-    width: 191.5px;
+    width: 60%;
     height: 48px;
     border-radius: 12px;
     background-color: #ffffff;
@@ -177,6 +177,11 @@ form {
     font-size: 14px;
 }
 
+.toLogin span {
+    font-size: 18px;
+}
+
+
 @media screen and (max-width:1023px) {
     .formContainer {
         margin-right: 0px;
@@ -204,5 +209,18 @@ form {
     }
     .container{
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .formContainer {
+        width: 80%;
+    }
+    .toLogin span {
+        font-size: 14px;
+    }
+
+    .toLogin a {
+        font-size: 14px;
     }
 }

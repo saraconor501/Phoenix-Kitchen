@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Input, Spin, message } from "antd";
+import { Input, Spin, message, Row, Col } from "antd";
 import useAuthStore from "../../../store/auth-slice/auth-slice";
 import style from "./Log-In.module.css";
 import auth from '../../../assets/images/auth.jpg';
@@ -95,7 +95,7 @@ const Login = () => {
                                 </div>
 
                                 <div className={style.toSignup}>
-                                    <span style={{ color: "#9E9E9E", fontSize: "18px", fontWeight: "400" }}>
+                                    <span style={{ color: "#9E9E9E",  fontWeight: "400" }}>
                                         Нет аккаунта?
                                     </span>
                                     <Link className={style.titleLogin} to="/auth/sign-up">Зарегистрируйтесь</Link>
@@ -103,6 +103,7 @@ const Login = () => {
 
                                 <form onSubmit={handleSubmit} className={style.formFill}>
                                     <div className={style.inputContainer}>
+                                    
                                         <Input
                                             className={`${style.input} ${errors.email ? style.inputError : ""}`}
                                             type="email"
@@ -111,6 +112,7 @@ const Login = () => {
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
                                         />
+                                        
                                         {errors.email && <p className={style.errorText}>{errors.email}</p>}
                                     </div>
                                     <div className={style.inputContainer}>

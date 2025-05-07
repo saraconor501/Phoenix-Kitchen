@@ -310,6 +310,10 @@
   width: 30px;
 }
 
+.logoTitle img {
+    width: 60px;
+}
+
 
 .closeImg {
   width: 40px;
@@ -371,4 +375,10 @@
     width: 50px;
     font-size: 12px;
   }
+}
+
+@media screen and (max-width: 480px) {
+    .logoTitle img{
+        width: 45px;
+    }
 }

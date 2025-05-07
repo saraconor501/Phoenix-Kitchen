@@ -22,7 +22,7 @@
 }
 
 .form {
-    width: 406px;
+    width: 40%;
     height: 626px;
     display: flex;
     flex-direction: column;
@@ -113,7 +113,7 @@ form {
 }
 
 .loginProvider {
-    width: 191.5px;
+    width: 60%;
     height: 48px;
     border-radius: 12px;
     background-color: #ffffff;
@@ -140,6 +140,15 @@ form {
 .toLogin {
     display: flex;
     gap: 6px;
+}
+
+
+.toLogin span {
+    font-size: 18px;
+}
+
+.toLogin a {
+    font-size: 18px;
 }
 
 .titleLogin {
@@ -206,7 +215,24 @@ form {
         display: none;
     }
 
+    .form {
+        width: 80%;
+    }
     .container {
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .formContainer {
+        width: 80%;
+    }
+
+    .toLogin span {
+        font-size: 14px;
+    }
+    
+    .toLogin a {
+        font-size: 14px;
     }
 }
