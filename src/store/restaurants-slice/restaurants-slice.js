@@ -19,6 +19,6 @@ export const useRestaurants = () => {
   return useQuery({
     queryKey: ['restaurants'],
     queryFn: fetchRestaurants,
-    staleTime: 1000 * 60 * 5, 
+    staleTime: 1000 * 60 * 5,
   });
 };

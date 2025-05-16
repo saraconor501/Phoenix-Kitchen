@@ -93,6 +93,7 @@
     column-gap: 20px;
     padding: 10px 0;
     scroll-snap-type: x mandatory; 
+    padding-left: 4px;
 }
 
 .block {
